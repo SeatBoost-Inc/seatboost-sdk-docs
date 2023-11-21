@@ -1,6 +1,6 @@
 # SBCabinVisual
 
-> The SBCabinVisual class contains an image of the cabin and its description. It is referenced by SBCabin.
+The `SBCabinVisual` class contains an image of the cabin and its description. It is referenced by [`SBCabin`](object-model/sbcabin).
 
 | **Property Name** | **Type** | **Description** |
 | ---| ---| --- |

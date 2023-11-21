@@ -1,6 +1,6 @@
 # SBBidder
 
-> The `SBBidder` class represents a bidder.
+The `SBBidder` class represents a bidder.
 
 | **Property Name** | **Type** | **Description** |
 | ---| ---| --- |
