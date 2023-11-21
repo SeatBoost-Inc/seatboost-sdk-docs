@@ -1,0 +1,6 @@
+* [SeatBooost SDK](/)
+* [Getting Started](getting-started.md)
+* [SeatBoost Object Model](object-model/)
+	* [SBAircraft](object-model/sbaircraft.md)
+	* [SBCabin](object-model/sbcabin.md)
+	* [SBCabinVisual](object-model/sbcabinvisual.md)
