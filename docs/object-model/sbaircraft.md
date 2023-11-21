@@ -1,7 +1,7 @@
 # SBAircraft
 
-> The SBAircraft class represents an aircraft.
+The `SBAircraft` class represents an aircraft.
 
-| Property Name | Type      | Description                                                            |
-| ------------- | --------- | ---------------------------------------------------------------------- |
-| cabins        | [[SBCabin](object-model/sbcabin.md)] | An array of SBCabin instances representing the cabins of the aircraft. |
+| Property Name | Type                                              | Description                                                            |
+|---------------|---------------------------------------------------|------------------------------------------------------------------------|
+| `cabins`      | <code>[[SBCabin](object-model/sbcabin.md)]</code> | An array of SBCabin instances representing the cabins of the aircraft. |
