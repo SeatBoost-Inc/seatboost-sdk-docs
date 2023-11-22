@@ -27,5 +27,10 @@
 	* [findAuctions](rest-api/find-auctions.md)
 	* [status](rest-api/status.md)
 * [User Interface Components](ui/)
+    * [Select Upgrade](ui/select-upgrade.md)
+    * [Payment](ui/payment.md)
+    * [Bidding](ui/bidding.md)
+    * [Buy Now](ui/buy-now.md)
+    * [End Auction](ui/end-auction.md)
 * [Sample App](sample-app/)
 
