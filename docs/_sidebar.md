@@ -18,6 +18,7 @@
     * [SBJoinResponse](object-model/sbjoinresponse.md)
     * [SBMessage](object-model/sbmessage.md)
     * [SBMyBid](object-model/sbmybid.md)
+    * [SBPaymentCard](object-model/sbpaymentcard.md)
     * [SBReward](object-model/sbreward.md)
     * [SBWinner](object-model/sbwinner.md)
 * [BidwinAPI](rest-api/)
