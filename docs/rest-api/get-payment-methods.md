@@ -1,6 +1,6 @@
 # getPaymentMethods
 
-> bla
+> Retrieve payment methods associated with a particular customer.
 
 <!-- tabs:start -->
 
