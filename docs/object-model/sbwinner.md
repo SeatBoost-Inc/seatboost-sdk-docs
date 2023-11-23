@@ -4,7 +4,7 @@ The `SBWinner` class represents a boarding pass. It is referenced by [`SBAuction
 
 | Property Name        | Type     | Description                                                                      |
 |----------------------|----------|----------------------------------------------------------------------------------|
-| `confirmationNumber` | `String` | PNR of the flight related to the boarding pass.                                  |
+| `confirmationNumber` | `String` | Passenger Name Record (PNR) of the flight related to the boarding pass.          |
 | `refNumber`          | `String` | Reference number from the airline that represents which user this is on the PNR. |
 | `givenName`          | `String` | Given name of the winner on the boarding pass.                                   |
 | `surname`            | `String` | Surname of the winner on the boarding pass.                                      |
