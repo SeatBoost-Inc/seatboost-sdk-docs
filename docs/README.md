@@ -1,3 +1,3 @@
-# SeatBooost SDK
+# SeatBoost SDK
 
 > An awesome project.
