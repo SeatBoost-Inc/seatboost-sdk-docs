@@ -17,7 +17,7 @@
         </td>
         <td width="70%">
             <p><b>Tips</b></p>
-            <p>A step with a list of useful tips before joining the auction is designed to provide guidance and essential information to users, ensuring they have a better understanding of the auction process and can participate more effectively.</p>
+            <p>A step with a list of useful tips before joining the auction is designed to provide guidance and essential information to users, ensuring they have a better understanding of the auction process and can participate more effectively. This step is optional depending on the tips existence or not and it appears on the terms tab.</p>
             <p>This screen aims to empower users with the knowledge they need to make informed decisions during the auction, enhancing their overall satisfaction with the platform and increasing the likelihood of a positive bidding experience.</p>
         </td>
     </tr>
@@ -36,6 +36,7 @@
         </td>
         <td width="70%">
             <p><b>Payment</b></p>
+            <p>The Payment step is a pivotal step in the process where users are prompted to choose how they will pay for the auction. The user can select a previous saved payment method or create a new one before finally joining to the auction</p>
         </td>
     </tr>
 </table>
