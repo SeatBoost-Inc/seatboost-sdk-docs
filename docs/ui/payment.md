@@ -1,4 +1,44 @@
-# Payment
+# Payment Screen
+
+<table width="100%" style="border-collapse: collapse; border: none;">
+    <tr valign="top">
+        <td width="25%">
+            <img src="ui/images/payment-1.jpg"/>
+        </td>
+        <td width="70%">
+            <p><b>Auction Terms</b></p>
+            <p>The auction terms screen is the step within the component that provides users with important information, rules, and terms related to participating in an auction. This screen is designed to inform users about the terms and conditions they need to be aware of before engaging in the auction process. The goal of the auction terms screen is to ensure transparency, provide a clear understanding of the auction process, and establish a set of rules that create a fair and enjoyable experience for all participants.</p>
+            <p>Before users can proceed to participate in the auction, there is a button indicating that they have read and agree to the auction terms. Users are required to actively accept the terms before moving forward.</p>
+        </td>
+    </tr>
+    <tr valign="top">
+        <td width="25%">
+            <img src="ui/images/payment-2.jpg"/>
+        </td>
+        <td width="70%">
+            <p><b>Tips</b></p>
+            <p>A step with a list of useful tips before joining the auction is designed to provide guidance and essential information to users, ensuring they have a better understanding of the auction process and can participate more effectively.</p>
+            <p>This screen aims to empower users with the knowledge they need to make informed decisions during the auction, enhancing their overall satisfaction with the platform and increasing the likelihood of a positive bidding experience.</p>
+        </td>
+    </tr>
+    <tr valign="top">
+        <td width="25%">
+            <img src="ui/images/payment-3.jpg"/>
+        </td>
+        <td width="70%">
+            <p><b>Review</b></p>
+            <p>A review screen is a crucial step in the user interface where users can carefully examine and confirm their selections (flight/upgrade/auction) before going to the payment step.</p>
+        </td>
+    </tr>
+    <tr valign="top">
+        <td width="25%">
+            <img src="ui/images/payment-4.jpg"/>
+        </td>
+        <td width="70%">
+            <p><b>Payment</b></p>
+        </td>
+    </tr>
+</table>
 
 
 ## SBPaymentController
@@ -40,8 +80,3 @@ public protocol SBPaymentCardControllerDataSource: AnyObject {
     func removePayment(_ card: SBPaymentCard, success: @escaping () -> (), failure: @escaping (_ error: String) -> ())
 }
 ```
-
-![Auction Terms](images/payment-1.jpg "Auction Terms")
-![Tips](images/payment-2.jpg "Tips")
-![Confirmation](images/payment-3.jpg "Confirmation")
-![Payment Method](images/payment-4.jpg "Payment Method")
