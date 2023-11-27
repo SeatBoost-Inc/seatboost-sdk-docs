@@ -30,7 +30,9 @@
 | upgradeContext    | [SBUpgradeContext!](object-model/sbupgradecontext) | The upgrade context data used to pre populate the screen        |
 | delegate          | `SBSelectUpgradeControllerDelegate!`               | The delegate instance used to receive the user interface events |
 
-> At least ```selectedAirline``` and ```findAuctionResult``` should be provided in the ```upgradeContext``` object to get the component working
+
+> [!WARNING]
+> At least **selectedAirline** and **findAuctionResult** should be provided in the **upgradeContext** object to get the component working
 
 
 ## SBSelectUpgradeControllerDelegate
