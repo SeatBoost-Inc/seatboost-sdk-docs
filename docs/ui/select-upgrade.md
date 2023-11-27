@@ -37,21 +37,12 @@
 
 * onSelect: this method is called when the user selects/fills all the screen fields and clicks on the **Ready to Bid** button. The component will pass the flight/upgrade/paasengers/username parameters to the delegate instance.
 
-* onGotoAuction: this method is called when the user selects an auction already running.
-
-* onGotoEndAuction: this method is called when the user selects an auction already finished.
-
-* getTokenFor: this method is called everytime the component needs a specific token for a particular auction
-
-* importHistory: this method is called when the user clicks on the import history link
+* onGotoAuction: this method is called when the user selects an active (running ) or finished auction.
 
 
 ```swift
 public protocol SBSelectUpgradeControllerDelegate: AnyObject {
-    func onSelect(flight: SBFlight!, upgrade: SBUpgrade!, passengers: [SBPassenger], username: String)
-    func onGotoAuction(_ auction: SBAuction!, availableAuctions: [SBAvailableAuction]?)
-    func onGotoEndAuction(_ auction: SBAuctionBase!, availableAuctions: [SBAvailableAuction]?)
-    func getTokenFor(auctionId: String) -> String
-    func importHistory()
+    func onSelect(upgradeContext: SBUpgradeContext!)
+    func onGotoAuction(auctionId: String)
 }
 ```

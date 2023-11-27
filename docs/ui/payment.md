@@ -1,5 +1,7 @@
 # Payment Screen
 
+> The next UI component is the Payment Screen. It is used to show some important information before selecting the payment method to perform the join to the auction.
+
 <table width="100%" style="border-collapse: collapse; border: none;">
     <tr valign="top">
         <td width="25%">
@@ -17,7 +19,7 @@
         </td>
         <td width="70%">
             <p><b>Tips</b></p>
-            <p>A step with a list of useful tips before joining the auction is designed to provide guidance and essential information to users, ensuring they have a better understanding of the auction process and can participate more effectively. This step is optional depending on the tips existence or not and it appears on the terms tab.</p>
+            <p>A screen with a list of useful tips before joining the auction is designed to provide guidance and essential information to users, ensuring they have a better understanding of the auction process and can participate more effectively. This screen is optional depending on the tips existence or not and it appears on the terms step.</p>
             <p>This screen aims to empower users with the knowledge they need to make informed decisions during the auction, enhancing their overall satisfaction with the platform and increasing the likelihood of a positive bidding experience.</p>
         </td>
     </tr>
@@ -60,13 +62,13 @@
 public protocol SBPaymentControllerDelegate: AnyObject {
     func onBack()
     func onJoin(authToken: String, auction: SBAuction!)
-    func presentingViewController() -> UIViewController
+    func authenticationPresentingViewController() -> UIViewController
 }
 ```
 
 * onJoin: this method is called when the user goes through all the screens on the payment process, including the payment method, and clicks on the **Place start bid** button to join to the auction.
 
-* presentingViewController: the view controller used as reference to show the confetti animation
+* presentingViewController: The Stripe SDK will modally present additional view controllers on top of the view controller, when required for user authentication, like in the Challenge Flow for 3DS2 transactions.
 
 ## SBPaymentCardControllerDataSource
 
