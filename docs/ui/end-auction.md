@@ -25,3 +25,23 @@
         </td>
     </tr>
 </table>
+
+## SBEndAuctionController
+
+> In order to use this UI component on your application you have to initialize it with some fields:
+
+| **Property Name**        | **Type**                           | **Description**                                                   |
+|--------------------------|------------------------------------|-------------------------------------------------------------------|
+| delegate                 | `SBEndAuctionControllerDelegate!`  | The delegate instance used to receive the user interface events   |
+| currentAuction           | `SBAuction?`                       | The auction instance                                              |
+| currentAuctionToken      | `String`                           | The auction token                                                 |
+| currentAvailableAuctions | [SBAvailableAuction]?              | An array of SBAvailableAuction                                    |
+
+## SBEndAuctionControllerDelegate
+
+```swift
+public protocol SBEndAuctionControllerDelegate: AnyObject {
+    func onGotoAvailableAuction(_ availableAuction: SBAvailableAuction)
+    func onGotoAuction(_ auction: SBAuctionBase)
+}
+```

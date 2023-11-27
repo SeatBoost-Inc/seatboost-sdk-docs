@@ -33,7 +33,7 @@
 |---------------------|---------------------------------|-----------------------------------------------------------------------|
 | isJoin              | `Bool`                          | A boolean informing if the auction instance was created from a join   |
 | delegate            | `SBBiddingControllerDelegate!`  | The delegate instance used to receive the user interface events       |
-| currentAuctionToken | `SBAuction?`                    | The auction used to play the bidding process                          |
+| currentAuction      | `SBAuction?`                    | The auction used to play the bidding process                          |
 | currentAuctionToken | `String`                        | The auction token used to play the bidding process                    |
 
 ## SBBiddingControllerDelegate
