@@ -4,6 +4,6 @@
 
 Some screens from the SeatBoost App were converted to UI components in order to be reused in the airline application. In the below image you can see the main flow of the SeatBoost App, each screen was encapsulates on a UI component, you can embed them in the airline app to get the SeatBoost auction functionality more quickly.
 
-![UI Components Flow](images/components.png "UI Components Flow")
+![UI Components Flow](images/components.jpg "UI Components Flow")
 
 On the other hand, if necessary, the airline can create similar user interface experience from scratch using the low level SeatBoost SDK: REST API bridge and object models.
