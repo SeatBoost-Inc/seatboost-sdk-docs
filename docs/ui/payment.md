@@ -43,9 +43,6 @@
     </tr>
 </table>
 
-
-## SBPaymentController
-
 > In order to use this UI component on your application you have to initialize it with some fields:
 
 | **Property Name** | **Type**                             | **Description**                                                             |
@@ -56,7 +53,23 @@
 
 > All the attributes in the ```upgradeContext``` should be provided to get the component working
 
+<!-- tabs:start -->
+
+#### **iOS**
+
+## SBPaymentController
+
+#### **Android**
+
+## SBPaymentActivity
+
+<!-- tabs:end -->
+
 ## SBPaymentControllerDelegate
+
+<!-- tabs:start -->
+
+#### **iOS**
 
 ```swift
 public protocol SBPaymentControllerDelegate: AnyObject {
@@ -66,11 +79,22 @@ public protocol SBPaymentControllerDelegate: AnyObject {
 }
 ```
 
+#### **Android**
+
+```kotlin
+```
+
+<!-- tabs:end -->
+
 * onJoin: this method is called when the user goes through all the screens on the payment process, including the payment method, and clicks on the **Place start bid** button to join to the auction.
 
 * presentingViewController: The Stripe SDK will modally present additional view controllers on top of the view controller, when required for user authentication, like in the Challenge Flow for 3DS2 transactions.
 
 ## SBPaymentCardControllerDataSource
+
+<!-- tabs:start -->
+
+#### **iOS**
 
 ```swift
 public protocol SBPaymentCardControllerDataSource: AnyObject {
@@ -83,3 +107,10 @@ public protocol SBPaymentCardControllerDataSource: AnyObject {
     func removePayment(_ card: SBPaymentCard, success: @escaping () -> (), failure: @escaping (_ error: String) -> ())
 }
 ```
+
+#### **Android**
+
+```kotlin
+```
+
+<!-- tabs:end -->
