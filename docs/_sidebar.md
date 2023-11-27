@@ -33,7 +33,12 @@
     * [Bidding Screen](ui/bidding.md)
     * [Buy Now Screen](ui/buy-now.md)
     * [End Auction Screen](ui/end-auction.md)
+
+<!---
+
 * [Sample App](sample-app/)
     * [Authentication](sample-app/authentication.md)
     * [Finding Available Upgrades for Auction](sample-app/find-upgrades.md)
+
+-->
 
