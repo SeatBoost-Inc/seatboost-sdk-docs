@@ -34,4 +34,6 @@
     * [Buy Now](ui/buy-now.md)
     * [End Auction](ui/end-auction.md)
 * [Sample App](sample-app/)
+    * [Authentication](sample-app/authentication.md)
+    * [Finding Available Upgrades for Auction](sample-app/find-upgrades.md)
 
