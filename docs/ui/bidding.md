@@ -29,12 +29,12 @@
 
 > In order to use this UI component on your application you have to initialize it with some fields:
 
-| **Property Name**   | **Type**                        | **Description**                                                       |
-|---------------------|---------------------------------|-----------------------------------------------------------------------|
-| isJoin              | `Bool`                          | A boolean informing if the auction instance was created from a join   |
-| delegate            | `SBBiddingControllerDelegate!`  | The delegate instance used to receive the user interface events       |
-| currentAuction      | `SBAuction?`                    | The auction used to play the bidding process                          |
-| currentAuctionToken | `String`                        | The auction token used to play the bidding process                    |
+| **Property Name**   | **Type**                        | **Description**                                                          |
+|---------------------|---------------------------------|--------------------------------------------------------------------------|
+| currentAuction      | `SBAuction?`                    | The auction used to play the bidding process                             |
+| currentAuctionToken | `String`                        | The auction token used to play the bidding process                       |
+| delegate            | `SBBiddingControllerDelegate!`  | The delegate instance used to receive the user interface events          |
+| isJoin              | `Bool`                          | A boolean informing if the auction instance has just created from a join |
 
 ## SBBiddingControllerDelegate
 

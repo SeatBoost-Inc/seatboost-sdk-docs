@@ -32,10 +32,10 @@
 
 | **Property Name**        | **Type**                           | **Description**                                                   |
 |--------------------------|------------------------------------|-------------------------------------------------------------------|
-| delegate                 | `SBEndAuctionControllerDelegate!`  | The delegate instance used to receive the user interface events   |
 | currentAuction           | `SBAuction?`                       | The auction instance                                              |
 | currentAuctionToken      | `String`                           | The auction token                                                 |
 | currentAvailableAuctions | [SBAvailableAuction]?              | An array of SBAvailableAuction                                    |
+| delegate                 | `SBEndAuctionControllerDelegate!`  | The delegate instance used to receive the user interface events   |
 
 ## SBEndAuctionControllerDelegate
 
