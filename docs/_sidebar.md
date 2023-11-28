@@ -28,7 +28,7 @@
     * [findAuctions](rest-api/find-auctions.md)
     * [getPaymentMethods](rest-api/get-payment-methods.md)
     * [removePaymentMethod](rest-api/remove-payment-method.md)
-    * [server](rest-api/server.md)
+    * [serverUrl](rest-api/server-url.md)
     * [status](rest-api/status.md)
 * [UI Components](ui/)
     * [Select Upgrade Screen](ui/select-upgrade.md)

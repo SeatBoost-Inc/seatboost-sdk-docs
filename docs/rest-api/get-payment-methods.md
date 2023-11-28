@@ -1,6 +1,11 @@
 # getPaymentMethods
 
-> Retrieve payment methods associated with a particular customer.
+
+Call this method to retrieve a list of all payment methods linked to a specific customer. 
+
+#### Parameters:
+
+* **customerId**: 
 
 <!-- tabs:start -->
 

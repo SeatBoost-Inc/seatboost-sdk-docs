@@ -1,6 +1,6 @@
 # status
 
-> Retrieve the status of a specific auction.
+Fetch comprehensive details for a particular auction.
 
 #### Parameters:
 

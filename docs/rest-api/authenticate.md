@@ -1,12 +1,12 @@
 # authenticate
 
-> This method is used to login an user in the SeatBoost server.
+This method is employed to authenticate an user on the SeatBoost Server and grant access to their account.
 
 #### Parameters:
 
-* email: the email address of the user being authenticated.
-* deviceId: unique identifier for the device used for authentication.
-* registrationToken: a token associated with the push notification process.
+* **email**: the email address of the user being authenticated.
+* **deviceId**: unique identifier for the device used for authentication.
+* **registrationToken**: a token associated with the push notification process.
 
 #### Return Type:
 
