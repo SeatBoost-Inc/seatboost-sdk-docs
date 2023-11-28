@@ -1,4 +1,4 @@
-# buyNow
+## SBRestClient::buyNow
 
 > bla
 

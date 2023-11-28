@@ -1,4 +1,4 @@
-# validateDisplayName
+## SBRestClient::validateDisplayName
 
 > bla
 

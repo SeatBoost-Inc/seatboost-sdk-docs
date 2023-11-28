@@ -1,4 +1,4 @@
-# removePaymentMethod
+## SBRestClient::removePaymentMethod
 
 The provided method serves as a functionality designed to facilitate the removal of a payment method that has been previously linked to a specific customer.
 

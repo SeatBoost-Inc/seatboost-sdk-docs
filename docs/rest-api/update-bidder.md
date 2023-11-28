@@ -1,4 +1,4 @@
-# updateBidder
+## SBRestClient::updateBidder
 
 > Update information about a bidder.
 

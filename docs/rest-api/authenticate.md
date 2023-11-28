@@ -1,4 +1,4 @@
-# authenticate
+## SBRestClient::authenticate
 
 This method is employed to authenticate an user on the SeatBoost Server and grant access to their account.
 

@@ -1,4 +1,4 @@
-# findAuctions
+## SBRestClient::findAuctions
 
 Use this method to fetch all the flight upgrade auctions that are available for a specific reservation code.
 

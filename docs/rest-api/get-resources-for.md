@@ -1,4 +1,4 @@
-# getResourcesFor
+## SBRestClient::getResourcesFor
 
 > bla
 

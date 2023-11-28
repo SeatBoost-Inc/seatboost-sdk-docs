@@ -1,4 +1,4 @@
-# join
+## SBRestClient::join
 
 > bla
 

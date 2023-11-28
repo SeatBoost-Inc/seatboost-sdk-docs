@@ -1,4 +1,4 @@
-# retrieveBillingCustomer
+## SBRestClient::retrieveBillingCustomer
 
 > bla
 

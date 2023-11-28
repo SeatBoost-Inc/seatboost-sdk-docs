@@ -1,4 +1,4 @@
-# getAircraft
+## SBRestClient::getAircraft
 
 > bla
 

@@ -1,6 +1,6 @@
-# status
+## SBRestClient::status
 
-Fetch comprehensive details for a particular auction.
+This method fetches comprehensive details for a particular auction.
 
 #### Parameters:
 

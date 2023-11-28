@@ -1,4 +1,4 @@
-# placeBid
+## SBRestClient::placeBid
 
 > bla
 

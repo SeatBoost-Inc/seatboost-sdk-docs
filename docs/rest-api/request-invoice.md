@@ -1,4 +1,4 @@
-# requestInvoice
+## SBRestClient::requestInvoice
 
 > bla
 

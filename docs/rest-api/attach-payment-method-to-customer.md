@@ -1,4 +1,4 @@
-# attachPaymentMethodToCustomer
+## SBRestClient::attachPaymentMethodToCustomer
 
 This method associates a payment method with a specific customer
 

@@ -1,4 +1,4 @@
-# getFAQ
+## SBRestClient::getFAQ
 
 > bla
 

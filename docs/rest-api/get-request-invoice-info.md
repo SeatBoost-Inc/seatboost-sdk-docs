@@ -1,4 +1,4 @@
-# getRequestInvoiceInfo
+## SBRestClient::getRequestInvoiceInfo
 
 > bla
 

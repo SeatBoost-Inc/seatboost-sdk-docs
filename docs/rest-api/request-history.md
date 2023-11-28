@@ -1,4 +1,4 @@
-# requestHistory
+## SBRestClient::requestHistory
 
 > bla
 

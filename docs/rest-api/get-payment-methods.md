@@ -1,4 +1,4 @@
-# getPaymentMethods
+## SBRestClient::getPaymentMethods
 
 
 Call this method to retrieve a list of all payment methods linked to a specific customer. 

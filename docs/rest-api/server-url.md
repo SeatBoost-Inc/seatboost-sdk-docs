@@ -1,4 +1,4 @@
-# serverUrl
+## SBRestClient::serverUrl
 
 This property serves the purpose of specifying the URL of the SeatBooost Server that the SDK should connect to.
 

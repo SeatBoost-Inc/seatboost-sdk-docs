@@ -1,4 +1,4 @@
-# helpCenterFeedback
+## SBRestClient::helpCenterFeedback
 
 > bla
 
