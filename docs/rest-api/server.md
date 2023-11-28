@@ -11,7 +11,7 @@
 #### **iOS**
 
 ```swift
-BidwinAPI.shared.server = "..."
+SBRestClient.shared.server = "..."
 ```
 
 #### **Android**
