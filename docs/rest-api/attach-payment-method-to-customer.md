@@ -1,6 +1,6 @@
 # attachPaymentMethodToCustomer
 
-> This method associates a payment method with a specific customer
+This method associates a payment method with a specific customer
 
 #### Parameters:
 
