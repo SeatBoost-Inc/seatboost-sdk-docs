@@ -1,6 +1,6 @@
 ## SBRestClient::serverUrl
 
-This property serves the purpose of specifying the URL of the SeatBooost Server that the SDK should connect to.
+* **serverUrl** (String): this property serves the purpose of specifying the URL of the SeatBooost Server that the SDK should connect to.
 
 > [!WARNING]
 > Prior to engaging with any SeatBoost SDK functionality, it is imperative that you configure this setting during the app initialization phase. 

@@ -4,8 +4,8 @@ This method fetches comprehensive details for a particular auction.
 
 #### Parameters:
 
-* auctionId: the identifier of the auction
-* authToken: the authentication token for that auction
+* **auctionId** (String): the identifier of the auction
+* **authToken** (String): the authentication token for that auction
 
 #### Return Type:
 

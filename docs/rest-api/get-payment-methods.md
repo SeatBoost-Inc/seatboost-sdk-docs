@@ -5,7 +5,7 @@ Call this method to retrieve a list of all payment methods linked to a specific 
 
 #### Parameters:
 
-* **customerId**: 
+* **customerId** (String): the identifier of a customer.
 
 <!-- tabs:start -->
 
