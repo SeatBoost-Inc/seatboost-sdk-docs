@@ -5,21 +5,21 @@
 <table width="100%" style="border-collapse: collapse; border: none;">
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/end-auction-1.jpg"/>
+            <img src="ui/images/end-auction-1.png"/>
         </td>
         <td width="70%">
         </td>
     </tr>
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/end-auction-2.jpg"/>
+            <img src="ui/images/end-auction-2.png"/>
         </td>
         <td width="70%">
         </td>
     </tr>
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/end-auction-3.jpg"/>
+            <img src="ui/images/end-auction-3.png"/>
         </td>
         <td width="70%">
         </td>
