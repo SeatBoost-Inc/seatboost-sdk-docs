@@ -5,7 +5,7 @@
 <table width="100%" style="border-collapse: collapse; border: none;">
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/bidding.jpg"/>
+            <img src="ui/images/bidding.png"/>
         </td>
         <td width="70%">
             <p>A leaderboard displaying the bidder display names and their corresponding current bid amounts.</p>
@@ -17,7 +17,7 @@
     </tr>
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/bidding-2.jpg"/>
+            <img src="ui/images/bidding-2.png"/>
         </td>
         <td width="70%">
             Final round

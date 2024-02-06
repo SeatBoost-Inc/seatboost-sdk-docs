@@ -5,7 +5,7 @@
 <table width="100%" style="border-collapse: collapse; border: none;">
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/buy-now-1.jpg"/>
+            <img src="ui/images/buy-now-1.png"/>
         </td>
         <td width="70%">
             <p><b>Instant Purchase Conditions</b></p>
@@ -14,7 +14,7 @@
     </tr>
         <tr valign="top">
         <td width="25%">
-            <img src="ui/images/buy-now-2.jpg"/>
+            <img src="ui/images/buy-now-2.png"/>
         </td>
         <td width="70%">
             <p><b>Payment Detail</b></p>

@@ -5,7 +5,7 @@
 <table width="100%" style="border-collapse: collapse; border: none;">
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/payment-1.jpg"/>
+            <img src="ui/images/payment-1.png"/>
         </td>
         <td width="70%">
             <p><b>Auction Terms</b></p>
@@ -15,7 +15,7 @@
     </tr>
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/payment-2.jpg"/>
+            <img src="ui/images/payment-2.png"/>
         </td>
         <td width="70%">
             <p><b>Tips</b></p>
@@ -25,7 +25,7 @@
     </tr>
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/payment-3.jpg"/>
+            <img src="ui/images/payment-3.png"/>
         </td>
         <td width="70%">
             <p><b>Review</b></p>
@@ -34,7 +34,7 @@
     </tr>
     <tr valign="top">
         <td width="25%">
-            <img src="ui/images/payment-4.jpg"/>
+            <img src="ui/images/payment-4.png"/>
         </td>
         <td width="70%">
             <p><b>Payment</b></p>
