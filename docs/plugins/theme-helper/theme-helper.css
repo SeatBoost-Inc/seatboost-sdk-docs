@@ -1,0 +1,23 @@
+.container {
+  display: flex; 
+  align-items: center;
+}
+
+img.arrow:hover {
+  cursor:pointer;
+}
+
+.image-area {
+  position: relative;
+}
+
+.highlight {
+  border: 1px solid red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  z-index: 10;
+  pointer-events: none;
+}
