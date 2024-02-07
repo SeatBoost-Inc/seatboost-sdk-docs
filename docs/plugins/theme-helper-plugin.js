@@ -25,7 +25,7 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
 
     for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
       li = document.createElement('li');
-      li.innerHTML = "<b><small>" + key + "</small></b><br>" + value + "<br><input>";
+      li.innerHTML = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br><input>";
       attributesList.appendChild(li);
     }
   }

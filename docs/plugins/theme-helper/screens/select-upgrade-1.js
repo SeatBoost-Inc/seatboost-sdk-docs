@@ -7,5 +7,6 @@ export var selectUpgrade1Coords = {
   'airplane': ['133,91,186,135'],
   'text-field': ['14,396,263,432'],
   'help-icon': ['240,232,269,260', '238,440,267,468'],
+  'submit-button': ['13,547,265,581'],
   'grid-cell': ['1,79,276,172', '1,192,276,367']
 };
