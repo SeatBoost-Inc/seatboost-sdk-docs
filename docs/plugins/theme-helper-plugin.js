@@ -3,6 +3,7 @@ import { createImageMapCarousel,
   resetChildren, 
   _imageMapCarouselBaseUrl } from '/plugins/theme-helper/image-map-carousel.js';
 import { attributesMap } from '/plugins/theme-helper/screens/attributes-map.js';
+import { selectUpgrade1Coords } from '/plugins/theme-helper/screens/select-upgrade-1.js';
 import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgrade-2.js';
 
 {
@@ -39,12 +40,13 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
     hook.init(() => {
       setImageMapCarouselBaseUrl('/plugins/theme-helper');
 
-      screensData = [
-        {
+      screensData = [{
+          imageUrl: _imageMapCarouselBaseUrl + '/screens/select-upgrade-1.jpg',
+          imageMap: selectUpgrade1Coords
+        },{
           imageUrl: _imageMapCarouselBaseUrl + '/screens/select-upgrade-2.jpg',
           imageMap: selectUpgrade2Coords
-        }
-      ];
+      }];
 
     });
 

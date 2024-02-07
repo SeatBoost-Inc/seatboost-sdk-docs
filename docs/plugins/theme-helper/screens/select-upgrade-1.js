@@ -1,33 +1,11 @@
-export var selectUpgrade1UIMap = {
-  'back': { 
-    coordsArray: ['5,45,45,80'], 
-    attributes: {
-      'a': 'text color',
-      'b': 'background color'
-    } 
-  },
-  'sb-logo': { 
-    coordsArray: ['125,35,225,80'], 
-    attributes: {
-      'b' : 'text color'
-    } 
-  },
-  'hamburguer': { 
-    coordsArray: ['305,45,345,80'], 
-    attributes: {
-      'a': 'text color'
-    } 
-  },
-  'bar': { 
-    coordsArray: ['0,82,350,104'], 
-    attributes: {
-      'c': 'background color'
-    } 
-  },
-  'airplane': { 
-    coordsArray: ['175,125,225,175'], 
-    attributes: {
-      'b': 'icon color'
-    } 
-  }
+export var selectUpgrade1Coords = {
+  'back': ['4,30,39,56'], 
+  'sb-logo': ['104,27,172,56'], 
+  'hamburguer': ['239,31,273,56'], 
+  'section-bar':  ['0,59,276,78', '0,174,276,193', '0,367,276,386'],
+  'radio-button': ['6,110,37,143', '6,263,37,296'],
+  'airplane': ['133,91,186,135'],
+  'text-field': ['14,396,263,432'],
+  'help-icon': ['240,232,269,260', '238,440,267,468'],
+  'grid-cell': ['1,79,276,172', '1,192,276,367']
 };
