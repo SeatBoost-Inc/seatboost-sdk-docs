@@ -1,7 +1,7 @@
 import { createImageMapCarousel, 
   setImageMapCarouselBaseUrl, 
   resetChildren, 
-  _imageMapCarouselBaseUrl } from '/plugins/theme-helper/image-map-carousel.js';
+  _imageMapCarouselBaseUrl } from '/plugins/theme-helper/image-map-carousel/image-map-carousel.js';
 import { attributesMap } from '/plugins/theme-helper/screens/attributes-map.js';
 import { selectUpgrade1Coords } from '/plugins/theme-helper/screens/select-upgrade-1.js';
 import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgrade-2.js';
@@ -38,13 +38,13 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
 
     // Invoked one time when docsify script is initialized
     hook.init(() => {
-      setImageMapCarouselBaseUrl('/plugins/theme-helper');
+      setImageMapCarouselBaseUrl('/plugins/theme-helper/image-map-carousel');
 
       screensData = [{
-          imageUrl: _imageMapCarouselBaseUrl + '/screens/select-upgrade-1.jpg',
+          imageUrl: '/plugins/theme-helper' + '/screens/select-upgrade-1.jpg',
           imageMap: selectUpgrade1Coords
         },{
-          imageUrl: _imageMapCarouselBaseUrl + '/screens/select-upgrade-2.jpg',
+          imageUrl: '/plugins/theme-helper' + '/screens/select-upgrade-2.jpg',
           imageMap: selectUpgrade2Coords
       }];
 
