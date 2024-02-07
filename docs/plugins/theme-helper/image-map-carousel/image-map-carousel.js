@@ -7,9 +7,11 @@ export function setImageMapCarouselBaseUrl(imageMapCarouselBaseUrl) {
   _imageMapCarouselBaseUrl = imageMapCarouselBaseUrl;
 }
 
-export function resetChildren(element) {
-  while( element.firstChild ){
-    element.removeChild( element.firstChild );
+function resetChildren(element) {
+  if(element != null ){
+      while( element.firstChild != null ){
+        element.removeChild( element.firstChild );
+      }
   }
 }
 

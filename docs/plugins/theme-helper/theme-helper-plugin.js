@@ -1,6 +1,5 @@
 import { createImageMapCarousel, 
   setImageMapCarouselBaseUrl, 
-  resetChildren, 
   _imageMapCarouselBaseUrl } from '/plugins/theme-helper/image-map-carousel/image-map-carousel.js';
 import { attributesMap } from '/plugins/theme-helper/screens/attributes-map.js';
 import { selectUpgrade1Coords } from '/plugins/theme-helper/screens/select-upgrade-1.js';
@@ -10,21 +9,25 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
   var screensData = [];
 
   function resetAttributeList() {
-    const attributesList = document.getElementById('attributes-list');
-    resetChildren(attributesList);
+    const attributesList = document.getElementById('theme-helper-attributes-list');
+
+    if(attributesList != null ){
+      while( attributesList.firstChild != null ){
+        attributesList.removeChild(attributesList.firstChild);
+      }
+    }
   }
 
   function themeHelperSelectArea(event) { 
     resetAttributeList();
 
-    const attributesList = document.getElementById('attributes-list');
+    const attributesList = document.getElementById('theme-helper-attributes-list');
+    const elementName = document.getElementById('theme-helper-element-name');
 
-    var li = document.createElement('li');
-    li.innerHTML = "<h3>" + event.detail.attribute + "</h3>";
-    attributesList.appendChild(li);
+    elementName.innerHTML = event.detail.attribute;
 
     for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
-      li = document.createElement('li');
+      var li = document.createElement('li');
       li.innerHTML = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br><input>";
       attributesList.appendChild(li);
     }
@@ -53,16 +56,13 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
     // Invoked on each page load after new markdown has been transformed to HTML.
     hook.afterEach(html => {
       var themeHelperBaseHtml =   
-        '<table>' + 
-          '<tr valign="top">' + 
-            '<td width="50%">' + 
-              '<div id="theme-helper"/>' +
-            '</td>' +
-            '<td width="50%">' +
-              '<ul id="attributes-list"/>' +
-            '</td>' +
-          '</tr>' +
-        '</table>';
+        '<div id="theme-helper">' + 
+            '<div id="theme-helper-carousel"></div>' +
+            '<div id="theme-helper-attributes">' +
+              '<h3 id="theme-helper-element-name"></h3>'+
+              '<ul id="theme-helper-attributes-list"></ul>'+
+            '</div>' +
+        '</div>';
 
       html = html.replace("<!-- themeHelperPlugin -->", themeHelperBaseHtml);
       return html;
@@ -70,8 +70,8 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
 
     // Invoked on each page load after new HTML has been appended to the DOM
     hook.doneEach(() => {
-      createImageMapCarousel('theme-helper', screensData);
-      const themeHelperDiv = document.getElementById('theme-helper');
+      createImageMapCarousel('theme-helper-carousel', screensData);
+      const themeHelperDiv = document.getElementById('theme-helper-carousel');
       themeHelperDiv.addEventListener("image-map-carousel-select-area", themeHelperSelectArea);
       themeHelperDiv.addEventListener("image-map-carousel-change-screen", themeHelperChangePage);
     });
