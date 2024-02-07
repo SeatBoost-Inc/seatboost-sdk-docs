@@ -1,12 +1,12 @@
-import { createThemeHelper, 
-  setThemeHelperBaseUrl, 
+import { createImageMapCarousel, 
+  setImageMapCarouselBaseUrl, 
   resetChildren, 
-  _themeHelperBaseUrl } from '/plugins/theme-helper/theme-helper.js';
+  _imageMapCarouselBaseUrl } from '/plugins/theme-helper/image-map-carousel.js';
 import { attributesMap } from '/plugins/theme-helper/screens/attributes-map.js';
 import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgrade-2.js';
 
 {
-  var themeHelperData = [];
+  var screensData = [];
 
   function resetAttributeList() {
     const attributesList = document.getElementById('attributes-list');
@@ -22,7 +22,7 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
     li.innerHTML = "<h3>" + event.detail.attribute + "</h3>";
     attributesList.appendChild(li);
 
-    for (const [key, value] of Object.entries(themeHelperData.attributesMap[event.detail.attribute])) {
+    for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
       li = document.createElement('li');
       li.innerHTML = "<b><small>" + key + "</small></b><br>" + value + "<br><input>";
       attributesList.appendChild(li);
@@ -37,17 +37,14 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
 
     // Invoked one time when docsify script is initialized
     hook.init(() => {
-      setThemeHelperBaseUrl('/plugins/theme-helper');
+      setImageMapCarouselBaseUrl('/plugins/theme-helper');
 
-      themeHelperData = {
-        attributesMap: attributesMap,
-        screens: [
-          {
-            imageUrl: _themeHelperBaseUrl + '/screens/select-upgrade-2.jpg',
-            imageMap: selectUpgrade2Coords
-          }
-        ]
-      };
+      screensData = [
+        {
+          imageUrl: _imageMapCarouselBaseUrl + '/screens/select-upgrade-2.jpg',
+          imageMap: selectUpgrade2Coords
+        }
+      ];
 
     });
 
@@ -71,10 +68,10 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
 
     // Invoked on each page load after new HTML has been appended to the DOM
     hook.doneEach(() => {
-      createThemeHelper('theme-helper', themeHelperData);
+      createImageMapCarousel('theme-helper', screensData);
       const themeHelperDiv = document.getElementById('theme-helper');
-      themeHelperDiv.addEventListener("theme-helper-select-area", themeHelperSelectArea);
-      themeHelperDiv.addEventListener("theme-helper-change-screen", themeHelperChangePage);
+      themeHelperDiv.addEventListener("image-map-carousel-select-area", themeHelperSelectArea);
+      themeHelperDiv.addEventListener("image-map-carousel-change-screen", themeHelperChangePage);
     });
   }
 
