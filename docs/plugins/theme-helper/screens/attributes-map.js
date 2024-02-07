@@ -2,20 +2,26 @@ export var attributesMap = {
   'airplane': {
     'auctionDetails.grid.planeColor': 'Color for the airplane icon'
   },
-  'back' : {
-    "auctionDetails.navigationBar.foregroundColor" : "Icon color for the back button on the navigation bar"
+  'display-name-msg': {
+
+  },
+  'form-bg': {
+
   },
   'grid-cell': {
     'auctionDetails.grid.backgroundColor': 'background color for the grid cell'
-  },
-  'hamburguer': {
-    "auctionDetails.navigationBar.foregroundColor" : "Icon color for the hamburguer button on the navigation bar"
   },
   'h1-text': {
     "auctionDetails.grid.headingColor" : "Text color for details text"
   },
   'help-icon': {
     'liveAuction.helpButtonColor': 'Color for the help icon',
+  },
+  'navigation-bar': {
+
+  },
+  'navigation-bar-icon' : {
+    "auctionDetails.navigationBar.foregroundColor" : "Icon color for the navigation bar item"
   },
   'p-text': {
     "auctionDetails.grid.pColor" : "Text color for the info"
@@ -27,8 +33,8 @@ export var attributesMap = {
     'auctionDetails.grid.radioButton.selectedColor' : 'Color for the radio button when selected',
     'auctionDetails.grid.radioButton.unselectedColor' : 'Color for the radio button when not selected',
   },
-  'sb-logo': {
-    "auctionDetails.navigationBar.foregroundColor" : "Icon color for the SeatBoost logo on the navigation bar"
+  'screen-bg': {
+
   },
   'section-bar': {
     'auctionDetails.sectionBar.backgroundColor': 'Background color for the section bar',
@@ -43,6 +49,9 @@ export var attributesMap = {
     'auctionDetails.disabledButton.textColor': 'Text color for a submit button when disabled'
   },
   'text-field': {
+
+  },
+  'time-left': {
 
   }
 }
