@@ -9,6 +9,10 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
   var screensData = [];
 
   function resetAttributeList() {
+    const elementName = document.getElementById('theme-helper-element-name');
+
+    elementName.innerHTML = '';
+
     const attributesList = document.getElementById('theme-helper-attributes-list');
 
     if(attributesList != null ){

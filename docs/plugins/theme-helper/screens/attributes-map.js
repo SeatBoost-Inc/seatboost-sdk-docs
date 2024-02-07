@@ -11,8 +11,14 @@ export var attributesMap = {
   'hamburguer': {
     "auctionDetails.navigationBar.foregroundColor" : "Icon color for the hamburguer button on the navigation bar"
   },
+  'h1-text': {
+    "auctionDetails.grid.headingColor" : "Text color for details text"
+  },
   'help-icon': {
     'liveAuction.helpButtonColor': 'Color for the help icon',
+  },
+  'p-text': {
+    "auctionDetails.grid.pColor" : "Text color for the info"
   },
   'passenger-name': {
     'auctionDetails.grid.pColor': 'Text color for the passenger name'
