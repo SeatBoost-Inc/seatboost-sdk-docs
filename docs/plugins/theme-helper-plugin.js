@@ -2,8 +2,8 @@ import { createThemeHelper,
   setThemeHelperBaseUrl, 
   resetChildren, 
   _themeHelperBaseUrl } from '/plugins/theme-helper/theme-helper.js';
-import { screen1UIMap } from '/plugins/theme-helper/screens/screen-1.js';
-import { screen2UIMap } from '/plugins/theme-helper/screens/screen-2.js';
+import { attributesMap } from '/plugins/theme-helper/screens/attributes-map.js';
+import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgrade-2.js';
 
 {
   var themeHelperData = [];
@@ -14,17 +14,17 @@ import { screen2UIMap } from '/plugins/theme-helper/screens/screen-2.js';
   }
 
   function themeHelperSelectArea(event) { 
-
-    var screenData = themeHelperData[event.detail.currentScreenIndex];
-    var uiMap = screenData.imageMap; 
-
     resetAttributeList();
 
     const attributesList = document.getElementById('attributes-list');
 
-    for (const [key, value] of Object.entries(uiMap[event.detail.attribute].attributes)) {
-      var li = document.createElement('li');
-      li.innerHTML = "<b>" + key + "</b>: " + value + "<br><input>";
+    var li = document.createElement('li');
+    li.innerHTML = "<h3>" + event.detail.attribute + "</h3>";
+    attributesList.appendChild(li);
+
+    for (const [key, value] of Object.entries(themeHelperData.attributesMap[event.detail.attribute])) {
+      li = document.createElement('li');
+      li.innerHTML = "<b><small>" + key + "</small></b><br>" + value + "<br><input>";
       attributesList.appendChild(li);
     }
   }
@@ -39,16 +39,15 @@ import { screen2UIMap } from '/plugins/theme-helper/screens/screen-2.js';
     hook.init(() => {
       setThemeHelperBaseUrl('/plugins/theme-helper');
 
-      themeHelperData = [
-        {
-          imageUrl: _themeHelperBaseUrl + '/screens/screen-1.png',
-          imageMap: screen1UIMap
-
-        },{
-          imageUrl: _themeHelperBaseUrl + '/screens/screen-2.png',
-          imageMap: screen2UIMap
-        }
-      ];
+      themeHelperData = {
+        attributesMap: attributesMap,
+        screens: [
+          {
+            imageUrl: _themeHelperBaseUrl + '/screens/select-upgrade-2.jpg',
+            imageMap: selectUpgrade2Coords
+          }
+        ]
+      };
 
     });
 
@@ -57,10 +56,10 @@ import { screen2UIMap } from '/plugins/theme-helper/screens/screen-2.js';
       var themeHelperBaseHtml =   
         '<table>' + 
           '<tr valign="top">' + 
-            '<td>' + 
+            '<td width="50%">' + 
               '<div id="theme-helper"/>' +
             '</td>' +
-            '<td>' +
+            '<td width="50%">' +
               '<ul id="attributes-list"/>' +
             '</td>' +
           '</tr>' +

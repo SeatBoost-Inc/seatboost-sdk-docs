@@ -1,5 +1,3 @@
 # Airline Theme
 
-> bla
-
 <!-- themeHelperPlugin -->

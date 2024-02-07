@@ -35,7 +35,7 @@ function areaOnClick(event) {
   event.preventDefault();
 
   const div = document.getElementById(_themeHelperId);
-  let newEvent = new CustomEvent("theme-helper-select-area", {bubbles: true, detail: { currentScreenIndex: _currentScreenIndex, attribute: attribute }});
+  let newEvent = new CustomEvent("theme-helper-select-area", {bubbles: true, detail: { attribute: attribute }});
   div.dispatchEvent(newEvent);
 
   return false;
@@ -43,7 +43,7 @@ function areaOnClick(event) {
 
 function gotoScreen(screenIndex) {
   _currentScreenIndex = screenIndex;
-  const screenData = _themeHelperData[_currentScreenIndex];
+  const screenData = _themeHelperData.screens[_currentScreenIndex];
   const uiMap = screenData.imageMap; 
 
   const img = document.getElementById(_themeHelperId + '-img');
@@ -53,7 +53,7 @@ function gotoScreen(screenIndex) {
   resetChildren(map);
 
   for (const [key, value] of Object.entries(uiMap)) {
-    for (let coords of value.coordsArray) {
+    for (let coords of value) {
       var area = document.createElement('area');
       map.appendChild(area);
       area.setAttribute("coords", coords);
