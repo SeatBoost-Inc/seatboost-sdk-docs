@@ -46,11 +46,14 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
   }
 
   function themeHelperPlugin(hook, vm) {
-    const themeHelperBaseUrl = '/plugins/theme-helper';
+    console.log(window.location.host);
+
+    var siteBaseUrl = localhost:3000 == 'localhost:3000' ? '' : 'seatboost-sdk-docs/#';
+    const themeHelperBaseUrl = siteBaseUrl + '/plugins/theme-helper';
 
     // Invoked one time when docsify script is initialized
     hook.init(() => {
-      setImageMapCarouselBaseUrl('/plugins/theme-helper/image-map-carousel');
+      setImageMapCarouselBaseUrl(themeHelperBaseUrl + '/image-map-carousel');
 
       screensData = [{
           imageUrl: themeHelperBaseUrl + '/screens/select-upgrade-1.jpg',
