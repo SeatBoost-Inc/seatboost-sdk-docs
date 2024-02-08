@@ -5,6 +5,7 @@ import { attributesMap } from '/plugins/theme-helper/screens/attributes-map.js';
 import { payment1Coords } from '/plugins/theme-helper/screens/payment-1.js';
 import { payment2Coords } from '/plugins/theme-helper/screens/payment-2.js';
 import { payment3Coords } from '/plugins/theme-helper/screens/payment-3.js';
+import { payment4Coords } from '/plugins/theme-helper/screens/payment-4.js';
 import { selectUpgrade1Coords } from '/plugins/theme-helper/screens/select-upgrade-1.js';
 import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgrade-2.js';
 
@@ -45,26 +46,30 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
   }
 
   function themeHelperPlugin(hook, vm) {
+    const themeHelperBaseUrl = '/plugins/theme-helper';
 
     // Invoked one time when docsify script is initialized
     hook.init(() => {
       setImageMapCarouselBaseUrl('/plugins/theme-helper/image-map-carousel');
 
       screensData = [{
-          imageUrl: '/plugins/theme-helper' + '/screens/select-upgrade-1.jpg',
+          imageUrl: themeHelperBaseUrl + '/screens/select-upgrade-1.jpg',
           imageMap: selectUpgrade1Coords
         },{
-          imageUrl: '/plugins/theme-helper' + '/screens/select-upgrade-2.jpg',
+          imageUrl: themeHelperBaseUrl + '/screens/select-upgrade-2.jpg',
           imageMap: selectUpgrade2Coords
       },{
-          imageUrl: '/plugins/theme-helper' + '/screens/payment-1.jpg',
+          imageUrl: themeHelperBaseUrl + '/screens/payment-1.jpg',
           imageMap: payment1Coords
       },{
-          imageUrl: '/plugins/theme-helper' + '/screens/payment-2.jpg',
+          imageUrl: themeHelperBaseUrl + '/screens/payment-2.jpg',
           imageMap: payment2Coords
       },{
-          imageUrl: '/plugins/theme-helper' + '/screens/payment-3.jpg',
+          imageUrl: themeHelperBaseUrl + '/screens/payment-3.jpg',
           imageMap: payment3Coords
+      },{
+          imageUrl: themeHelperBaseUrl + '/screens/payment-4.jpg',
+          imageMap: payment4Coords
       }];
 
     });
