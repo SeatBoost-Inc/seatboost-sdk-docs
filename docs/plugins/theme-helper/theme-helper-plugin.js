@@ -1,13 +1,13 @@
 import { createImageMapCarousel, 
   setImageMapCarouselBaseUrl, 
-  _imageMapCarouselBaseUrl } from '/plugins/theme-helper/image-map-carousel/image-map-carousel.js';
-import { attributesMap } from '/plugins/theme-helper/screens/attributes-map.js';
-import { payment1Coords } from '/plugins/theme-helper/screens/payment-1.js';
-import { payment2Coords } from '/plugins/theme-helper/screens/payment-2.js';
-import { payment3Coords } from '/plugins/theme-helper/screens/payment-3.js';
-import { payment4Coords } from '/plugins/theme-helper/screens/payment-4.js';
-import { selectUpgrade1Coords } from '/plugins/theme-helper/screens/select-upgrade-1.js';
-import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgrade-2.js';
+  _imageMapCarouselBaseUrl } from 'image-map-carousel/image-map-carousel.js';
+import { attributesMap } from 'sscreens/attributes-map.js';
+import { payment1Coords } from 'sscreens/payment-1.js';
+import { payment2Coords } from 'sscreens/payment-2.js';
+import { payment3Coords } from 'sscreens/payment-3.js';
+import { payment4Coords } from 'sscreens/payment-4.js';
+import { selectUpgrade1Coords } from 'screens/select-upgrade-1.js';
+import { selectUpgrade2Coords } from 'screens/select-upgrade-2.js';
 
 {
   var screensData = [];
