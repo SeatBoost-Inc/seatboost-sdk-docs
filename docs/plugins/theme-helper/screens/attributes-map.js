@@ -53,5 +53,10 @@ export var attributesMap = {
   },
   'time-left': {
 
-  }
+  },
+  "time-left-bar": {
+
+  },
+  'wizard-step-bar': {
+  },
 }

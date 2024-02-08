@@ -1,4 +1,5 @@
-import { preAuctionTopCoords, preAuctionBottomCoords  } from './pre-auction.js';
+import { preAuctionTopCoords  } from './pre-auction.js';
+import { selectUpgradeBottomCoords  } from './select-upgrade.js';
 
 export var selectUpgrade2Coords = Object.assign({}, preAuctionTopCoords, {
   'section-bar':  ['0,330,277,350', '0,437,277,457'],
@@ -9,4 +10,4 @@ export var selectUpgrade2Coords = Object.assign({}, preAuctionTopCoords, {
   'display-name-msg': ['9,516,211,538'],
   'grid-cell': ['1,349,276,437'],
   'form-bg': ['0,456,277,548']
-}, preAuctionBottomCoords); 
+}, selectUpgradeBottomCoords); 

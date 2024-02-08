@@ -1,5 +1,5 @@
-import { preAuctionTopCoords, preAuctionBottomCoords  } from './pre-auction.js';
+import { paymentCoords  } from './payment.js';
 
-export var payment4Coords = Object.assign({}, preAuctionTopCoords, {
+export var payment4Coords = Object.assign({}, paymentCoords, {
 
-}, preAuctionBottomCoords); 
+}); 
