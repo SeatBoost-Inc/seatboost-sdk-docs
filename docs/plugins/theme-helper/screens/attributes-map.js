@@ -55,7 +55,11 @@ export var attributesMap = {
 
   },
   "time-left-bar": {
-
+    'liveAuction.clock.alert.backgroundColor': 'Background color for the time left clock'
+  },
+  'wizard-step': {
+    'auctionDetails.progressBar.futureColor': '',
+    'auctionDetails.progressBar.completedColor': 'Color for the completed step of the progress bar'
   },
   'wizard-step-bar': {
   },
