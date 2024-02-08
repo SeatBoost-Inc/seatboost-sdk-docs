@@ -12,7 +12,7 @@
    <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
    <link rel="stylesheet" media="(prefers-color-scheme: light)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
 
-   <link rel="stylesheet" href="/seatboost-sdk-docs/plugins/theme-helper/image-map-carousel/image-map-carousel.css">
+   <link rel="stylesheet" href="./plugins/theme-helper/image-map-carousel/image-map-carousel.css">
 
 <style>
 
@@ -68,7 +68,8 @@ section.content {
       subMaxLevel: 3,
       sidebarDisplayLevel: 0, // set sidebar display level
       name: '',
-      repo: ''
+      repo: '',
+      basePath: ( window.location.host == 'localhost:3000' ) ? '/' : '/seatboost-sdk-docs/'
     }
   </script>
   <!-- Docsify v4 -->
@@ -88,7 +89,7 @@ section.content {
 
    <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
 
-   <script type="module" src="/seatboost-sdk-docs/plugins/theme-helper/theme-helper-plugin.js"></script>
+   <script type="module" src="./plugins/theme-helper/theme-helper-plugin.js"></script>
 
 </body>
 </html>

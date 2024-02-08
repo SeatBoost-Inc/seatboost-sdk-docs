@@ -1,13 +1,13 @@
 import { createImageMapCarousel, 
   setImageMapCarouselBaseUrl, 
-  _imageMapCarouselBaseUrl } from '/seatboost-sdk-docs/plugins/theme-helper/image-map-carousel/image-map-carousel.js';
-import { attributesMap } from '/seatboost-sdk-docs/plugins/theme-helper/screens/attributes-map.js';
-import { payment1Coords } from '/seatboost-sdk-docs/plugins/theme-helper/screens/payment-1.js';
-import { payment2Coords } from '/seatboost-sdk-docs/plugins/theme-helper/screens/payment-2.js';
-import { payment3Coords } from '/seatboost-sdk-docs/plugins/theme-helper/screens/payment-3.js';
-import { payment4Coords } from '/seatboost-sdk-docs/plugins/theme-helper/screens/payment-4.js';
-import { selectUpgrade1Coords } from '/seatboost-sdk-docs/plugins/theme-helper/screens/select-upgrade-1.js';
-import { selectUpgrade2Coords } from '/seatboost-sdk-docs/plugins/theme-helper/screens/select-upgrade-2.js';
+  _imageMapCarouselBaseUrl } from './image-map-carousel/image-map-carousel.js';
+import { attributesMap } from './screens/attributes-map.js';
+import { payment1Coords } from './screens/payment-1.js';
+import { payment2Coords } from './screens/payment-2.js';
+import { payment3Coords } from './screens/payment-3.js';
+import { payment4Coords } from './screens/payment-4.js';
+import { selectUpgrade1Coords } from './screens/select-upgrade-1.js';
+import { selectUpgrade2Coords } from './screens/select-upgrade-2.js';
 
 {
   var screensData = [];
