@@ -94,13 +94,13 @@ export function createImageMapCarousel(imageMapCarouselId, screensData) {
   const div = document.getElementById(_imageMapCarouselId);
   div.innerHTML = 
       '<div class="container">' +
-      '<img id="' + _imageMapCarouselId + '-previous" src="' + _imageMapCarouselBaseUrl + '/images/previous.jpg" class="arrow">' +
+      '<img id="' + _imageMapCarouselId + '-previous" class="previous-arrow" src="' + _imageMapCarouselBaseUrl + '/images/previous.jpg">' +
       '<div id="' + _imageMapCarouselId + '-container" class="image-area">' +
       '<div id="' + _imageMapCarouselId + '-highlight" class="highlight"></div>' +
       '<img id="' + _imageMapCarouselId + '-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" usemap="#' + _imageMapCarouselId + '-map">' +
       '<map id="' + _imageMapCarouselId + '-map" name="' + _imageMapCarouselId + '-map" ></map>' +
       '</div>' +
-      '<img id="' + _imageMapCarouselId + '-next" src="' + _imageMapCarouselBaseUrl + '/images/next.jpg" class="arrow">'+
+      '<img id="' + _imageMapCarouselId + '-next" class="next-arrow" src="' + _imageMapCarouselBaseUrl + '/images/next.jpg">'+
       '</div>';
 
   const previous = document.getElementById(_imageMapCarouselId + "-previous");

@@ -3,10 +3,6 @@
   align-items: center;
 }
 
-img.arrow:hover {
-  cursor:pointer;
-}
-
 .image-area {
   position: relative;
 }
@@ -20,4 +16,17 @@ img.arrow:hover {
   height: 0px;
   z-index: 10;
   pointer-events: none;
+}
+
+img.previous-arrow {
+  margin-right: 20px; 
+  cursor:pointer;
+}
+
+img.next-arrow {
+  margin-left: 20px;
+}
+
+img.next-arrow:hover, img.previous-arrow:hover {
+  cursor:pointer;
 }
