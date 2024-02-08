@@ -2,6 +2,9 @@ import { createImageMapCarousel,
   setImageMapCarouselBaseUrl, 
   _imageMapCarouselBaseUrl } from '/plugins/theme-helper/image-map-carousel/image-map-carousel.js';
 import { attributesMap } from '/plugins/theme-helper/screens/attributes-map.js';
+import { payment1Coords } from '/plugins/theme-helper/screens/payment-1.js';
+import { payment2Coords } from '/plugins/theme-helper/screens/payment-2.js';
+import { payment3Coords } from '/plugins/theme-helper/screens/payment-3.js';
 import { selectUpgrade1Coords } from '/plugins/theme-helper/screens/select-upgrade-1.js';
 import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgrade-2.js';
 
@@ -53,6 +56,15 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
         },{
           imageUrl: '/plugins/theme-helper' + '/screens/select-upgrade-2.jpg',
           imageMap: selectUpgrade2Coords
+      },{
+          imageUrl: '/plugins/theme-helper' + '/screens/payment-1.jpg',
+          imageMap: payment1Coords
+      },{
+          imageUrl: '/plugins/theme-helper' + '/screens/payment-2.jpg',
+          imageMap: payment2Coords
+      },{
+          imageUrl: '/plugins/theme-helper' + '/screens/payment-3.jpg',
+          imageMap: payment3Coords
       }];
 
     });
