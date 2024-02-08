@@ -1,0 +1,6 @@
+@import url("./image-map-carousel/image-map-carousel.css");
+
+#theme-helper {
+  display: flex; 
+  align-items: top;
+}

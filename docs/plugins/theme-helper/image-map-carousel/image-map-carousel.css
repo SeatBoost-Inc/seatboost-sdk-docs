@@ -1,9 +1,3 @@
-#theme-helper {
-  display: flex; 
-  align-items: top;
-}
-
-
 .container {
   display: flex; 
   align-items: center;
