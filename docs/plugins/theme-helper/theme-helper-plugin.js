@@ -46,9 +46,7 @@ import { selectUpgrade2Coords } from '/plugins/theme-helper/screens/select-upgra
   }
 
   function themeHelperPlugin(hook, vm) {
-    console.log(window.location.host);
-
-    var siteBaseUrl = localhost:3000 == 'localhost:3000' ? '' : 'seatboost-sdk-docs/#';
+    var siteBaseUrl = ( window.location.host == 'localhost:3000' ) ? '' : '/seatboost-sdk-docs/#';
     const themeHelperBaseUrl = siteBaseUrl + '/plugins/theme-helper';
 
     // Invoked one time when docsify script is initialized
