@@ -3,10 +3,10 @@ export var attributesMap = {
     'auctionDetails.grid.planeColor': 'Color for the airplane icon'
   },
   'display-name-msg': {
-
+    'auctionDetails.textField.textColor': 'Text color for the label'
   },
   'form-bg': {
-
+    'auctionDetails.grid.backgroundColor': 'Background color for the form area'
   },
   'grid-cell': {
     'auctionDetails.grid.backgroundColor': 'background color for the grid cell'
@@ -18,7 +18,7 @@ export var attributesMap = {
     'liveAuction.helpButtonColor': 'Color for the help icon',
   },
   'navigation-bar': {
-
+    'auctionDetails.navigationBar.backgroundColor': 'Background color for the navigation bar'
   },
   'navigation-bar-icon' : {
     "auctionDetails.navigationBar.foregroundColor" : "Icon color for the navigation bar item"
@@ -34,7 +34,7 @@ export var attributesMap = {
     'auctionDetails.grid.radioButton.unselectedColor' : 'Color for the radio button when not selected',
   },
   'screen-bg': {
-
+    'auctionDetails.backgroundImage': 'Background image used on the screen'
   },
   'section-bar': {
     'auctionDetails.sectionBar.backgroundColor': 'Background color for the section bar',
@@ -49,7 +49,9 @@ export var attributesMap = {
     'auctionDetails.disabledButton.textColor': 'Text color for a submit button when disabled'
   },
   'text-field': {
-
+    'auctionDetails.textField.backgroundColor': 'Background color for the text field',
+    'auctionDetails.textField.textColor': 'Text color for the text field',
+    'auctionDetails.textField.borderColor': 'Border color for the text field'
   },
   'time-left': {
 
