@@ -1,5 +1,6 @@
 import { setImageMapCarouselBaseUrl, createImageMapCarousel } from './image-map-carousel/image-map-carousel.js';
 import { attributesMap } from './screens/attributes-map.js';
+import { findAuctionCoords } from './screens/find-auction.js';
 import { payment1Coords } from './screens/payment-1.js';
 import { payment2Coords } from './screens/payment-2.js';
 import { payment3Coords } from './screens/payment-3.js';
@@ -11,6 +12,9 @@ var _themeHelperBaseUrl = '';
 
 function getScreensData() {
 	return [{
+          imageUrl: _themeHelperBaseUrl + '/screens/find-auction.jpg',
+          imageMap: findAuctionCoords
+      },{
           imageUrl: _themeHelperBaseUrl + '/screens/select-upgrade-1.jpg',
           imageMap: selectUpgrade1Coords
       },{
