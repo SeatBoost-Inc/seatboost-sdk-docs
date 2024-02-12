@@ -1,4 +1,5 @@
 import { initThemeHelper, createThemeHelperCarousel, getAttributesMap } from './theme-helper.js';
+import { getThemeString } from './screens/theme.js';
 
 {
   function resetAttributeList() {
@@ -27,7 +28,9 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap } from './
 
     for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
       var li = document.createElement('li');
-      li.innerHTML = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br><input>";
+      let color = getThemeString(key);
+      let style = "border:1px solid black;width:100%;background-color:" +  color + ";";
+      li.innerHTML = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br><div style='" + style + "'>&nbsp</div>";
       attributesList.appendChild(li);
     }
   }
