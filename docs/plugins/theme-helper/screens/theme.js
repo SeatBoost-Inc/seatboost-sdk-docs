@@ -1,4 +1,4 @@
-export var theme = {
+var theme = {
    "auctionDetails":{
       "linkColor":"#88b5ae",
       "progressBar":{
@@ -154,8 +154,6 @@ const isDict = dict => {
 
 function _getThemeString(attributes, index, jsonAttributes) {
    const jsonAttribute = jsonAttributes[attributes[index]];	
-   console.log(attributes[index]);
-   console.log(jsonAttribute);
    if(isDict(jsonAttribute)){
       return _getThemeString(attributes, index + 1, jsonAttribute);
    }

@@ -6,7 +6,6 @@ import { payment3Coords } from './screens/payment-3.js';
 import { payment4Coords } from './screens/payment-4.js';
 import { selectUpgrade1Coords } from './screens/select-upgrade-1.js';
 import { selectUpgrade2Coords } from './screens/select-upgrade-2.js';
-import { theme } from './screens/theme.js';
 
 var _themeHelperBaseUrl = '';
 
