@@ -6,7 +6,7 @@ export var payment4Coords = Object.assign({}, paymentCoords, {
 	'pay-using-label': ['14,258,264,280'],
 	'text-field': ['14,281,264,318', '14,321,264,358'],
 	'radio-button': ['12,360,41,388'], 
-	'payment-label': ['42,360,171,388','15,479,261,532'],
+	'payment-label': ['42,360,171,388','15,455,261,535'],
 	'submit-button': ['21,539,256,572'],
 	'form-bg': ['0,156,277,599']
 }); 
