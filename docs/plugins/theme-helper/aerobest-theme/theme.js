@@ -1,3 +1,14 @@
+import { attributesMap } from './attributes-map.js';
+import { findAuctionCoords } from './find-auction.js';
+import { payment1Coords } from './payment-1.js';
+import { payment2Coords } from './payment-2.js';
+import { payment3Coords } from './payment-3.js';
+import { payment41Coords } from './payment-4.1.js';
+import { payment42Coords } from './payment-4.2.js';
+import { selectUpgrade1Coords } from './select-upgrade-1.js';
+import { selectUpgrade2Coords } from './select-upgrade-2.js';
+import { bidding1Coords } from './bidding-1.js';
+
 export var theme = {
    "auctionDetails":{
       "linkColor":"#88b5ae",
@@ -147,3 +158,39 @@ export var theme = {
       "backgroundImage":"AeroBest-Teal3-Background.jpg"
    }
 };
+
+export function getAeroBestScreensData(aerobestThemeBaseUrl) {
+  const screensBaseUrl = aerobestThemeBaseUrl + 'screens/';
+   return [{
+          imageUrl: screensBaseUrl + 'find-auction.jpg',
+          imageMap: findAuctionCoords
+      },{
+          imageUrl: screensBaseUrl + 'select-upgrade-1.jpg',
+          imageMap: selectUpgrade1Coords
+      },{
+          imageUrl: screensBaseUrl + 'select-upgrade-2.jpg',
+          imageMap: selectUpgrade2Coords
+      },{
+          imageUrl: screensBaseUrl + 'payment-1.jpg',
+          imageMap: payment1Coords
+      },{
+          imageUrl: screensBaseUrl + 'payment-2.jpg',
+          imageMap: payment2Coords
+      },{
+          imageUrl: screensBaseUrl + 'payment-3.jpg',
+          imageMap: payment3Coords
+      },{
+          imageUrl: screensBaseUrl + 'payment-4.1.jpg',
+          imageMap: payment41Coords
+      },{
+          imageUrl: screensBaseUrl + 'payment-4.2.jpg',
+          imageMap: payment42Coords
+      },{
+          imageUrl: screensBaseUrl + 'bidding-1.jpg',
+          imageMap: bidding1Coords
+      }];
+}
+
+export function getAeroBestAttributesMap() {
+   return attributesMap;
+}

@@ -25,12 +25,14 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeS
 
     const attributesMap = getAttributesMap()
 
-    for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
-      var li = document.createElement('li');
-      let color = getThemeString(key);
-      let style = "border:1px solid black;width:100%;background-color:" +  color + ";";
-      li.innerHTML = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br><div style='" + style + "'>&nbsp</div>";
-      attributesList.appendChild(li);
+    if(event.detail.attribute in attributesMap){
+      for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
+        var li = document.createElement('li');
+        let color = getThemeString(key);
+        let style = "border:1px solid black;width:100%;background-color:" +  color + ";";
+        li.innerHTML = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br><div style='" + style + "'>&nbsp</div>";
+        attributesList.appendChild(li);
+      }
     }
   }
 

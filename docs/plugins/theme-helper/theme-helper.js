@@ -1,15 +1,5 @@
-import { theme } from './screens/theme.js';
 import { setImageMapCarouselBaseUrl, createImageMapCarousel } from './image-map-carousel/image-map-carousel.js';
-import { attributesMap } from './screens/attributes-map.js';
-import { findAuctionCoords } from './screens/find-auction.js';
-import { payment1Coords } from './screens/payment-1.js';
-import { payment2Coords } from './screens/payment-2.js';
-import { payment3Coords } from './screens/payment-3.js';
-import { payment41Coords } from './screens/payment-4.1.js';
-import { payment42Coords } from './screens/payment-4.2.js';
-import { selectUpgrade1Coords } from './screens/select-upgrade-1.js';
-import { selectUpgrade2Coords } from './screens/select-upgrade-2.js';
-import { bidding1Coords } from './screens/bidding-1.js';
+import { theme, getAeroBestScreensData, getAeroBestAttributesMap } from './aerobest-theme/theme.js';
 
 var _themeHelperBaseUrl = '';
 
@@ -26,34 +16,11 @@ function _getThemeString(attributes, index, jsonAttributes) {
 }
 
 function getScreensData() {
-	return [{
-          imageUrl: _themeHelperBaseUrl + '/screens/find-auction.jpg',
-          imageMap: findAuctionCoords
-      },{
-          imageUrl: _themeHelperBaseUrl + '/screens/select-upgrade-1.jpg',
-          imageMap: selectUpgrade1Coords
-      },{
-          imageUrl: _themeHelperBaseUrl + '/screens/select-upgrade-2.jpg',
-          imageMap: selectUpgrade2Coords
-      },{
-          imageUrl: _themeHelperBaseUrl + '/screens/payment-1.jpg',
-          imageMap: payment1Coords
-      },{
-          imageUrl: _themeHelperBaseUrl + '/screens/payment-2.jpg',
-          imageMap: payment2Coords
-      },{
-          imageUrl: _themeHelperBaseUrl + '/screens/payment-3.jpg',
-          imageMap: payment3Coords
-      },{
-          imageUrl: _themeHelperBaseUrl + '/screens/payment-4.1.jpg',
-          imageMap: payment41Coords
-      },{
-          imageUrl: _themeHelperBaseUrl + '/screens/payment-4.2.jpg',
-          imageMap: payment42Coords
-      },{
-          imageUrl: _themeHelperBaseUrl + '/screens/bidding-1.jpg',
-          imageMap: bidding1Coords
-      }];
+  return getAeroBestScreensData(_themeHelperBaseUrl + '/aerobest-theme/');
+}
+
+export function getAttributesMap() {
+  return getAeroBestAttributesMap();
 }
 
 export function initThemeHelper(themeHelperBaseUrl) {
@@ -66,10 +33,6 @@ export function createThemeHelperCarousel(themeHelperSelectArea, themeHelperChan
 	const themeHelperDiv = document.getElementById('theme-helper-carousel');
 	themeHelperDiv.addEventListener("image-map-carousel-select-area", themeHelperSelectArea);
 	themeHelperDiv.addEventListener("image-map-carousel-change-screen", themeHelperChangePage);
-}
-
-export function getAttributesMap() {
-	return attributesMap;
 }
 
 export function getThemeString(attributeName) {
