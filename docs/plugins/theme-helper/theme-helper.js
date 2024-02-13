@@ -5,8 +5,10 @@ import { payment1Coords } from './screens/payment-1.js';
 import { payment2Coords } from './screens/payment-2.js';
 import { payment3Coords } from './screens/payment-3.js';
 import { payment4Coords } from './screens/payment-4.js';
+import { payment5Coords } from './screens/payment-5.js';
 import { selectUpgrade1Coords } from './screens/select-upgrade-1.js';
 import { selectUpgrade2Coords } from './screens/select-upgrade-2.js';
+import { bidding1Coords } from './screens/bidding-1.js';
 
 var _themeHelperBaseUrl = '';
 
@@ -32,6 +34,12 @@ function getScreensData() {
       },{
           imageUrl: _themeHelperBaseUrl + '/screens/payment-4.jpg',
           imageMap: payment4Coords
+      },{
+          imageUrl: _themeHelperBaseUrl + '/screens/payment-5.jpg',
+          imageMap: payment5Coords
+      },{
+          imageUrl: _themeHelperBaseUrl + '/screens/bidding-1.jpg',
+          imageMap: bidding1Coords
       }];
 }
 
