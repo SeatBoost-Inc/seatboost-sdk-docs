@@ -2,11 +2,26 @@ export var attributesMap = {
   'airplane': {
     'auctionDetails.grid.planeColor': 'Color for the airplane icon'
   },
+  'auction-timer': {
+    'liveAuction.clock.regular.backgroundColor': '',
+    'liveAuction.clock.regular.primaryTextColor': '',
+    'liveAuction.clock.regular.secondaryTextColor': '',
+    'liveAuction.clock.warning.backgroundColor': '',
+    'liveAuction.clock.warning.primaryTextColor': '',
+    'liveAuction.clock.warning.secondaryTextColor': '',
+    'liveAuction.clock.alert.backgroundColor': '',
+    'liveAuction.clock.alert.primaryTextColor': '',
+    'liveAuction.clock.alert.secondaryTextColor': ''
+  },
   'display-name-msg': {
     'auctionDetails.textField.textColor': 'Text color for the label'
   },
   'form-bg': {
     'auctionDetails.grid.backgroundColor': 'Background color for the form area'
+  },
+  'golden-paddle': {
+    'liveAuction.paddle.golden.backgroundColor': '',
+    'liveAuction.paddle.golden.textColor': ''
   },
   'grid-cell': {
     'auctionDetails.grid.backgroundColor': 'background color for the grid cell'
@@ -16,6 +31,14 @@ export var attributesMap = {
   },
   'help-icon': {
     'liveAuction.helpButtonColor': 'Color for the help icon',
+  },
+  'leaderboard-bar': {
+    'liveAuction.bar.backgroundColor': '',
+    'liveAuction.bar.textColor': ''
+  },
+  'left-paddle': {
+    'liveAuction.paddle.left.backgroundColor': '',
+    'liveAuction.paddle.left.textColor': ''
   },
   'navigation-bar': {
     'auctionDetails.navigationBar.backgroundColor': 'Background color for the navigation bar'
@@ -32,6 +55,10 @@ export var attributesMap = {
   'radio-button': { 
     'auctionDetails.grid.radioButton.selectedColor' : 'Color for the radio button when selected',
     'auctionDetails.grid.radioButton.unselectedColor' : 'Color for the radio button when not selected',
+  },
+  'right-paddle': {
+    'liveAuction.paddle.right.backgroundColor': '',
+    'liveAuction.paddle.right.textColor': ''
   },
   'screen-bg': {
     'auctionDetails.backgroundImage': 'Background image used on the screen'
