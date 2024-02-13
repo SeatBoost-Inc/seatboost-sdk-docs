@@ -1,4 +1,3 @@
-import { attributesMap } from './attributes-map.js';
 import { findAuctionCoords } from './find-auction.js';
 import { payment1Coords } from './payment-1.js';
 import { payment2Coords } from './payment-2.js';
@@ -189,8 +188,4 @@ export function getAeroBestScreensData(aerobestThemeBaseUrl) {
           imageUrl: screensBaseUrl + 'bidding-1.jpg',
           imageMap: bidding1Coords
       }];
-}
-
-export function getAeroBestAttributesMap() {
-   return attributesMap;
 }

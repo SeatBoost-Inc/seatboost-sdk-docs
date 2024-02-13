@@ -1,5 +1,6 @@
 import { setImageMapCarouselBaseUrl, createImageMapCarousel } from './image-map-carousel/image-map-carousel.js';
-import { theme, getAeroBestScreensData, getAeroBestAttributesMap } from './aerobest-theme/theme.js';
+import { theme, getAeroBestScreensData } from './aerobest-theme/theme.js';
+import { attributesMap } from './attributes-map.js';
 
 var _themeHelperBaseUrl = '';
 
@@ -20,7 +21,7 @@ function getScreensData() {
 }
 
 export function getAttributesMap() {
-  return getAeroBestAttributesMap();
+  return attributesMap;
 }
 
 export function initThemeHelper(themeHelperBaseUrl) {
