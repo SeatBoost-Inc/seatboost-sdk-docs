@@ -1,3 +1,4 @@
+import { theme } from './screens/theme.js';
 import { setImageMapCarouselBaseUrl, createImageMapCarousel } from './image-map-carousel/image-map-carousel.js';
 import { attributesMap } from './screens/attributes-map.js';
 import { findAuctionCoords } from './screens/find-auction.js';
@@ -11,6 +12,18 @@ import { selectUpgrade2Coords } from './screens/select-upgrade-2.js';
 import { bidding1Coords } from './screens/bidding-1.js';
 
 var _themeHelperBaseUrl = '';
+
+const isDict = dict => {
+  return typeof dict === "object" && !Array.isArray(dict);
+};
+
+function _getThemeString(attributes, index, jsonAttributes) {
+   const jsonAttribute = jsonAttributes[attributes[index]]; 
+   if(isDict(jsonAttribute)){
+      return _getThemeString(attributes, index + 1, jsonAttribute);
+   }
+   return jsonAttribute;
+}
 
 function getScreensData() {
 	return [{
@@ -57,4 +70,11 @@ export function createThemeHelperCarousel(themeHelperSelectArea, themeHelperChan
 
 export function getAttributesMap() {
 	return attributesMap;
+}
+
+export function getThemeString(attributeName) {
+  let attributes = attributeName.split(".");
+  if(attributes.length > 0){
+    return _getThemeString(attributes, 0, theme);
+  }
 }

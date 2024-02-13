@@ -1,5 +1,4 @@
-import { initThemeHelper, createThemeHelperCarousel, getAttributesMap } from './theme-helper.js';
-import { getThemeString } from './screens/theme.js';
+import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeString } from './theme-helper.js';
 
 {
   function resetAttributeList() {

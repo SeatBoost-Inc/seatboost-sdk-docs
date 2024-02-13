@@ -1,4 +1,4 @@
-var theme = {
+export var theme = {
    "auctionDetails":{
       "linkColor":"#88b5ae",
       "progressBar":{
@@ -147,22 +147,3 @@ var theme = {
       "backgroundImage":"AeroBest-Teal3-Background.jpg"
    }
 };
-
-const isDict = dict => {
-  return typeof dict === "object" && !Array.isArray(dict);
-};
-
-function _getThemeString(attributes, index, jsonAttributes) {
-   const jsonAttribute = jsonAttributes[attributes[index]];	
-   if(isDict(jsonAttribute)){
-      return _getThemeString(attributes, index + 1, jsonAttribute);
-   }
-   return jsonAttribute;
-}
-
-export function getThemeString(attributeName) {
-	let attributes = attributeName.split(".");
-	if(attributes.length > 0){
-		return _getThemeString(attributes, 0, theme);
-	}
-}
