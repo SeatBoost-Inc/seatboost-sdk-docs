@@ -1,6 +1,6 @@
-import { paymentCoords  } from './payment.js';
+import { paymentTopCoords  } from './payment.js';
 
-export var payment3Coords = Object.assign({}, paymentCoords, {
+export var payment3Coords = Object.assign({}, paymentTopCoords, {
 	'section-bar':  ['0,189,277,208', '0,303,277,323'],
 	'h1-text' : ['43,214,106,231', '200,214,267,231', '43,264,86,279', '205,264,267,279', '43,326,97,342', '199,326,267,342'],
 	 'p-text' : ['43,231,102,258','212,231,270,258', '43,277,102,296', '229,278,269,297', '107,279,206,295', '43,341,211,366',
