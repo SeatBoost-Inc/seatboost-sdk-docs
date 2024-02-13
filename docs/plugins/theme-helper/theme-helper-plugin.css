@@ -4,3 +4,11 @@
   display: flex; 
   align-items: top;
 }
+
+#theme-helper-carousel {
+  flex-shrink: 0; 
+}
+
+#theme-helper-attributes {
+  flex-grow: 1; 
+}
