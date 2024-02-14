@@ -12,3 +12,12 @@
 #theme-helper-attributes {
   flex-grow: 1; 
 }
+
+#theme-helper-attributes-list {
+  padding-left: 0; 
+  list-style-type: none;
+}
+
+#theme-helper-attributes-list > li {
+  padding: 0 0 20px 0; 
+}

@@ -1,6 +1,35 @@
 import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeString } from './theme-helper.js';
 
 {
+  function padZero(str, len) {
+    len = len || 2;
+    var zeros = new Array(len).join('0');
+    return (zeros + str).slice(-len);
+  }
+
+  function invertColor(hex) {
+    if (hex.indexOf('#') === 0) {
+        hex = hex.slice(1);
+    }
+
+    // convert 3-digit hex to 6-digits.
+    if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+
+    if (hex.length !== 6) {
+        throw new Error('Invalid HEX color.');
+    }
+
+    // invert color components
+    var r = (255 - parseInt(hex.slice(0, 2), 16)).toString(16),
+        g = (255 - parseInt(hex.slice(2, 4), 16)).toString(16),
+        b = (255 - parseInt(hex.slice(4, 6), 16)).toString(16);
+
+    // pad each with zeros and return
+    return '#' + padZero(r) + padZero(g) + padZero(b);
+  }
+
   function resetAttributeList() {
     const elementName = document.getElementById('theme-helper-element-name');
 
@@ -28,16 +57,30 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeS
     if(event.detail.attribute in attributesMap){
       for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
         var li = document.createElement('li');
-        var liHtml = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br>";
+        var liHtml = "<small><b>" + key + "</b>: " + value + "</small>";
 
         let themeValue = getThemeString(key);
         if(themeValue != null){
-            if(themeValue.startsWith('#')){
-              let style = "border:1px solid black;width:100%;background-color:" +  themeValue + ";";
-              liHtml = liHtml + "<div style='" + style + "'>&nbsp</div>";
-            } else {
-              liHtml = liHtml + "<div>" + themeValue + "</div>";
-            }
+          var bgColor = '';
+          var txtColor = '';
+          var text = '';
+
+          if(themeValue.startsWith('#')){
+            bgColor = themeValue;
+            txtColor = invertColor(themeValue);
+            text = themeValue.toUpperCase();
+          } else {
+            bgColor = 'white';
+            txtColor = 'black';
+            text = themeValue;
+          }
+
+          let style = "border:1px solid black;" + 
+            "padding: 2px;" +
+            "background-color:" +  bgColor + ";" + 
+            "color:" + txtColor + ";"
+
+          liHtml = liHtml + "<div style='" + style + "'>" + text + "</div>";
         }
 
         li.innerHTML = liHtml;
