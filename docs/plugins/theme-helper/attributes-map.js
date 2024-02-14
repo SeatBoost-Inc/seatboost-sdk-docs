@@ -1,4 +1,7 @@
 export var attributesMap = {
+  'airline-logo': {
+    'auctionDetails.logo': 'Image used for the airline logo'
+  },
   'airplane': {
     'auctionDetails.grid.planeColor': 'Color for the airplane icon'
   },
@@ -14,10 +17,15 @@ export var attributesMap = {
     'liveAuction.clock.alert.secondaryTextColor': ''
   },
   'display-name-msg': {
+    //'auctionDetails.textField.textColor': '(WEIRD)'
     'auctionDetails.textField.textColor': 'Text color for the label'
   },
   'form-bg': {
     'auctionDetails.grid.backgroundColor': 'Background color for the form area'
+  },
+  'form-label': {
+    //'auctionDetails.textField.borderColor': '(WEIRD)'
+    'auctionDetails.textField.borderColor': 'Text color for the label'
   },
   'golden-paddle': {
     'liveAuction.paddle.golden.backgroundColor': '',
@@ -52,9 +60,21 @@ export var attributesMap = {
   'passenger-name': {
     'auctionDetails.grid.pColor': 'Text color for the passenger name'
   },
+  'payment-label': {
+    //'auctionDetails.grid.h1Color': '(WEIRD)'
+    'auctionDetails.grid.h1Color': 'Text color for the message label'
+  },
+  'payment-msg': {
+    //'auctionDetails.grid.h1Color': '(WEIRD)'
+    'auctionDetails.grid.h1Color': 'Text color for the message label'
+  },
   'radio-button': { 
     'auctionDetails.grid.radioButton.selectedColor' : 'Color for the radio button when selected',
     'auctionDetails.grid.radioButton.unselectedColor' : 'Color for the radio button when not selected',
+  },
+  'review-msg': {
+    //'auctionDetails.grid.h1Color': '(WEIRD)'
+    'auctionDetails.grid.h1Color': 'Text color for the message label'
   },
   'right-paddle': {
     'liveAuction.paddle.right.backgroundColor': '',
@@ -84,10 +104,12 @@ export var attributesMap = {
 
   },
   "time-left-bar": {
-    'liveAuction.clock.alert.backgroundColor': 'Background color for the time left clock'
+    'liveAuction.clock.alert.backgroundColor': 'Background color for the time left clock',
+    'liveAuction.clock.alert.primaryTextColor': '(MISSING)'
   },
   'wizard-step': {
-    'auctionDetails.progressBar.futureColor': '',
+    'auctionDetails.progressBar.futureColor': '(MISSING)',
+    'auctionDetails.progressBar.activeColor': '(MISSING)',
     'auctionDetails.progressBar.completedColor': 'Color for the completed step of the progress bar'
   },
   'wizard-step-bar': {

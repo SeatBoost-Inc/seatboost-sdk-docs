@@ -28,9 +28,19 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeS
     if(event.detail.attribute in attributesMap){
       for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
         var li = document.createElement('li');
-        let color = getThemeString(key);
-        let style = "border:1px solid black;width:100%;background-color:" +  color + ";";
-        li.innerHTML = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br><div style='" + style + "'>&nbsp</div>";
+        var liHtml = "<b><small>" + key + "</small></b><br><small>" + value + "</small><br>";
+
+        let themeValue = getThemeString(key);
+        if(themeValue != null){
+            if(themeValue.startsWith('#')){
+              let style = "border:1px solid black;width:100%;background-color:" +  themeValue + ";";
+              liHtml = liHtml + "<div style='" + style + "'>&nbsp</div>";
+            } else {
+              liHtml = liHtml + "<div>" + themeValue + "</div>";
+            }
+        }
+
+        li.innerHTML = liHtml;
         attributesList.appendChild(li);
       }
     }
