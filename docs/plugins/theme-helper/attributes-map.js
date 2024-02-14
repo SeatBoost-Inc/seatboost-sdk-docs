@@ -115,6 +115,14 @@ export var attributesMap = {
     'auctionDetails.disabledButton.borderColor': 'Border color for a submit button when disabled',
     'auctionDetails.disabledButton.textColor': 'Text color for a submit button when disabled'
   },
+  'terms-cancel-button': {
+    'auctionDetails.termsCancelButton.backgroundColor': 'Background color for the terms cancel button',
+    'auctionDetails.termsCancelButton.borderColor': 'Border color for the terms cancel button',
+    'auctionDetails.termsCancelButton.textColor': 'Text color for the terms cancel button',
+    'auctionDetails.disabledButton.backgroundColor': 'Background color for a submit button when disabled',
+    'auctionDetails.disabledButton.borderColor': 'Border color for a submit button when disabled',
+    'auctionDetails.disabledButton.textColor': 'Text color for a submit button when disabled'
+  },
   'text-field': {
     'auctionDetails.textField.backgroundColor': 'Background color for the text field',
     'auctionDetails.textField.textColor': 'Text color for the text field',
