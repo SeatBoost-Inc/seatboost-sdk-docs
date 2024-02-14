@@ -5,6 +5,17 @@ export var attributesMap = {
   'airplane': {
     'auctionDetails.grid.planeColor': 'Color for the airplane icon'
   },
+  'auction-navbar': {
+    //'liveAuction.leaderboard.backgroundGradient.topColor': '(WEIRD)'
+    'liveAuction.leaderboard.backgroundGradient.topColor': 'Background color for the navigation bar'
+  },
+  'auction-navbar-airline-logo': {
+    'liveAuction.logo': 'Image used for the airline logo on the navigation bar'
+  },
+  'auction-navbar-icon': {
+    //'liveAuction.titleTextColor': '(WEIRD)'
+    'liveAuction.titleTextColor': 'Icon color on the navigation bar'
+  },
   'auction-timer': {
     'liveAuction.clock.regular.backgroundColor': '',
     'liveAuction.clock.regular.primaryTextColor': '',
@@ -44,9 +55,18 @@ export var attributesMap = {
     'liveAuction.bar.backgroundColor': '',
     'liveAuction.bar.textColor': ''
   },
+  'leaderboard-bg': {
+    'liveAuction.leaderboard.backgroundGradient.bottomColor': 'Background color for leaderboard'
+  },
+  'leaderboard-title': {
+    'liveAuction.titleTextColor': 'Text color for leaderboard title'
+  },
   'left-paddle': {
     'liveAuction.paddle.left.backgroundColor': '',
     'liveAuction.paddle.left.textColor': ''
+  },
+  'msg-carousel': {
+    'liveAuction.messageColor': 'Text color for each message on the live auction carousel'
   },
   'navigation-bar': {
     'auctionDetails.navigationBar.backgroundColor': 'Background color for the navigation bar'

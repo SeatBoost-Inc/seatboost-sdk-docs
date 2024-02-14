@@ -2,6 +2,7 @@ export var bidding1Coords = Object.assign({}, [], {
 	'auction-navbar-icon': ['239,35,273,61'], 
 	'auction-navbar-airline-logo': ['66,35,211,61'], 
 	'auction-navbar': ['0,32,277,64'],
+	'leaderboard-title': ['70,68,207,86'],
 	'auction-timer': ['87,184,190,230'],
 	'leaderboard-bar': ['0,196,87,217', '191,196,277,217'],
 	'leaderboard-bg': ['0,64,277,197'],
