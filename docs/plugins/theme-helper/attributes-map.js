@@ -138,6 +138,9 @@ export var attributesMap = {
     'liveAuction.clock.alert.backgroundColor': 'Background color for the time left clock',
     'liveAuction.clock.alert.primaryTextColor': '(MISSING)'
   },
+  'tip': {
+    'auctionDetails.grid.pColor': 'Text color for the tip'
+  },
   'wizard-step': {
     'auctionDetails.progressBar.futureColor': '(MISSING)',
     'auctionDetails.progressBar.activeColor': '(MISSING)',

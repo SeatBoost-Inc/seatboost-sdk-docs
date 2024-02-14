@@ -1,4 +1,4 @@
-import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeString } from './theme-helper.js';
+import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeString } from './theme-helper/theme-helper.js';
 
 {
   function padZero(str, len) {
