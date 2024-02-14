@@ -7,6 +7,7 @@ export var payment3Coords = Object.assign({}, paymentTopCoords, {
     	'224,340,267,364'],
     'airplane': ['135,220,180,264'],
 	'radio-button': ['7,240,36,272', '7,335,36,367'], 
+	'separator': ['0,372,276,381'],
 	'review-msg': ['15,489,261,532'],
 	'submit-button': ['12,537,265,572']
 }); 

@@ -100,12 +100,15 @@ export var attributesMap = {
     'liveAuction.paddle.right.backgroundColor': '',
     'liveAuction.paddle.right.textColor': ''
   },
-  'screen-bg': {
-    'auctionDetails.backgroundImage': 'Background image used on the screen'
-  },
   'section-bar': {
     'auctionDetails.sectionBar.backgroundColor': 'Background color for the section bar',
     'auctionDetails.sectionBar.textColor': 'Text color for the section bar'
+  },
+  'separator': {
+    'auctionDetails.grid.separatorColor': 'Separator color'
+  },
+  'screen-bg': {
+    'auctionDetails.backgroundImage': 'Background image used on the screen'
   },
   'submit-button': {
     'auctionDetails.button.backgroundColor': 'Background color for a submit button',
