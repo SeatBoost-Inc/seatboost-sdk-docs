@@ -18,8 +18,8 @@ export var theme = {
          "completedColor":"#88b5ae"
       },
       "disabledButton":{
-         "borderColor":"#88b5ae",
-         "backgroundColor":"#88b5ae",
+         "borderColor":"#d2d4da",
+         "backgroundColor":"#d2d4da",
          "textColor":"#ffffff"
       },
       "grid":{
@@ -149,7 +149,7 @@ export var theme = {
       "helpButtonColor":"#88b5ae",
       "leaderboard":{
          "backgroundGradient":{
-            "topColor":"#3c2a22",
+            "topColor":"#000000",
             "bottomColor":"#000000"
          },
          "primaryTextColor":"#fcd100",
