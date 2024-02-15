@@ -1,11 +1,12 @@
 import { findAuctionCoords } from './find-auction.js';
+import { selectUpgrade1Coords } from './select-upgrade-1.js';
+import { selectUpgrade2Coords } from './select-upgrade-2.js';
+import { selectUpgrade3Coords } from './select-upgrade-3.js';
 import { payment1Coords } from './payment-1.js';
 import { payment2Coords } from './payment-2.js';
 import { payment3Coords } from './payment-3.js';
 import { payment41Coords } from './payment-4.1.js';
 import { payment42Coords } from './payment-4.2.js';
-import { selectUpgrade1Coords } from './select-upgrade-1.js';
-import { selectUpgrade2Coords } from './select-upgrade-2.js';
 import { bidding1Coords } from './bidding-1.js';
 
 export var theme = {
@@ -169,6 +170,9 @@ export function getAeroBestScreensData(aerobestThemeBaseUrl) {
       },{
           imageUrl: screensBaseUrl + 'select-upgrade-2.jpg',
           imageMap: selectUpgrade2Coords
+      },{
+          imageUrl: screensBaseUrl + 'select-upgrade-3.jpg',
+          imageMap: selectUpgrade3Coords
       },{
           imageUrl: screensBaseUrl + 'payment-1.jpg',
           imageMap: payment1Coords
