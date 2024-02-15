@@ -7,6 +7,7 @@
 
 #theme-helper-carousel {
   flex-shrink: 0; 
+  padding-right: 20px;
 }
 
 #theme-helper-attributes {

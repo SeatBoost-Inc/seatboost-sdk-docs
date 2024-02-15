@@ -8,6 +8,8 @@ import { payment3Coords } from './payment-3.js';
 import { payment41Coords } from './payment-4.1.js';
 import { payment42Coords } from './payment-4.2.js';
 import { bidding1Coords } from './bidding-1.js';
+import { bidding2Coords } from './bidding-2.js';
+import { bidding3Coords } from './bidding-3.js';
 
 export var theme = {
    "auctionDetails":{
@@ -191,5 +193,11 @@ export function getAeroBestScreensData(aerobestThemeBaseUrl) {
       },{
           imageUrl: screensBaseUrl + 'bidding-1.jpg',
           imageMap: bidding1Coords
+      },{
+          imageUrl: screensBaseUrl + 'bidding-2.jpg',
+          imageMap: bidding2Coords
+      },{
+          imageUrl: screensBaseUrl + 'bidding-3.jpg',
+          imageMap: bidding3Coords
       }];
 }
