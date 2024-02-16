@@ -101,6 +101,10 @@ export var attributesMap = {
   'leaderboard-bg': {
     'liveAuction.leaderboard.backgroundGradient.bottomColor': 'Background color for leaderboard'
   },
+  'leaderboard-row': {
+    'liveAuction.leaderboard.primaryTextColor': '',
+    'liveAuction.leaderboard.secondaryTextColor': ''
+  },
   'leaderboard-title': {
     'liveAuction.titleTextColor': 'Text color for leaderboard title'
   },

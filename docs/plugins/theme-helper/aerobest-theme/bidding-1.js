@@ -1,6 +1,8 @@
 import { biddingTopCoords, biddingBottomCoords  } from './bidding.js';
 
 export var bidding1Coords = Object.assign({}, biddingTopCoords, {
+	'leaderboard-row': ['22,88,264,107', '22,106,264,125','22,124,264,143',
+		'22,142,264,161', '22,160,264,179'], 
 	'buy-instant-upgrade': ['132,183,264,207'], 
 	'auction-timer': ['87,215,190,261'],
 	'leaderboard-bar': ['0,228,87,249', '191,228,277,249'],
