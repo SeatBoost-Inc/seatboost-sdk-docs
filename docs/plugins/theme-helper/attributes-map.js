@@ -27,6 +27,10 @@ export var attributesMap = {
     'liveAuction.clock.alert.primaryTextColor': '',
     'liveAuction.clock.alert.secondaryTextColor': ''
   },
+  'bidding-bg': {
+    'liveAuction.backgroundImage': '',
+    'liveAuction.backgroundImageForBidding': ''
+  },
   'congratulations': {
     'endAuction.congratulationsTextColor': ''
   },
@@ -57,6 +61,18 @@ export var attributesMap = {
     'endAuction.infoBox.borderColor': '',
     'endAuction.infoBox.primaryTextColor': '',
     'endAuction.infoBox.secondaryTextColor': ''
+  },
+  'final-round-text-field': {
+    'liveAuction.finalRound.aditionalBidTextField.borderColor': '',
+    'liveAuction.finalRound.aditionalBidTextField.backgroundColor': '',
+    'liveAuction.finalRound.aditionalBidTextField.textColor': ''
+  },
+  'final-round-paddle': {
+    'liveAuction.paddle.bid.backgroundColor': '',
+    'liveAuction.paddle.bid.textColor': ''
+  },
+  'final-round-text': {
+    'liveAuction.finalRound.textColor': ''
   },
   'form-bg': {
     'auctionDetails.grid.backgroundColor': 'Background color for the form area'
@@ -152,6 +168,10 @@ export var attributesMap = {
     'auctionDetails.disabledButton.backgroundColor': 'Background color for a submit button when disabled',
     'auctionDetails.disabledButton.borderColor': 'Border color for a submit button when disabled',
     'auctionDetails.disabledButton.textColor': 'Text color for a submit button when disabled'
+  },
+  'terms-section-bar': {
+    'auctionDetails.sectionBarTwo.backgroundColor': '',
+    'auctionDetails.sectionBarTwo.textColor': ''
   },
   'text-field': {
     'auctionDetails.textField.backgroundColor': 'Background color for the text field',
