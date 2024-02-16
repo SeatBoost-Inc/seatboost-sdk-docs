@@ -27,9 +27,28 @@ export var attributesMap = {
     'liveAuction.clock.alert.primaryTextColor': '',
     'liveAuction.clock.alert.secondaryTextColor': ''
   },
+  'congratulation': {
+    'endAuction.congratulationsTextColor': ''
+  },
   'display-name-msg': {
     //'auctionDetails.textField.textColor': '(WEIRD)'
     'auctionDetails.textField.textColor': 'Text color for the label'
+  },
+  'end-auction-bar': {
+    'endAuction.bar.backgroundColor': '',
+    'endAuction.bar.textColor': '',
+  },
+  'end-auction-navbar-airline-logo': {
+    'endAuction.logo': ''
+  }, 
+  'end-auction-navbar-icon': {
+    'endAuction.navigationBar.foregroundColor': ''
+  },
+  'info-box' : {
+    'endAuction.infoBox.backgroundColor': '',
+    'endAuction.infoBox.borderColor': '',
+    'endAuction.infoBox.primaryTextColor': '',
+    'endAuction.infoBox.secondaryTextColor': ''
   },
   'form-bg': {
     'auctionDetails.grid.backgroundColor': 'Background color for the form area'
