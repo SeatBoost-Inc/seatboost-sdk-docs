@@ -1,6 +1,39 @@
-import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeString } from './theme-helper/theme-helper.js';
+import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, 
+  getThemeString, getAllThemeAttributes, isAttributeUsed} from './theme-helper/theme-helper.js';
 
 {
+  function debugOnClick(event) {
+    resetAttributeList();
+
+    const attributesList = document.getElementById('theme-helper-attributes-list');
+    const elementName = document.getElementById('theme-helper-element-name');
+
+    elementName.innerHTML = 'DEBUGGING ATTRIBUTES';
+
+    const allThemeAttributes = getAllThemeAttributes();
+
+    let used = 0;
+    let notUsed = 0;
+
+    for (const attribute of allThemeAttributes) {
+      const isUsed = isAttributeUsed(attribute);
+      if(!isUsed){
+        var li = document.createElement('li');
+        li.innerHTML =  '<small style="color:red"><b>' + attribute + '</b></small>';
+        attributesList.appendChild(li);
+        notUsed++;
+      } else {
+        used++;
+      }
+    }
+
+    var li = document.createElement('li');
+    li.innerHTML =  "<b>" + used + " used," + notUsed + " not used</b>";
+    attributesList.appendChild(li);
+
+    attributesList.insertBefore(li, attributesList.firstChild);
+  }
+
   function padZero(str, len) {
     len = len || 2;
     var zeros = new Array(len).join('0');
@@ -105,8 +138,10 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeS
     // Invoked on each page load after new markdown has been transformed to HTML.
     hook.afterEach(html => {
       var themeHelperBaseHtml =   
+        '<input type="button" id="theme-helper-debug" value="Debug">' +
         '<div id="theme-helper">' + 
-            '<div id="theme-helper-carousel"></div>' +
+            '<div id="theme-helper-carousel">' + 
+            '</div>' +
             '<div id="theme-helper-attributes">' +
               '<h3 id="theme-helper-element-name"></h3>'+
               '<ul id="theme-helper-attributes-list"></ul>'+
@@ -120,6 +155,9 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, getThemeS
     // Invoked on each page load after new HTML has been appended to the DOM
     hook.doneEach(() => {
       createThemeHelperCarousel(themeHelperSelectArea, themeHelperChangePage);
+
+      const debugButton = document.getElementById('theme-helper-debug');
+      debugButton.addEventListener("click", debugOnClick, false);
     });
   }
 
