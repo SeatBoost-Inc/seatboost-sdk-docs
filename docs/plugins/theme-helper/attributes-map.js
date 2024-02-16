@@ -27,7 +27,7 @@ export var attributesMap = {
     'liveAuction.clock.alert.primaryTextColor': '',
     'liveAuction.clock.alert.secondaryTextColor': ''
   },
-  'congratulation': {
+  'congratulations': {
     'endAuction.congratulationsTextColor': ''
   },
   'display-name-msg': {
@@ -38,11 +38,19 @@ export var attributesMap = {
     'endAuction.bar.backgroundColor': '',
     'endAuction.bar.textColor': '',
   },
+  'end-auction-bg': {
+    'endAuction.backgroundImage': ''
+  },
   'end-auction-navbar-airline-logo': {
     'endAuction.logo': ''
   }, 
   'end-auction-navbar-icon': {
     'endAuction.navigationBar.foregroundColor': ''
+  },
+  'end-auction-status': {
+    'endAuction.winnerBox.backgroundColor': '',
+    'endAuction.winnerBox.primaryTextColor': '',
+    'endAuction.winnerBox.secondaryTextColor': ''
   },
   'info-box' : {
     'endAuction.infoBox.backgroundColor': '',
