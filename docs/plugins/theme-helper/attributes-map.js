@@ -31,6 +31,11 @@ export var attributesMap = {
     'liveAuction.backgroundImage': 'Background image used on the auction screen',
     'liveAuction.backgroundImageForBidding': 'Background image used on the auction screen when it is ready to bid'
   },
+  'buy-now-button': {
+    'auctionDetails.button.backgroundColor': 'Background color for the buy instant upgrade button',
+    'auctionDetails.button.borderColor': 'Border color for the buy instant upgrade button',
+    'auctionDetails.button.textColor': 'Text color for the buy instant upgrade button'
+  },
   'congratulations': {
     'endAuction.congratulationsTextColor': 'Text color used on the congratulations message'
   },
@@ -39,8 +44,8 @@ export var attributesMap = {
     'auctionDetails.textField.textColor': 'Text color for the label'
   },
   'end-auction-bar': {
-    'endAuction.bar.backgroundColor': '',
-    'endAuction.bar.textColor': '',
+    'endAuction.bar.backgroundColor': 'Background color for the bar',
+    'endAuction.bar.textColor': 'Text color for the bar',
   },
   'end-auction-bg': {
     'endAuction.backgroundImage': 'Background image used on the screen after auction has finished'
@@ -52,27 +57,27 @@ export var attributesMap = {
     'endAuction.navigationBar.foregroundColor': 'Icon color on the navigation bar for this screen'
   },
   'end-auction-status': {
-    'endAuction.winnerBox.backgroundColor': '',
-    'endAuction.winnerBox.primaryTextColor': '',
-    'endAuction.winnerBox.secondaryTextColor': ''
+    'endAuction.winnerBox.backgroundColor': 'Background color for this status box',
+    'endAuction.winnerBox.primaryTextColor': 'Text color for this status box',
+    'endAuction.winnerBox.secondaryTextColor': 'Text color for this status box title (small label)'
   },
   'info-box' : {
-    'endAuction.infoBox.backgroundColor': '',
-    'endAuction.infoBox.borderColor': '',
-    'endAuction.infoBox.primaryTextColor': '',
-    'endAuction.infoBox.secondaryTextColor': ''
+    'endAuction.infoBox.backgroundColor': 'Background color for this info box',
+    'endAuction.infoBox.borderColor': 'Text color for this info box title (small label)',
+    'endAuction.infoBox.primaryTextColor': 'Text color for this info box',
+    'endAuction.infoBox.secondaryTextColor': 'Border Color color for this info box'
   },
   'final-round-text-field': {
-    'liveAuction.finalRound.aditionalBidTextField.borderColor': '',
-    'liveAuction.finalRound.aditionalBidTextField.backgroundColor': '',
-    'liveAuction.finalRound.aditionalBidTextField.textColor': ''
+    'liveAuction.finalRound.aditionalBidTextField.borderColor': 'Border color used on the final round bid input',
+    'liveAuction.finalRound.aditionalBidTextField.backgroundColor': 'Background color used on the final round bid input',
+    'liveAuction.finalRound.aditionalBidTextField.textColor': 'Text color used on the final round bid input'
   },
   'final-round-paddle': {
-    'liveAuction.paddle.bid.backgroundColor': '',
-    'liveAuction.paddle.bid.textColor': ''
+    'liveAuction.paddle.bid.backgroundColor': 'Background color used on the final round paddle',
+    'liveAuction.paddle.bid.textColor': 'Text color used on the final round paddle'
   },
   'final-round-text': {
-    'liveAuction.finalRound.textColor': ''
+    'liveAuction.finalRound.textColor': 'Text color used on the final round labels'
   },
   'form-bg': {
     'auctionDetails.grid.backgroundColor': 'Background color for the form area'
@@ -82,8 +87,8 @@ export var attributesMap = {
     'auctionDetails.textField.borderColor': 'Text color for the label'
   },
   'golden-paddle': {
-    'liveAuction.paddle.golden.backgroundColor': '',
-    'liveAuction.paddle.golden.textColor': ''
+    'liveAuction.paddle.golden.backgroundColor': 'Background color used on the middle paddle',
+    'liveAuction.paddle.golden.textColor': 'Text color used on the middle paddle'
   },
   'grid-cell': {
     'auctionDetails.grid.backgroundColor': 'background color for the grid cell'
@@ -95,22 +100,22 @@ export var attributesMap = {
     'liveAuction.helpButtonColor': 'Color for the help icon',
   },
   'leaderboard-bar': {
-    'liveAuction.bar.backgroundColor': '',
-    'liveAuction.bar.textColor': ''
+    'liveAuction.bar.backgroundColor': 'Background color for the bar',
+    'liveAuction.bar.textColor': 'Text color for the bar'
   },
   'leaderboard-bg': {
     'liveAuction.leaderboard.backgroundGradient.bottomColor': 'Background color for leaderboard'
   },
   'leaderboard-row': {
-    'liveAuction.leaderboard.primaryTextColor': '',
-    'liveAuction.leaderboard.secondaryTextColor': ''
+    'liveAuction.leaderboard.primaryTextColor': 'Text color used in the leaderboard row (myself)',
+    'liveAuction.leaderboard.secondaryTextColor': 'Text color used in the leaderboard rows (other bidders)'
   },
   'leaderboard-title': {
     'liveAuction.titleTextColor': 'Text color for leaderboard title'
   },
   'left-paddle': {
-    'liveAuction.paddle.left.backgroundColor': '',
-    'liveAuction.paddle.left.textColor': ''
+    'liveAuction.paddle.left.backgroundColor': 'Background color used on the left paddle',
+    'liveAuction.paddle.left.textColor': 'Text color used on the left paddle'
   },
   'msg-carousel': {
     'liveAuction.messageColor': 'Text color for each message on the live auction carousel'
@@ -144,8 +149,8 @@ export var attributesMap = {
     'auctionDetails.grid.h1Color': 'Text color for the message label'
   },
   'right-paddle': {
-    'liveAuction.paddle.right.backgroundColor': '',
-    'liveAuction.paddle.right.textColor': ''
+    'liveAuction.paddle.right.backgroundColor': 'Background color used on the right paddle',
+    'liveAuction.paddle.right.textColor': 'Text color used on the right paddle'
   },
   'section-bar': {
     'auctionDetails.sectionBar.backgroundColor': 'Background color for the section bar',
@@ -183,7 +188,6 @@ export var attributesMap = {
     'auctionDetails.textField.borderColor': 'Border color for the text field'
   },
   'time-left': {
-
   },
   "time-left-bar": {
     'liveAuction.clock.alert.backgroundColor': 'Background color for the time left clock',
