@@ -1,6 +1,7 @@
 import { biddingTopCoords, biddingBottomCoords  } from './bidding.js';
+import { leaderboardCoords  } from './leaderboard.js';
 
-export var bidding2Coords = Object.assign({}, biddingTopCoords, {
+export var bidding2Coords = Object.assign({}, biddingTopCoords, leaderboardCoords, {
 	'auction-timer': ['87,185,190,229'],
 	'leaderboard-bar': ['0,197,87,218', '191,197,277,218'],
 	'leaderboard-bg': ['0,64,277,197'],

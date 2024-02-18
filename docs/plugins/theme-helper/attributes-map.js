@@ -27,6 +27,12 @@ export var attributesMap = {
     'liveAuction.clock.alert.primaryTextColor': 'Text color used on the timer title during the auction final round',
     'liveAuction.clock.alert.secondaryTextColor': 'Text color used on the timer during the auction final round',
   },
+  'backspace': {
+    //'liveAuction.bar.backgroundColor: '(WEIRD)'
+    'liveAuction.bar.backgroundColor': '',
+    //'liveAuction.bar.textColor: '(WEIRD)'
+    'liveAuction.bar.textColor': '(MISSING)'
+  },
   'bidding-bg': {
     'liveAuction.backgroundImage': 'Background image used on the auction screen',
     'liveAuction.backgroundImageForBidding': 'Background image used on the auction screen when it is ready to bid'
@@ -107,8 +113,8 @@ export var attributesMap = {
     'liveAuction.leaderboard.backgroundGradient.bottomColor': 'Background color for leaderboard'
   },
   'leaderboard-row': {
-    'liveAuction.leaderboard.primaryTextColor': 'Text color used in the leaderboard row (myself)',
-    'liveAuction.leaderboard.secondaryTextColor': 'Text color used in the leaderboard rows (other bidders)'
+    'liveAuction.leaderboard.primaryTextColor': 'Text color used in the leaderboard row (my bid)',
+    'liveAuction.leaderboard.secondaryTextColor': 'Text color used in the leaderboard rows (other bids)'
   },
   'leaderboard-title': {
     'liveAuction.titleTextColor': 'Text color for leaderboard title'
@@ -139,6 +145,12 @@ export var attributesMap = {
   'payment-msg': {
     //'auctionDetails.grid.h1Color': '(WEIRD)'
     'auctionDetails.grid.h1Color': 'Text color for the message label'
+  },
+  'place-bid': {
+    //'liveAuction.bar.backgroundColor: '(WEIRD)'
+    'liveAuction.bar.backgroundColor': '',
+    //'liveAuction.bar.textColor: '(WEIRD)'
+    'liveAuction.bar.textColor': ''
   },
   'radio-button': { 
     'auctionDetails.grid.radioButton.selectedColor' : 'Color for the radio button when selected',
