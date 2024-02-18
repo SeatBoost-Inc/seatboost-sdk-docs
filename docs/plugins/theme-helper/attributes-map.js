@@ -17,22 +17,22 @@ export var attributesMap = {
     'liveAuction.titleTextColor': 'Icon color on the navigation bar'
   },
   'auction-timer': {
-    'liveAuction.clock.regular.backgroundColor': '',
-    'liveAuction.clock.regular.primaryTextColor': '',
-    'liveAuction.clock.regular.secondaryTextColor': '',
-    'liveAuction.clock.warning.backgroundColor': '',
-    'liveAuction.clock.warning.primaryTextColor': '',
-    'liveAuction.clock.warning.secondaryTextColor': '',
-    'liveAuction.clock.alert.backgroundColor': '',
-    'liveAuction.clock.alert.primaryTextColor': '',
-    'liveAuction.clock.alert.secondaryTextColor': ''
+    'liveAuction.clock.regular.backgroundColor': 'Background color used on the timer during the auction',
+    'liveAuction.clock.regular.primaryTextColor': 'Text color used on the timer title during the auction',
+    'liveAuction.clock.regular.secondaryTextColor': 'Text color used on the timer during the auction',
+    'liveAuction.clock.warning.backgroundColor': 'Background color used on the timer during the time before auction final round',
+    'liveAuction.clock.warning.primaryTextColor': 'Text color used on the timer title during the time before auction final round',
+    'liveAuction.clock.warning.secondaryTextColor': 'Text color used on the timer during the time before auction final round',
+    'liveAuction.clock.alert.backgroundColor': 'Background color used on the timer during the auction final round',
+    'liveAuction.clock.alert.primaryTextColor': 'Text color used on the timer title during the auction final round',
+    'liveAuction.clock.alert.secondaryTextColor': 'Text color used on the timer during the auction final round',
   },
   'bidding-bg': {
-    'liveAuction.backgroundImage': '',
-    'liveAuction.backgroundImageForBidding': ''
+    'liveAuction.backgroundImage': 'Background image used on the auction screen',
+    'liveAuction.backgroundImageForBidding': 'Background image used on the auction screen when it is ready to bid'
   },
   'congratulations': {
-    'endAuction.congratulationsTextColor': ''
+    'endAuction.congratulationsTextColor': 'Text color used on the congratulations message'
   },
   'display-name-msg': {
     //'auctionDetails.textField.textColor': '(WEIRD)'
@@ -43,13 +43,13 @@ export var attributesMap = {
     'endAuction.bar.textColor': '',
   },
   'end-auction-bg': {
-    'endAuction.backgroundImage': ''
+    'endAuction.backgroundImage': 'Background image used on the screen after auction has finished'
   },
   'end-auction-navbar-airline-logo': {
-    'endAuction.logo': ''
+    'endAuction.logo': 'Airline image logo used on the navigation bar for this screen'
   }, 
   'end-auction-navbar-icon': {
-    'endAuction.navigationBar.foregroundColor': ''
+    'endAuction.navigationBar.foregroundColor': 'Icon color on the navigation bar for this screen'
   },
   'end-auction-status': {
     'endAuction.winnerBox.backgroundColor': '',
@@ -174,8 +174,8 @@ export var attributesMap = {
     'auctionDetails.disabledButton.textColor': 'Text color for a submit button when disabled'
   },
   'terms-section-bar': {
-    'auctionDetails.sectionBarTwo.backgroundColor': '',
-    'auctionDetails.sectionBarTwo.textColor': ''
+    'auctionDetails.sectionBarTwo.backgroundColor': 'Background color for the terms section bar',
+    'auctionDetails.sectionBarTwo.textColor': 'Text color for the terms section bar'
   },
   'text-field': {
     'auctionDetails.textField.backgroundColor': 'Background color for the text field',
@@ -196,7 +196,5 @@ export var attributesMap = {
     'auctionDetails.progressBar.futureColor': '(MISSING)',
     'auctionDetails.progressBar.activeColor': '(MISSING)',
     'auctionDetails.progressBar.completedColor': 'Color for the completed step of the progress bar'
-  },
-  'wizard-step-bar': {
   },
 }
