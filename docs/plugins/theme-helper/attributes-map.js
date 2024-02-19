@@ -1,3 +1,7 @@
+// auctionDetails.linkColor: Color for the "payment locked" icon (android) only;
+
+// endAuction.separatorColor: Color for the separator line in the End Auction screen;
+
 export var attributesMap = {
   'airline-logo': {
     'auctionDetails.logo': 'Image used for the airline logo'
@@ -97,7 +101,8 @@ export var attributesMap = {
     'liveAuction.paddle.golden.textColor': 'Text color used on the middle paddle'
   },
   'grid-cell': {
-    'auctionDetails.grid.backgroundColor': 'background color for the grid cell'
+    'auctionDetails.grid.backgroundColor': 'Background color for the grid cell',
+    'auctionDetails.grid.selectedBackgroundColor': 'Background color for the grid selected cell'
   },
   'h1-text': {
     "auctionDetails.grid.headingColor" : "Text color for details text"
