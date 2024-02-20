@@ -1,6 +1,9 @@
 import { initThemeHelper, createThemeHelperCarousel, getAttributesMap, 
   getThemeString, getAllThemeAttributes, isAttributeUsed} from './theme-helper/theme-helper.js';
 
+
+var isDebug = false;
+
 {
   function debugOnClick(event) {
     resetAttributeList();
@@ -90,6 +93,11 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap,
     if(event.detail.attribute in attributesMap){
       for (const [key, value] of Object.entries(attributesMap[event.detail.attribute])) {
         var li = document.createElement('li');
+
+        if(!isDebug && value == '(MISSING)'){
+          continue;
+        }
+
         var liHtml = "<small><b>" + key + "</b>: " + value + "</small>";
 
         let themeValue = getThemeString(key);
@@ -138,7 +146,7 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap,
     // Invoked on each page load after new markdown has been transformed to HTML.
     hook.afterEach(html => {
       var themeHelperBaseHtml =   
-        '<input type="button" id="theme-helper-debug" value="Debug">' +
+        (isDebug ? '<input type="button" id="theme-helper-debug" value="Debug">' : '') +
         '<div id="theme-helper">' + 
             '<div id="theme-helper-carousel">' + 
             '</div>' +
@@ -156,8 +164,10 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap,
     hook.doneEach(() => {
       createThemeHelperCarousel(themeHelperSelectArea, themeHelperChangePage);
 
-      const debugButton = document.getElementById('theme-helper-debug');
-      debugButton.addEventListener("click", debugOnClick, false);
+      if(isDebug){
+        const debugButton = document.getElementById('theme-helper-debug');
+        debugButton.addEventListener("click", debugOnClick, false);
+      }
     });
   }
 
