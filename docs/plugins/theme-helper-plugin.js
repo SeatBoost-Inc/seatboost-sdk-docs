@@ -138,7 +138,7 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap,
     // Invoked on each page load after new markdown has been transformed to HTML.
     hook.afterEach(html => {
       var themeHelperBaseHtml =   
-        // '<input type="button" id="theme-helper-debug" value="Debug">' +
+        '<input type="button" id="theme-helper-debug" value="Debug">' +
         '<div id="theme-helper">' + 
             '<div id="theme-helper-carousel">' + 
             '</div>' +
@@ -156,8 +156,8 @@ import { initThemeHelper, createThemeHelperCarousel, getAttributesMap,
     hook.doneEach(() => {
       createThemeHelperCarousel(themeHelperSelectArea, themeHelperChangePage);
 
-      //const debugButton = document.getElementById('theme-helper-debug');
-      //debugButton.addEventListener("click", debugOnClick, false);
+      const debugButton = document.getElementById('theme-helper-debug');
+      debugButton.addEventListener("click", debugOnClick, false);
     });
   }
 
