@@ -64,7 +64,6 @@ export var attributesMap = {
   },
   'end-auction-separator': {
     'endAuction.separatorColor': 'Separator color for this item on this screen'
-
   },
   'end-auction-status': {
     'endAuction.winnerBox.backgroundColor': 'Background color for this status box',
@@ -203,8 +202,6 @@ export var attributesMap = {
     'auctionDetails.textField.backgroundColor': 'Background color for the text field',
     'auctionDetails.textField.textColor': 'Text color for the text field',
     'auctionDetails.textField.borderColor': 'Border color for the text field'
-  },
-  'time-left': {
   },
   "time-left-bar": {
     'liveAuction.clock.alert.backgroundColor': 'Background color for the time left clock',
