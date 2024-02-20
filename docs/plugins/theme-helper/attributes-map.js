@@ -1,7 +1,3 @@
-// auctionDetails.linkColor: Color for the "payment locked" icon (android) only;
-
-// endAuction.separatorColor: Color for the separator line in the End Auction screen;
-
 export var attributesMap = {
   'airline-logo': {
     'auctionDetails.logo': 'Image used for the airline logo'
@@ -65,6 +61,10 @@ export var attributesMap = {
   }, 
   'end-auction-navbar-icon': {
     'endAuction.navigationBar.foregroundColor': 'Icon color on the navigation bar for this screen'
+  },
+  'end-auction-separator': {
+    'endAuction.separatorColor': 'Separator color for this item on this screen'
+
   },
   'end-auction-status': {
     'endAuction.winnerBox.backgroundColor': 'Background color for this status box',
