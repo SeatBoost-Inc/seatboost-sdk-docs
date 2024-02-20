@@ -1,8 +1,16 @@
+- select upgrade more items ? (cabin visuals and multi pax)
+- payment lock button
+- leaderboard multi passengers
+- leaderboard row indexes
+- end auction - lost screen and multi pax
+
+
+
+
 - These two attributes below are not being used on ios, but they should, please check it out on android.
 
 auctionDetails.progressBar.futureColor
 auctionDetails.progressBar.activeColor
-
 
 - auctionDetails.navigationBar.seatboostLogo is not being used in both plataforms at all.
 

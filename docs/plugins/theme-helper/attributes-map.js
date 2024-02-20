@@ -123,6 +123,9 @@ export var attributesMap = {
   'leaderboard-title': {
     'liveAuction.titleTextColor': 'Text color for leaderboard title'
   },
+  'leaderboard-total': {
+    'liveAuction.leaderboard.primaryTextColor': 'Text color used in total label',
+  },
   'left-paddle': {
     'liveAuction.paddle.left.backgroundColor': 'Background color used on the left paddle',
     'liveAuction.paddle.left.textColor': 'Text color used on the left paddle'
