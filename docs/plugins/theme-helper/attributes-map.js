@@ -170,6 +170,9 @@ export var attributesMap = {
     'auctionDetails.grid.radioButton.selectedColor' : 'Color for the radio button when selected',
     'auctionDetails.grid.radioButton.unselectedColor' : 'Color for the radio button when not selected',
   },
+  'review-bg': {
+    'auctionDetails.grid.backgroundColor': 'Background color for the review screen'
+  },
   'review-msg': {
     //'auctionDetails.grid.h1Color': '(WEIRD)'
     'auctionDetails.grid.h1Color': 'Text color for the message label'
@@ -219,6 +222,9 @@ export var attributesMap = {
   },
   'tip': {
     'auctionDetails.grid.pColor': 'Text color for the tip'
+  },
+  'tips-bg': {
+    'auctionDetails.grid.backgroundColor': 'Background color for the tips screen'
   },
   'wizard-step': {
     'auctionDetails.progressBar.futureColor': '(MISSING)',
