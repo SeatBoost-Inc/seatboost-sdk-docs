@@ -12,6 +12,7 @@ import { bidding2Coords } from './bidding-2.js';
 import { bidding3Coords } from './bidding-3.js';
 import { endAuction1Coords } from './end-auction-1.js';
 import { endAuction2Coords } from './end-auction-2.js';
+import { endAuction3Coords } from './end-auction-3.js';
 
 export var theme = {
    "auctionDetails":{
@@ -207,5 +208,8 @@ export function getAeroBestScreensData(aerobestThemeBaseUrl) {
       },{
           imageUrl: screensBaseUrl + 'end-auction-2.jpg',
           imageMap: endAuction2Coords
+      },{
+          imageUrl: screensBaseUrl + 'end-auction-3.jpg',
+          imageMap: endAuction3Coords
       }];
 }
