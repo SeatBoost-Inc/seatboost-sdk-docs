@@ -8,6 +8,6 @@ export var selectUpgrade3Coords = Object.assign({}, preAuctionTopCoords, {
   'text-field': ['14,467,263,503'],
   'help-icon': ['238,510,268,540'],
   'display-name-msg': ['9,516,211,538'],
-  'grid-cell': ['1,349,276,437'],
+  'grid-cell': ['1,349,276,393', '1,393,276,437'],
   'form-bg': ['0,456,277,548']
 }, selectUpgradeBottomCoords); 

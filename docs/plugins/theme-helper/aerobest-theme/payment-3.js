@@ -9,5 +9,6 @@ export var payment3Coords = Object.assign({}, paymentTopCoords, {
 	'radio-button': ['7,240,36,272', '7,335,36,367'], 
 	'separator': ['0,372,276,381'],
 	'review-msg': ['15,489,261,532'],
-	'submit-button': ['12,537,265,572']
+	'submit-button': ['12,537,265,572'],
+	'review-bg': ['0,187,277,599']
 }); 

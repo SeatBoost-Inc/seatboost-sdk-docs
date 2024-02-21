@@ -1,10 +1,7 @@
 - select upgrade more items ? (cabin visuals and multi pax)
 - payment lock button
-- leaderboard multi passengers
-- leaderboard row indexes
-- end auction - lost screen and multi pax
-
-
+- end auction - lost screen
+- auction terms attributes
 
 
 - These two attributes below are not being used on ios, but they should, please check it out on android.
