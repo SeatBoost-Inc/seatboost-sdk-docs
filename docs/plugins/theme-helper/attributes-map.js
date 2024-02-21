@@ -37,6 +37,13 @@ export var attributesMap = {
     'liveAuction.backgroundImage': 'Background image used on the auction screen',
     'liveAuction.backgroundImageForBidding': 'Background image used on the auction screen when it is ready to bid'
   },
+  'boarding-pass-arrow': {
+    'endAuction.bar.backgroundColor': 'Arrow color'
+  },
+  'boarding-pass-index': {
+    'endAuction.bar.backgroundColor': 'Background color used on the label that indicates current boarding pass index',
+    'endAuction.bar.textColor': 'Text color used on the label that indicates current boarding pass index'
+  },
   'buy-now-button': {
     'auctionDetails.button.backgroundColor': 'Background color for the buy instant upgrade button',
     'auctionDetails.button.borderColor': 'Border color for the buy instant upgrade button',
