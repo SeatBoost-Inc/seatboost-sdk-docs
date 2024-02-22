@@ -226,6 +226,10 @@ export var attributesMap = {
   'tips-bg': {
     'auctionDetails.grid.backgroundColor': 'Background color for the tips screen'
   },
+  'unlock-payments-button': {
+        'auctionDetails.grid.radioButton.selectedColor': 'Color for the unlock payments button icon',
+    'auctionDetails.grid.h1Color': 'Text color for the unlock payments button label'
+  },
   'wizard-step': {
     'auctionDetails.progressBar.futureColor': '(MISSING)',
     'auctionDetails.progressBar.activeColor': '(MISSING)',

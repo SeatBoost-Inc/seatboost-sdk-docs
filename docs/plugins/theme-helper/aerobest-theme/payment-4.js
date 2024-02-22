@@ -9,3 +9,8 @@ export var payment4BottomCoords = {
 	'submit-button': ['21,539,256,572'],
 	'form-bg': ['0,156,277,599']
 };
+
+export var payment4AddPaymentCoords = Object.assign({}, payment4TopCoords, {
+	'separator': ['0,240,276,249', '0,276,276,285'],
+	'add-payment-button': ['4,252,273,274'],
+}, payment4BottomCoords); 

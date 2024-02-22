@@ -5,6 +5,7 @@ import { selectUpgrade3Coords } from './select-upgrade-3.js';
 import { payment1Coords } from './payment-1.js';
 import { payment2Coords } from './payment-2.js';
 import { payment3Coords } from './payment-3.js';
+import { payment40Coords } from './payment-4.0.js';
 import { payment41Coords } from './payment-4.1.js';
 import { payment42Coords } from './payment-4.2.js';
 import { bidding1Coords } from './bidding-1.js';
@@ -187,6 +188,9 @@ export function getAeroBestScreensData(aerobestThemeBaseUrl) {
       },{
           imageUrl: screensBaseUrl + 'payment-3.jpg',
           imageMap: payment3Coords
+      },{
+          imageUrl: screensBaseUrl + 'payment-4.0.jpg',
+          imageMap: payment40Coords
       },{
           imageUrl: screensBaseUrl + 'payment-4.1.jpg',
           imageMap: payment41Coords

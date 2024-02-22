@@ -1,6 +1,5 @@
-- select upgrade more items ? (cabin visuals and multi pax)
-- payment lock button
-- end auction - lost screen
+- add payment button
+- select upgrade more items (cabin visuals)
 - auction terms attributes
 
 
