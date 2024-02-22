@@ -137,6 +137,12 @@ export var attributesMap = {
     'liveAuction.paddle.left.backgroundColor': 'Background color used on the left paddle',
     'liveAuction.paddle.left.textColor': 'Text color used on the left paddle'
   },
+  'learn-more-button': {
+    //'(WEIRD)' white bg
+    'auctionDetails.button.backgroundColor': 'Background color for the learn button',
+    'auctionDetails.button.borderColor': 'Border color for the learn button',
+    'auctionDetails.button.textColor': 'Text color for the learn button'
+  },
   'msg-carousel': {
     'liveAuction.messageColor': 'Text color for each message on the live auction carousel'
   },
