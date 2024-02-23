@@ -8,8 +8,8 @@ export var selectUpgrade2Coords = Object.assign({}, preAuctionTopCoords, {
     '107,155,206,171', '43,216,200,238', '204,216,267,238', '43,239,238,266'],
   'airplane': ['135,96,180,140'],
   'learn-more-button': ['43,268,265,300'],
-  'no-colors-applied': ['43,306,195,324'],
+  'no-colors-applied': ['43,306,180,324'],
   'radio-button': ['6,115,37,148', '6,247,37,280'],
   'help-icon': ['238,235,268,265'],
-  'grid-cell': ['1,84,276,179', '1,197,276,386']
+  'grid-cell': ['1,84,276,179', '1,197,276,336']
 }, selectUpgradeBottomCoords); 
