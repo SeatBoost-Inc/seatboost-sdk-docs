@@ -1,8 +1,3 @@
-- add payment button
-- select upgrade more items (cabin visuals)
-- auction terms attributes
-
-
 - These two attributes below are not being used on ios, but they should, please check it out on android.
 
 auctionDetails.progressBar.futureColor

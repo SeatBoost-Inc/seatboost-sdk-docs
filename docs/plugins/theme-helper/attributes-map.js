@@ -1,4 +1,7 @@
 export var attributesMap = {
+  'add-payment-button': {
+    'auctionDetails.grid.h1Color': 'Text color for the add payment button label and arrow'
+  },
   'airline-logo': {
     'auctionDetails.logo': 'Image used for the airline logo'
   },
@@ -235,6 +238,9 @@ export var attributesMap = {
   'unlock-payments-button': {
         'auctionDetails.grid.radioButton.selectedColor': 'Color for the unlock payments button icon',
     'auctionDetails.grid.h1Color': 'Text color for the unlock payments button label'
+  },
+  'wizard-bg': {
+    'auctionDetails.grid.backgroundColor': 'Background color for the this area'
   },
   'wizard-step': {
     'auctionDetails.progressBar.futureColor': '(MISSING)',
