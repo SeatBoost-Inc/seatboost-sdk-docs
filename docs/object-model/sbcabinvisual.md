@@ -5,5 +5,5 @@ by [`SBCabin`](object-model/sbcabin).
 
 | **Property Name** | **Type** | **Description**                              |
 |-------------------|----------|----------------------------------------------|
-| `imageFile`       | `String` | The image itself encoded in a base64 String. |
 | `description`     | `String` | A textual description of the image.          |
+| `imageFile`       | `String` | The image itself encoded in a base64 String. |

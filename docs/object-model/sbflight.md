@@ -4,6 +4,7 @@ The `SBFlight` class encapsulates information about a flight and its upgrades.
 
 | Property Name             | Type                                               | Description                                                              |
 |---------------------------|----------------------------------------------------|--------------------------------------------------------------------------|
+| `aircraft`                | `String?`                                          | TODO                                                                     |
 | `airlineCode`             | `String`                                           | The airline's [IATA](https://www.iata.org/) unique code.                 |
 | `arrivalTimeLocal`        | `Date?`                                            | Local arrival time at the destination airport.                           |
 | `arrivalTimeUTC`          | `Date?`                                            | Arrival time in Coordinated Universal Time (UTC).                        |
@@ -20,4 +21,4 @@ The `SBFlight` class encapsulates information about a flight and its upgrades.
 | `originCity`              | `String`                                           | City of the origin airport.                                              |
 | `tips`                    | <code>[[SBTip](object-model/sbtip)]</code>         | Array of tips associated with the flight.                                |
 | `upgrades`                | <code>[[SBUpgrade](object-model/sbupgrade)]</code> | Array of upgrades available for the flight.                              |
-| `aircraft`                | `String?`                                          | TODO                                                                     |
+

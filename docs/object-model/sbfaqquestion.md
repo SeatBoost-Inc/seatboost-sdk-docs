@@ -5,6 +5,6 @@ by [`SBFAQCategory`](object-model/sbfaqcategory).
 
 | **Property Name** | **Type** | **Description**                     |
 |-------------------|----------|-------------------------------------|
-| `question`        | `String` | The FAQ question.                   |
 | `answer`          | `String` | The answer to the FAQ question.     |
 | `helpCenterKey`   | `String` | An identifier for the FAQ question. |
+| `question`        | `String` | The FAQ question.                   |
