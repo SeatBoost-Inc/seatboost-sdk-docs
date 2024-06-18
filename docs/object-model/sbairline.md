@@ -10,3 +10,5 @@ The `SBAirline` class is designed to encapsulate the attributes associated with 
 | `icons`             | `[String]`            | Array of paths of icons associated with the airline.     |
 | `requestInvoiceUrl` | `String`              | URL for requesting an invoice from the airline.          |
 | `usesSignedBarcode` | `Bool`                | Indicates if the airline uses signed barcodes.           |
+| `resources`         | `Map<String, String>` | TODO                                                     |
+| `customMerchantKey` | `TODO`                | TODO                                                     |

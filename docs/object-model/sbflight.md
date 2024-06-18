@@ -20,3 +20,4 @@ The `SBFlight` class encapsulates information about a flight and its upgrades.
 | `originCity`              | `String`                                           | City of the origin airport.                                              |
 | `tips`                    | <code>[[SBTip](object-model/sbtip)]</code>         | Array of tips associated with the flight.                                |
 | `upgrades`                | <code>[[SBUpgrade](object-model/sbupgrade)]</code> | Array of upgrades available for the flight.                              |
+| `aircraft`                | `String?`                                          | TODO                                                                     |

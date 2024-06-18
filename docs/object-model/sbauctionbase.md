@@ -1,4 +1,4 @@
-# SBAircraft
+# SBAuctionBase
 
 The `SBAuctionBase` class contains the base (or common) information for an auction, and it is extended by [`SBAuction`](object-model/sbauction) and [`SBCompletedAuction`](object-model/sbcompletedauction).
 
@@ -19,6 +19,8 @@ The `SBAuctionBase` class contains the base (or common) information for an aucti
 | `myBid`                    | <code>[SBMyBid](object-model/sbmybid)?</code> | Bid information of the related user.                                                                     |
 | `currencySymbol`           | `String`                                      | Currency symbol, e.g., `$` , `€` , etc.                                                                  |
 | `currency`                 | `String`                                      | Currency used in the auction.                                                                            |
+| `currencyPlusNMoney`       | `Int`                                         | TODO                                                                                                     |
 | `heldAmount`               | `Int?`                                        | The amount held on the credit card for the auction.                                                      |
 | `myUpgradeType`            | `Int`                                         | Type of auction upgrade. `1` if it is a regular auction upgrade, or `2` if it is a "bought now" upgrade. |
 | `buyNowPrice`              | `Int`                                         | "Buy It Now" price for the auction.                                                                      |
+| `numWinners`               | `Int`                                         | TODO                              .                                                                      |
