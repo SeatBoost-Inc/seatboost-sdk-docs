@@ -4,7 +4,7 @@ The `SBFlight` class encapsulates information about a flight and its upgrades.
 
 | Property Name             | Type                                               | Description                                                              |
 |---------------------------|----------------------------------------------------|--------------------------------------------------------------------------|
-| `aircraft`                | `String?`                                          | TODO                                                                     |
+| `aircraft`                | `String?`                                          | Flight's aircraft name.                                                  |
 | `airlineCode`             | `String`                                           | The airline's [IATA](https://www.iata.org/) unique code.                 |
 | `arrivalTimeLocal`        | `Date?`                                            | Local arrival time at the destination airport.                           |
 | `arrivalTimeUTC`          | `Date?`                                            | Arrival time in Coordinated Universal Time (UTC).                        |

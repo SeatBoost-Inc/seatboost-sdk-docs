@@ -1,9 +1,10 @@
 # SBIberiaPayAction
 
-| Property Name.       | Type     | Description                                         |
-|----------------------|----------|-----------------------------------------------------|
-| `authenticationType` | `String` | TODO.                                               |
-| `paymentData`        | `String` | TODO.                                               |
-| `paymentMethodType`  | `String` | TODO.                                               |
-| `token`              | `String` | TODO.                                               |
-| `type`               | `String` | TODO.                                               |
+The `SBIberiaPayAction` class represents an [Adyen](https://www.adyen.com/) 3DS Action that should be performed by the mobile app.
+
+| Property Name.       | Type     | Description                |
+|----------------------|----------|----------------------------|
+| `authenticationType` | `String` | Adyen authentication type. |
+| `paymentData`        | `String` | Adyen payment data.        |
+| `paymentMethodType`  | `String` | Adyen payment method type. |
+| `token`              | `String` | Adyen token.               |
