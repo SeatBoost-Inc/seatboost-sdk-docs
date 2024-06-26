@@ -1,18 +1,12 @@
 # SBJoinAuctionRequestData
 
-    var : String
-    var : [SBPassenger]
-    var : Int
-    var : NSDictionary?
-
-
-| **Property Name** | **Type** | **Description**                             |
-|-------------------|----------|---------------------------------------------|
-| `auctionId`       | `String`   | Indicates whether the user won the auction. |
-| `displayName`     | `String`   | Indicates whether the user won the auction. |
-| `paymentMethodId`     | `String`   | Indicates whether the user won the auction. |
-| `secondPaymentMethodId`     | `String`   | Indicates whether the user won the auction. |
-| `confirmationNumber`     | `String`   | Indicates whether the user won the auction. |
-| `passengers`     | `String`   | Indicates whether the user won the auction. |
-| `startBidValue`     | `String`   | Indicates whether the user won the auction. |
-| `extraPaymentDetails`     | `String`   | Indicates whether the user won the auction. |
+| **Property Name**       | **Type**        | **Description**                                                                                                                 |
+|-------------------------|-----------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `auctionId`             | `String`        | Identifier for the auction.                                                                                                     |
+| `displayName`           | `String`        | TODO.                                                                                                                           |
+| `paymentMethodId`       | `String`        | ID of the payment method.                                                                                                       |
+| `secondPaymentMethodId` | `String`        | ID of the second payment method/card. Will be used after the auction ends if the user bid exceeds the pre-authorized amount.    |
+| `confirmationNumber`    | `String`        | Passenger Name Record (PNR) of the flight related to the boarding pass.                                                         |
+| `passengers`            | `[SBPassenger]  | Array of passengers associated with PNR.                                                                                        |
+| `startBidValue`         | `Int`           | TODO.                                                                                                                           |
+| `extraPaymentDetails`   | `NSDictionary?` | Extra payment details required by the IberiaPay service. Which include information like "vaultId", "firstName", "lastName", etc.|
