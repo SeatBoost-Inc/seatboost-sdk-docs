@@ -1,6 +1,12 @@
 ## SBRestClient::helpCenterFeedback
 
-> bla
+This method is used to submit the feedback forms located in the help center section to the customer support team for further review and action.
+
+
+#### Parameters:
+
+* **data** (SBReportIssueRequestData): the feedback form data.
+
 
 <!-- tabs:start -->
 
