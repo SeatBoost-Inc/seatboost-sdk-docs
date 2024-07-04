@@ -6,7 +6,7 @@ All the necessary changes must be implemented within the **AppDelegate** of your
 
 2) Move your config file into the root of your Xcode project. If prompted, select to add the config file to all targets.
 
-3) Add Firebase SDKs to your app put the line below in your **Podfile** and run **pod install**.
+3) Add Firebase SDKs to your app puttting the line below in your **Podfile** and run **pod install**.
 
 ```
     pod 'Firebase/Messaging', '9.0.0'
