@@ -1,8 +1,25 @@
 # Configure iOS App
 
+All the necessary changes must be implemented within the **AppDelegate** of your app to ensure proper configuration and functionality.
+
+1) You need to request the **GoogleService-Info.plist** file from the SeatBoost admin team, as this file is required to configure your iOS project properly for integrating with SeatBoost services.
+
+2) Move your config file into the root of your Xcode project. If prompted, select to add the config file to all targets.
+
+3) Add Firebase SDKs to your app put the line below in your **Podfile** and run **pod install**.
+
+```
+    pod 'Firebase/Messaging', '9.0.0'
+```
+
+4) Initialize Firebase in your app. Please, add the following initialization code to your application. 
 
 ```swift
-    func registerForFirebaseNotification(application: UIApplication) {
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+
+        ...
+        
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -18,20 +35,6 @@
         }
 
         application.registerForRemoteNotifications()
-    }
-```
-
-```swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-
-        ...
-
-        let deviceId = UIDevice.current.identifierForVendor?.uuidString
-        
-        SBSdk.shared.configureApp(appVendor: "AeroBest", serverURL: Config.sharedInstance.serverUrl, deviceId: deviceId!)
-        
-        self.registerForFirebaseNotification(application: application)
 
         FirebaseApp.configure()
     
@@ -42,8 +45,9 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     }
 ```
 
+5) Add the code below to handle the notifications in the SeatBoost SDK, this will redirect the notification in memory messages that will refresh the UI components properly. 
+
 ```swift
-    // [START receive_message]
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
 
 		...
@@ -67,32 +71,19 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
         completionHandler(UIBackgroundFetchResult.newData)
     }
-    // [END receive_message]
 ```
+
+6) Implements the **didReceiveRegistrationToken** method to get and pass registrationToken to the SDK to configure the SeatBoost SDK Push Notifications Service.
 
 ```swift
 extension AppDelegate : MessagingDelegate {
     
-    // [START refresh_token]
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if fcmToken != nil {
         
             SBSdk.shared.configurePushNotificationsService(registrationToken: fcmToken!, delegate: self)
             SBSdk.shared.initialize()
         }
-    }
-    // [END refresh_token]
-}
-```
-
-```swift
-extension AppDelegate: SBPushNotificationsDelegate {
-    
-    func auctionUpdated(_ auctionResponse: SeatBoostSdk.SBAuctionResponse) {
-    }
-    
-    func getAuctionToken(forEmail: String, andAuctionId: String) -> String {
-        DBService.sharedInstance.getAuthTokenForEmail(Session.sharedInstance.email, andAuctionId: andAuctionId)
     }
 }
 ```
