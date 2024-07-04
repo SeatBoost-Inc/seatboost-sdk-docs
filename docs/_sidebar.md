@@ -68,6 +68,9 @@
     * [Buy Now Screen](ui/buy-now.md)
     * [End Auction Screen](ui/end-auction.md)
     * [Basic Flow Controller](ui/basic-flow.md)
+* [Push Notifications](push-notifications/)
+    * [Configure SeatBoost Service (iOS)](push-notifications/configure-seatboost-service.md)
+    * [Configure iOS App](push-notifications/configure-app.md)
 * [Airline Theme](theme/)
 
 <!---
