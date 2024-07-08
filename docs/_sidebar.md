@@ -48,18 +48,18 @@
     * [getAircraft](rest-api/get-aircraft.md)
     * [getFAQ](rest-api/get-faq.md)
     * [getPaymentMethods](rest-api/get-payment-methods.md)
-    * [@ getRequestInvoiceInfo](rest-api/get-request-invoice-info.md)
+    <!-- * [@ getRequestInvoiceInfo](rest-api/get-request-invoice-info.md) -->
     * [helpCenterFeedback](rest-api/help-center-feedback.md)
-    * [@ history](rest-api/history.md)
+    <!-- * [@ history](rest-api/history.md) -->
     * [join](rest-api/join.md)
     * [placeBid](rest-api/place-bid.md)
     * [removePaymentMethod](rest-api/remove-payment-method.md)
     * [requestHistory](rest-api/request-history.md)
     * [requestInvoice](rest-api/request-invoice.md)
-    * [@ retrieveBillingCustomer](rest-api/retrieve-billing-customer.md)
+    <!-- * [@ retrieveBillingCustomer](rest-api/retrieve-billing-customer.md) -->
     * [serverUrl](rest-api/server-url.md)
     * [status](rest-api/status.md)
-    * [@ updateBidder](rest-api/update-bidder.md)
+    <!-- * [@ updateBidder](rest-api/update-bidder.md) -->
     * [validateDisplayName](rest-api/validate-display-name.md)
 * [UI Components](ui/)
     * [Select Upgrade Screen](ui/select-upgrade.md)
