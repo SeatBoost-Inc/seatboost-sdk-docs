@@ -6,7 +6,6 @@
     * [SBAirlinePlatformInfo](object-model/sbairlineplatforminfo.md)
     * [SBAuction](object-model/sbauction.md)
     * [SBAuctionBase](object-model/sbauctionbase.md)
-    <!-- * [SBAuctionPaymentResponse](object-model/sbauctionpaymentresponse.md) -->
     * [SBAuctionResponse](object-model/sbauctionresponse.md)
     * [SBAvailableAuction](object-model/sbavailableauction.md)
     * [SBBid](object-model/sbbid.md)
