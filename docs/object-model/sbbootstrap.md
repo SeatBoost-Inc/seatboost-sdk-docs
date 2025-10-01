@@ -6,7 +6,7 @@ The `SBBootstrap` class represents the bootstrap configuration for the SDK.
 |-|-|-|
 | `airlines` | <code>[[SBAirline](object-model/sbairline)]</code> | An array of airlines that support auctions. |
 | `appExpirationDate` | `String` | The app expiration date represented by a string. |
-| `appReviewCallTime` | `Int?` |  |
+| `appReviewCallTime` | `Int?` | Delay in seconds to call the "review app" dialog in the Result Screen. |
 | `configSecrets` | `String` | Configuration screts used to switch environment. |
 | `finalRoundPercentWarning` | `Int?` | An optional percentage used for final round warnings calculations. |
 | `iosMinVersion` | `String` | The minimum iOS version required for the SDK. |

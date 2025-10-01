@@ -7,7 +7,7 @@ The `SBAuction` class extends the [`SBAuctionBase`](object-model/sbauctionbase) 
 | `awarded` | `Bool?` | Indicates whether the auction has been awarded. |
 | `bids` | <code>[[SBBid](object-model/sbbid)]</code> | An array of bids submitted for the auction. |
 | `buyNowVatTax` | `Float` | Value-added tax (VAT) tax for the buy-now option in the auction. |
-| `confirmationNumber` | `String` | Value-added tax (VAT) tax for the buy-now option in the auction. |
+| `confirmationNumber` | `String` | Flight confirmation number. |
 | `finalRoundSize` | `Int` | The size of the final round in the auction. |
 | `finalRoundSeconds` | `Int` | The duration of the final round in seconds. |
 | `finalRoundWarning` | `Int?` | Warning time for the final round, if applicable. |
