@@ -80,6 +80,8 @@
 * [Push Notifications](push-notifications/)
     * [Configure SeatBoost Service (iOS)](push-notifications/configure-seatboost-service.md)
     * [Configure iOS App](push-notifications/configure-app.md)
+    * [Configure SeatBoost Service (Android)](push-notifications/configure-android-service.md)
+    * [Configure Android App](push-notifications/configure-android-app.md)
 * [Airline Theme](theme/)
 
 <!---
