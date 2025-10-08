@@ -2,15 +2,19 @@
 
 The SeatBoost SDK has been meticulously engineered with the purpose of assisting your airline application in seamlessly integrating the functionality of flight upgrade auctions and replicating the exceptional user experience offered by the SeatBoost App.
 
-### Installing
-
-Please, contact SeatBoost support team to obtain the SDK binary version for integration into your application.
-
 #### Platform-Specific Setup
 
+##### Android
+
 - **[Getting Started - Android](getting-started-android.md)** - Complete Android SDK setup guide
-- **[Basic Integration Example](examples/basic-integration.md)** - Android integration examples
-- **[UI Integration Example](examples/ui-integration.md)** - Android UI integration implementation
+- **[Basic Integration Example](examples-android/basic-integration.md)** - Android integration examples
+- **[UI Integration Example](examples-android/ui-integration.md)** - Android UI integration implementation
+
+##### iOS
+
+- **[Getting Started - iOS](getting-started-ios.md)** - Complete iOS SDK setup guide
+- **[Basic Integration Example](examples-ios/basic-integration.md)** - iOS integration examples
+
 
 ### Overview
 

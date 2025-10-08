@@ -174,10 +174,10 @@ export function getAeroBestScreensData(aerobestThemeBaseUrl) {
           imageUrl: screensBaseUrl + 'select-upgrade-1.jpg',
           imageMap: selectUpgrade1Coords
       },{
-          imageUrl: screensBaseUrl + 'select-upgrade-2.jpg',
+          imageUrl: screensBaseUrl + 'select-upgrade-2.png',
           imageMap: selectUpgrade2Coords
       },{
-          imageUrl: screensBaseUrl + 'select-upgrade-3.jpg',
+          imageUrl: screensBaseUrl + 'select-upgrade-3.png',
           imageMap: selectUpgrade3Coords
       },{
           imageUrl: screensBaseUrl + 'payment-1.jpg',
@@ -186,13 +186,13 @@ export function getAeroBestScreensData(aerobestThemeBaseUrl) {
           imageUrl: screensBaseUrl + 'payment-2.jpg',
           imageMap: payment2Coords
       },{
-          imageUrl: screensBaseUrl + 'payment-3.jpg',
+          imageUrl: screensBaseUrl + 'payment-3.png',
           imageMap: payment3Coords
       },{
           imageUrl: screensBaseUrl + 'payment-4.0.jpg',
           imageMap: payment40Coords
       },{
-          imageUrl: screensBaseUrl + 'payment-4.1.jpg',
+          imageUrl: screensBaseUrl + 'payment-4.1.png',
           imageMap: payment41Coords
       },{
           imageUrl: screensBaseUrl + 'payment-4.2.jpg',

@@ -13,5 +13,12 @@ On the other hand, if necessary, the airline can create similar user interface e
 For Android developers, see the following resources:
 
 - **[Getting Started - Android](/getting-started-android.md)** - Complete Android SDK setup
-- **[Basic Integration Example](/examples/basic-integration.md)** - Android integration examples
-- **[UI Integration Example](/examples/ui-integration.md)** - Android UI integration implementation with SDK Fragments
+- **[Basic Integration Example](/examples-android/basic-integration-android.md)** - Android integration examples
+- **[UI Integration Example](/examples-android/ui-integration-android.md)** - Android UI integration implementation with SDK Fragments
+
+## iOS Integration
+
+For iOS developers, see the following resources:
+
+- **[Getting Started - iOS](/getting-started-ios.md)** - Complete iOS SDK setup
+- **[Basic Integration Example](/examples-ios/basic-integration-ios.md)** - iOS integration examples
