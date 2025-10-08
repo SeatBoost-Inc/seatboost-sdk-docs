@@ -7,3 +7,11 @@ Some screens from the SeatBoost App were converted to UI components in order to 
 ![UI Components Flow](images/components.png "UI Components Flow")
 
 On the other hand, if necessary, the airline can create similar user interface experience from scratch using the low level SeatBoost SDK: REST API bridge and object models.
+
+## Android Integration
+
+For Android developers, see the following resources:
+
+- **[Getting Started - Android](/getting-started-android.md)** - Complete Android SDK setup
+- **[Basic Integration Example](/examples/basic-integration.md)** - Android integration examples
+- **[UI Integration Example](/examples/ui-integration.md)** - Android UI integration implementation with SDK Fragments

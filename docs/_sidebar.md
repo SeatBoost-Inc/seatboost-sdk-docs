@@ -1,4 +1,8 @@
 * [Getting Started](/)
+* [Getting Started - Android](getting-started-android.md)
+* [Examples - Android](examples/)
+    * [Basic Integration](examples/basic-integration.md)
+    * [UI Integration](examples/ui-integration.md)
 * [Object Model](object-model/)
     * [SBAircraft](object-model/sbaircraft.md)
     * [SBAirline](object-model/sbairline.md)
@@ -80,6 +84,8 @@
 * [Push Notifications](push-notifications/)
     * [Configure SeatBoost Service (iOS)](push-notifications/configure-seatboost-service.md)
     * [Configure iOS App](push-notifications/configure-app.md)
+    * [Configure SeatBoost Service (Android)](push-notifications/configure-android-service.md)
+    * [Configure Android App](push-notifications/configure-android-app.md)
 * [Airline Theme](theme/)
 
 <!---
