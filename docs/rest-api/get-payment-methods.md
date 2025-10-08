@@ -18,6 +18,7 @@ public func getPaymentMethods(customerId: String) -> SBPromise<[SBPaymentCard]>
 #### **Android**
 
 ```kotlin
+fun getPaymentMethods(customerId: String): SBPromise<PaymentMethodsResponse>
 ```
 
 <!-- tabs:end -->

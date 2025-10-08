@@ -18,6 +18,7 @@ public func findAuctions(_ data: SBFindAuctionsRequestData) -> SBPromise<SBFindA
 #### **Android**
 
 ```kotlin
+fun findAuctions(data: SBFindAuctionRequestBody): SBPromise<SBFindAuctionResult>
 ```
 
 <!-- tabs:end -->

@@ -23,6 +23,7 @@ public func updateBidder(_ firstName: String!, lastName: String!, dateOfBirth: D
 #### **Android**
 
 ```kotlin
+fun updateBidder(token: String, firstName: String, lastName: String): SBPromise<Response<Void>>
 ```
 
 <!-- tabs:end -->

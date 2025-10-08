@@ -25,6 +25,7 @@ public func attachPaymentMethodToCustomer(customerId: String, paymentMethodId: S
 #### **Android**
 
 ```kotlin
+fun attachPaymentMethodToCustomer(customerId: String?, paymentMethodId: String): SBPromise<StripeCustomer>
 ```
 
 <!-- tabs:end -->

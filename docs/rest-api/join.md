@@ -18,6 +18,7 @@ public func join(_ data: SBJoinAuctionRequestData) -> SBPromise<SBJoinResponse>
 #### **Android**
 
 ```kotlin
+fun join(data: SBJoinAuctionRequestData): SBPromise<Pair<SBJoinResponse, SBPaymentResponse>>
 ```
 
 <!-- tabs:end -->

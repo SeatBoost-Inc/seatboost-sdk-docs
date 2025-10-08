@@ -13,6 +13,7 @@ public func getResourcesFor(airline airlineCode: String) -> SBPromise<Void>
 #### **Android**
 
 ```kotlin
+fun getResourcesFor(airlineCode: String, nextStep: (() -> Unit))
 ```
 
 <!-- tabs:end -->

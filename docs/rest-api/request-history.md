@@ -13,6 +13,7 @@ public func requestHistory() -> SBPromise<Void>
 #### **Android**
 
 ```kotlin
+fun requestHistory(): SBPromise<String>
 ```
 
 <!-- tabs:end -->
