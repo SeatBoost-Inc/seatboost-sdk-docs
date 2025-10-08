@@ -6,6 +6,12 @@ The SeatBoost SDK has been meticulously engineered with the purpose of assisting
 
 Please, contact SeatBoost support team to obtain the SDK binary version for integration into your application.
 
+#### Platform-Specific Setup
+
+- **[Getting Started - Android](getting-started-android.md)** - Complete Android SDK setup guide
+- **[Basic Integration Example](examples/basic-integration.md)** - Android integration examples
+- **[UI Integration Example](examples/ui-integration.md)** - Android UI integration implementation
+
 ### Overview
 
 The SDK is structured with three distinct layers, each serving a specific purpose and contributing to the overall functionality of the development kit. See the image below.

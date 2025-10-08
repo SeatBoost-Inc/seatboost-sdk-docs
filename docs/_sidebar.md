@@ -1,4 +1,8 @@
 * [Getting Started](/)
+* [Getting Started - Android](getting-started-android.md)
+* [Examples - Android](examples/)
+    * [Basic Integration](examples/basic-integration.md)
+    * [UI Integration](examples/ui-integration.md)
 * [Object Model](object-model/)
     * [SBAircraft](object-model/sbaircraft.md)
     * [SBAirline](object-model/sbairline.md)
