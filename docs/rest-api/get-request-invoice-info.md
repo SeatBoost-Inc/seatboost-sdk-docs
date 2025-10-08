@@ -13,6 +13,7 @@ public func getRequestInvoiceInfo(auctionId: String, authToken: String) -> SBPro
 #### **Android**
 
 ```kotlin
+fun getRequestInvoiceInfo(auctionId: String, authToken: String): SBPromise<SBRequestInvoiceInfo>
 ```
 
 <!-- tabs:end -->

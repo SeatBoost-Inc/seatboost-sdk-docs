@@ -19,6 +19,7 @@ public func buyNow(_ auctionId: String, authToken: String, paymentParams: SBPaym
 #### **Android**
 
 ```kotlin
+fun buyNow(auctionId: String, authToken: String, body: BuyNowRequestBody): SBPromise<Pair<SBAuctionResponse, SBPaymentResponse>>
 ```
 
 <!-- tabs:end -->

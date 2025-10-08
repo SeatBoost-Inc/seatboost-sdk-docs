@@ -17,6 +17,7 @@ public func removePaymentMethod(paymentMethodId: String) -> SBPromise<Void>
 #### **Android**
 
 ```kotlin
+fun removePaymentMethod(paymentMethodId: String): SBPromise<Unit>
 ```
 
 <!-- tabs:end -->

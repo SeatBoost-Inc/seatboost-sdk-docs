@@ -13,6 +13,7 @@ public func getFAQ() -> SBPromise<[SBFAQCategory]>
 #### **Android**
 
 ```kotlin
+fun getFAQ(): SBPromise<SBFAQ>
 ```
 
 <!-- tabs:end -->
@@ -32,6 +33,7 @@ public func getFAQ(airlineCode: String) -> SBPromise<[SBFAQCategory]>
 #### **Android**
 
 ```kotlin
+fun getFAQ(airlineCode: String): SBPromise<SBFAQ>
 ```
 
 <!-- tabs:end -->

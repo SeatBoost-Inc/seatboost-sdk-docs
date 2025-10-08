@@ -21,6 +21,7 @@ public func getAircraft(flight: SBFlight) -> SBPromise<SBAircraft?>
 #### **Android**
 
 ```kotlin
+fun getAircraft(flight: SBFlight): SBPromise<SBAircraftResponse>
 ```
 
 <!-- tabs:end -->

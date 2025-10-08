@@ -13,6 +13,7 @@ public func history(authToken: String?, auctions: [[String: String]]?) -> SBProm
 #### **Android**
 
 ```kotlin
+fun history(authToken: String, auctions: List<AuctionIdTokenPair>, instantUpgrades: List<AuctionIdTokenPair>): SBPromise<SBHistoryResponse>
 ```
 
 <!-- tabs:end -->

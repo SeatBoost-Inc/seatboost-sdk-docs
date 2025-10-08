@@ -19,6 +19,7 @@ public func validateDisplayName(auctionId: String, displayName: String) -> SBPro
 #### **Android**
 
 ```kotlin
+fun validateDisplayName(auctionId: String, displayName: String): SBPromise<Unit>
 ```
 
 <!-- tabs:end -->

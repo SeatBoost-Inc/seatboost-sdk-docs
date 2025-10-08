@@ -31,6 +31,7 @@ public func authenticate(_ email: String, deviceId: String, registrationToken: S
 #### **Android**
 
 ```kotlin
+fun authenticate(email: String, deviceId: String, registrationToken: String): SBPromise<SBBidder>
 ```
 
 <!-- tabs:end -->

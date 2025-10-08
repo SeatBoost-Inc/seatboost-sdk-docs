@@ -20,6 +20,7 @@ public func placeBid(_ auctionId: String, authToken: String, amount: Int, bidWin
 #### **Android**
 
 ```kotlin
+fun placeBid(auctionId: String, authToken: String, amount: String, isFinalBid: Boolean = false): SBPromise<SBAuctionResponse>
 ```
 
 <!-- tabs:end -->
