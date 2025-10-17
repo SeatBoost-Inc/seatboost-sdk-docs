@@ -8,30 +8,75 @@ The SeatBoost SDK requires XCode 14 or later and is compatible with apps targeti
 
 ### Installation
 
-- Move the SeatBoostSdk.xcframework into the target project in XCode. Choose the option to copy files to destination.
-- Go to the project configuration, select `General` tab, make sure that SeatBoostSdk is in section `Frameworks, Libraries, and Embedded Contents` and select option `Embed & Sign`.
-- Install the SeatBoostSdk dependencies to the project:
+The SeatBoost SDK is distributed as a local pod that includes all necessary dependencies. Follow these steps to integrate it into your project:
+
+#### 1. Obtain the SDK Package
+
+Contact the SeatBoost support team to obtain the `seatboost-ios-sdk.zip` file, which contains the complete SDK repository.
+
+#### 2. Extract and Setup the SDK
+
+1. Extract the `seatboost-ios-sdk.zip` file to your project parent directory
+2. Ensure the extracted folder is named `seatboost-ios-sdk` and is located at the same level as your main app project
+
+#### 3. Update Your Podfile
+
+Update your main app's `Podfile` to include the SeatBoost SDK as a local pod. Add the following configuration:
 
 ```Podfile
-    pod 'AFNetworking', :git => 'https://github.com/dalmer/AFNetworking', :branch => '2.x.NoWebView'
-    pod 'AMXFontAutoScale', '~> 1.2'
-    pod 'APNumberPad', '1.1.3'
-    pod 'DeviceKit', '~> 1.0'
-    pod 'FontAwesome.swift', '1.4.4'
-    pod 'MDHTMLLabel', :git => 'https://github.com/mattdonnelly/MDHTMLLabel', :branch => 'master'
-    pod 'MMMarkdown'
-    pod 'NTPKit'
-    pod 'ISO8601DateFormatter'
-    pod 'SDWebImage'
-    pod 'Stripe', '~> 24.5.0'
-    pod 'StripeCardScan', '~> 24.5.0'
-    pod 'SwiftSoup'
-    pod 'SwipeView'
-    pod 'TPKeyboardAvoiding'
-    pod 'Adyen'
+platform :ios, '13.0'
+use_frameworks!
+
+target 'YourAppName' do
+  # YourApp pods
+  # ...
+
+  # Override specific SDK dependencies that need custom git sources
+  pod 'AFNetworking', :git => 'https://github.com/dalmer/AFNetworking', :branch => '2.x.NoWebView'
+  pod 'MDHTMLLabel', :git => 'https://github.com/mattdonnelly/MDHTMLLabel', :branch => 'master'
+
+  # Main SDK - this will automatically pull in all other dependencies
+  pod 'SeatBoostSdk', :path => '../seatboost-ios-sdk/SeatBoostSdk-Local.podspec'
+  
+  # Optional: Add Firebase if push notifications are needed
+  # pod 'FirebaseAnalytics'
+  # pod 'Firebase/Crashlytics'
+  # pod 'Firebase/Messaging'
+end
+
+# Script to fix deployment target for old libraries
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      # Fix deployment target/architecture for libraries that have old targets
+      if ['SwipeView', 'NTPKit', 'AFNetworking', 'DeviceKit', 'FontAwesome.swift', 'MDHTMLLabel', 'MMMarkdown', 'APNumberPad', 'ISO8601DateFormatter', 'AMXFontAutoScale'].include?(target.name)
+        config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      end
+    end
+  end
+end
 ```
 
-Please, contact SeatBoost support team to obtain the SDK binary version for integration into your application.
+#### 4. Install Dependencies
+
+Run the following command in your project directory:
+
+```bash
+pod install
+```
+
+#### 5. Configure Xcode Build Settings
+
+**Important:** You must disable "User script sandboxing" in your Xcode project build settings:
+
+1. Open your project workspace in Xcode (e.g., `YourAppName.xcworkspace`)
+2. In the project navigator, select your app target
+3. Go to **Targets** → **YourAppName** → **Build Options**
+4. Find "User Script Sandboxing" and set it to **No**
+
+This step is required for the SDK to function properly with the local pod installation.
 
 ### Configuration
 

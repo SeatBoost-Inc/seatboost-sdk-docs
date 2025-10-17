@@ -1,5 +1,4 @@
-# Android Integration
+# iOS Integration
 
-- **[Getting Started - Android](getting-started-android.md)** - Complete Android SDK setup guide
-- **[Basic Integration Example](examples-android/basic-integration.md)** - Android integration examples
-- **[UI Integration Example](examples-android/ui-integration.md)** - Android UI integration implementation
+- **[Getting Started - iOS](/getting-started-ios.md)** - Complete iOS SDK setup guide
+- **[Basic Integration Example](/examples-ios/basic-integration-ios.md)** - Android integration examples

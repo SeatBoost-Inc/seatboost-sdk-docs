@@ -1,6 +1,6 @@
 # Basic Integration Example
 
-This example shows how to integrate the SeatBoost SDK into your iOS app with basic functionality.
+This example shows how to integrate the SeatBoost SDK into your iOS app with basic functionality. Make sure you have completed the [installation steps](/getting-started-ios.md) before proceeding with this integration.
 
 ## Authentication
 

@@ -13,7 +13,7 @@ The SeatBoost SDK has been meticulously engineered with the purpose of assisting
 ##### iOS
 
 - **[Getting Started - iOS](getting-started-ios.md)** - Complete iOS SDK setup guide
-- **[Basic Integration Example](examples-ios/basic-integration.md)** - iOS integration examples
+- **[Basic Integration Example](examples-ios/basic-integration-ios.md)** - iOS integration examples
 
 
 ### Overview
