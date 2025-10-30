@@ -68,7 +68,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // 1. Create an instance of the SeatBoostCache
+        // 1. Create an instance of SeatBoostCache
         val mSBCache = SeatBoostCache()
 
         // 2. Initialize the SeatBoostSDK
