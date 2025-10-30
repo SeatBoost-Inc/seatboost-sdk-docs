@@ -1,310 +1,311 @@
+
 # Basic Integration Example
 
-This example shows how to integrate the SeatBoost SDK into your Android app with basic functionality.
+## Load the Bootstrap
 
-## Complete Example Activity
+Before using any of the SDK functionality, Seatboost's bootstrap must be loaded.  
+To do that, call the following inside a coroutine:
 
 ```kotlin
-package com.example.myapp
+CacheManager.bootstrap = SBRestClient.shared.bootstrap()
+````
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.industrialrocket.seatboost.sdk.SeatBoostSDK
-import com.industrialrocket.seatboost.sdk.cache.SeatBoostCache
-import com.industrialrocket.seatboost.sdk.events.BidderLoginEvent
-import com.industrialrocket.seatboost.sdk.events.AuctionUpdatedEvent
-import com.industrialrocket.seatboost.sdk.events.BidderLogoutEvent
-import com.industrialrocket.seatboost.sdk.events.AuctionEndEvent
-import com.industrialrocket.seatboost.sdk.events.ToastEvent
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
+You can do this any time between the SDK’s initialization and the first usage of any SDK functionality.
 
-class MainActivity : AppCompatActivity() {
-    
-    private lateinit var seatBoostSDK: SeatBoostSDK
-    private lateinit var cache: SeatBoostCache
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        
-        // Configure SDK resources
-        SeatBoostSDK.setResources(resources)
-        
-        // Get SDK instance and cache
-        seatBoostSDK = SeatBoostSDK.instance
-        cache = seatBoostSDK.mSBCache
-        
-        // Register for events
-        EventBus.getDefault().register(this)
-        
-        // Initialize UI
-        setupUI()
-        
-        // Example: Load auctions
-        loadAuctions()
-    }
-    
-    private fun setupUI() {
-        // Your UI setup code here
-        // Example: Set up buttons, text views, etc.
-    }
-    
-    private fun loadAuctions() {
-        // Example: Access auctions from cache
-        val auctions = cache.auctions
-        if (auctions.isNotEmpty()) {
-            // Display auctions in your UI
-            displayAuctions(auctions)
-        }
-    }
-    
-    private fun displayAuctions(auctions: List<Any>) {
-        // Your code to display auctions in RecyclerView or other UI components
-    }
-    
-    // Event handlers
-    @Subscribe
-    fun onAuctionUpdated(event: AuctionUpdatedEvent) {
-        runOnUiThread {
-            // Update your UI with auction data
-            updateAuctionDisplay(event.auction)
-        }
-    }
-    
-    @Subscribe
-    fun onAuctionEnded(event: AuctionEndEvent) {
-        runOnUiThread {
-            // Handle auction end
-            handleAuctionEnd(event.auction)
-        }
-    }
-    
-    @Subscribe
-    fun onBidderLogin(event: BidderLoginEvent) {
-        runOnUiThread {
-            if (event.isSuccess) {
-                // Handle successful login
-                handleSuccessfulLogin(event.accessToken)
-            } else {
-                // Handle login failure
-                handleLoginFailure()
-            }
-        }
-    }
-    
-    @Subscribe
-    fun onBidderLogout(event: BidderLogoutEvent) {
-        runOnUiThread {
-            // Handle user logout
-            handleUserLogout()
-        }
-    }
-    
-    @Subscribe
-    fun onToastEvent(event: ToastEvent) {
-        runOnUiThread {
-            // Show toast message from SDK
-            showToast(event.message)
-        }
-    }
-    
-    // Helper methods
-    private fun updateAuctionDisplay(auction: Any) {
-        // Update your auction display UI
-    }
-    
-    private fun handleAuctionEnd(auction: Any) {
-        // Handle auction end logic
-    }
-    
-    private fun handleSuccessfulLogin(accessToken: String) {
-        // Handle successful login
-        // Example: Update UI to show user is logged in
-    }
-    
-    private fun handleLoginFailure() {
-        // Handle login failure
-        // Example: Show error message
-    }
-    
-    private fun handleUserLogout() {
-        // Handle user logout
-        // Example: Clear user data and update UI
-    }
-    
-    private fun showToast(message: String) {
-        // Show toast message
-        android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show()
-    }
-    
-    // Example: Login user
-    fun loginUser(email: String) {
-        // Create login event
-        val loginEvent = BidderLoginEvent(
-            isSuccess = true, // This would be determined by your login logic
-            accessToken = "user_token_here", // This would come from your authentication
-            preventDashboardNavigation = false
-        )
-        
-        // Post event to EventBus
-        EventBus.getDefault().post(loginEvent)
-    }
-    
-    // Example: Logout user
-    fun logoutUser() {
-        val logoutEvent = BidderLogoutEvent()
-        EventBus.getDefault().post(logoutEvent)
-    }
-    
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBus.getDefault().unregister(this)
-    }
-}
+---
+
+## Auctions and Instant Upgrades History
+
+You can call:
+
+```kotlin
+SBRestClient.shared.historySuspend(
+    StorageManager.getServerToken() ?: "",
+    StorageManager.getPastAuctions(),
+    StorageManager.getPastInstantUpgrades()
+)
 ```
 
-## Fragment Example
+This is a **suspending function**, which returns a [`SBHistoryResponse`](../object-model/sbhistoryresponse.md) and throws an exception if the request fails.
+
+Alternatively, you can call:
 
 ```kotlin
-package com.example.myapp
+SBRestClient.shared.history(
+    StorageManager.getServerToken() ?: "",
+    StorageManager.getPastAuctions(),
+    StorageManager.getPastInstantUpgrades()
+)
+```
+
+This version returns an [`SBPromise<SBHistoryResponse>`](../object-model/sbhistoryresponse.md)
+(also see [`SBPromise`](../object-model/sbpromise.md)).
+
+---
+
+## SBAirlineFlow
+
+The `SBAirlineFlow` is a fragment that implements all the functionality required for a basic integration.
+
+You need a `FrameLayout` on your activity or parent fragment, and it also needs to implement `SBAirlineFlowListener`.
+
+You can initialize the `SBAirlineFlow` like this:
+
+```kotlin
+SBAirlineFlow.newInstance(
+    StorageManager.getServerToken() ?: "",
+    StorageManager.getCurrentAirlineCode()!!,
+    args.sdkDestination!!,
+    args.sdkObj!!
+)
+```
+
+* `sdkDestination` is the string representation of one of the `SDKDestination` enum values.
+* `sdkObj` is the JSON representing the object required to load the provided destination.
+  These will be one of `SBAuction`, `SBCompletedAuction`, or `SBInstantUpgrade`, depending on which auction/instant upgrade the user selected.
+
+---
+
+### Example Fragment Hosting `SBAirlineFlow`
+
+```kotlin
+package com.seatboost.aerobest.ui.sdk
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.industrialrocket.seatboost.sdk.SeatBoostSDK
-import com.industrialrocket.seatboost.sdk.events.AuctionUpdatedEvent
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.gson.Gson
+import com.industrialrocket.seatboost.sdk.extensions.push
+import com.industrialrocket.seatboost.sdk.flow.SBAirlineFlow
+import com.industrialrocket.seatboost.sdk.flow.SBAirlineFlowListener
+import com.industrialrocket.seatboost.sdk.flow.SDKDestination
+import com.industrialrocket.seatboost.sdk.manager.StorageManager
+import com.industrialrocket.seatboost.sdk.model.PNRLookupInfo
+import com.industrialrocket.seatboost.sdk.model.SBServerError
+import com.seatboost.aerobest.R
+import com.seatboost.aerobest.databinding.FragmentDashboardBinding
+import com.seatboost.aerobest.ui.enterpnr.EnterPNR
+import com.seatboost.aerobest.ui.util.Util.showOkDialog
 
-class AuctionFragment : Fragment() {
-    
-    private lateinit var seatBoostSDK: SeatBoostSDK
-    
+class SDKFragment : Fragment(), SBAirlineFlowListener {
+
+    private val args: SDKFragmentArgs by navArgs()
+    private var _binding: FragmentDashboardBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_auction, container, false)
+    ): View {
+        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        if (savedInstanceState == null) {
+            val frag = if (args.sdkDestination.isNullOrEmpty()) {
+                EnterPNR.newInstance()
+            } else {
+                SBAirlineFlow.newInstance(
+                    StorageManager.getServerToken() ?: "",
+                    StorageManager.getCurrentAirlineCode()!!,
+                    args.sdkDestination!!,
+                    args.sdkObj!!
+                )
+            }
+            pushFragment(frag, false)
+        }
+
+        return root
     }
-    
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        
-        // Get SDK instance
-        seatBoostSDK = SeatBoostSDK.instance
-        
-        // Register for events
-        EventBus.getDefault().register(this)
-        
-        // Setup UI
-        setupAuctionUI()
-    }
-    
-    private fun setupAuctionUI() {
-        // Your auction UI setup code
-    }
-    
-    @Subscribe
-    fun onAuctionUpdated(event: AuctionUpdatedEvent) {
-        // Update auction UI
-        updateAuctionUI(event.auction)
-    }
-    
-    private fun updateAuctionUI(auction: Any) {
-        // Update your auction UI components
-    }
-    
+
     override fun onDestroyView() {
         super.onDestroyView()
-        EventBus.getDefault().unregister(this)
+        _binding = null
+    }
+
+    override fun onRequestFailure(ex: Throwable) {
+        var message = ex.message
+        if (ex is SBServerError) {
+            message = ex.errorMessage ?: ex.originalThrowable?.message
+        }
+        showOkDialog(message ?: "Something went wrong", requireContext())
+    }
+
+    override fun onAuctionExpired() {
+        showOkDialog("Auction has expired.", requireContext())
+        findNavController().navigate(SDKFragmentDirections.actionSdkToHome())
+    }
+
+    override fun onParticipantRemoved() {
+        showOkDialog("You've been removed from this auction.", requireContext())
+        findNavController().navigate(SDKFragmentDirections.actionSdkToHome())
+    }
+
+    override fun onLookupError() {
+        childFragmentManager.popBackStack()
+        childFragmentManager.push(R.id.seatboostFrame, EnterPNR())
+    }
+
+    fun performLookup(pnrLookupInfo: PNRLookupInfo) {
+        val flow = SBAirlineFlow.newInstance(
+            StorageManager.getServerToken() ?: "",
+            StorageManager.getCurrentAirlineCode()!!,
+            SDKDestination.DESTINATION_LOOKUP.toString(),
+            Gson().toJson(pnrLookupInfo)
+        )
+        childFragmentManager.push(R.id.seatboostFrame, flow)
+    }
+
+    private fun pushFragment(fragment: Fragment, addToBackstack: Boolean = true) {
+        val transaction = childFragmentManager.beginTransaction()
+        transaction.replace(R.id.seatboostFrame, fragment)
+
+        if (addToBackstack) {
+            val tag = fragment::class.java.simpleName
+            transaction.addToBackStack(tag)
+        }
+
+        transaction.commit()
     }
 }
 ```
 
-## Service Example
+---
+
+### Example Fragment Implementing History and Redirecting to `SBAirlineFlow`
 
 ```kotlin
-package com.example.myapp
+package com.seatboost.aerobest.ui.home
 
-import android.app.Service
-import android.content.Intent
-import android.os.IBinder
-import com.industrialrocket.seatboost.sdk.SeatBoostSDK
-import com.industrialrocket.seatboost.sdk.events.AuctionUpdatedEvent
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
+import com.industrialrocket.seatboost.sdk.flow.SDKDestination
+import com.industrialrocket.seatboost.sdk.manager.CacheManager
+import com.industrialrocket.seatboost.sdk.manager.StorageManager
+import com.industrialrocket.seatboost.sdk.model.DisplayableItem
+import com.industrialrocket.seatboost.sdk.model.SBAuction
+import com.industrialrocket.seatboost.sdk.model.SBCompletedAuction
+import com.industrialrocket.seatboost.sdk.model.SBInstantUpgrade
+import com.industrialrocket.seatboost.sdk.model.SBUpgradeType
+import com.industrialrocket.seatboost.sdk.services.SBRestClient
+import com.seatboost.aerobest.MainActivity
+import com.seatboost.aerobest.databinding.FragmentHomeBinding
+import com.seatboost.aerobest.ui.adapter.AuctionListAdapter
+import com.seatboost.aerobest.ui.util.Util.showOkDialog
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
-class AuctionService : Service() {
-    
-    private lateinit var seatBoostSDK: SeatBoostSDK
-    
-    override fun onCreate() {
-        super.onCreate()
-        
-        // Get SDK instance
-        seatBoostSDK = SeatBoostSDK.instance
-        
-        // Register for events
-        EventBus.getDefault().register(this)
+class HomeFragment : Fragment(), AuctionListAdapter.Listener {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
-    
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        // Start your auction monitoring logic here
-        startAuctionMonitoring()
-        return START_STICKY
+
+    override fun onResume() {
+        super.onResume()
+        val act = requireActivity() as MainActivity
+        act.setLoading(true)
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                if (CacheManager.bootstrap == null) {
+                    CacheManager.bootstrap = SBRestClient.shared.bootstrap()
+                }
+                val history = SBRestClient.shared.historySuspend(
+                    StorageManager.getServerToken() ?: "",
+                    StorageManager.getPastAuctions(),
+                    StorageManager.getPastInstantUpgrades()
+                )
+                withContext(Dispatchers.Main) {
+                    binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                    var items: List<DisplayableItem> = arrayListOf()
+                    items = items.plus(history.currentAuctions)
+                    items = items.plus(history.instantUpgrades)
+                    items = items.plus(history.completedAuctions)
+                    binding.recyclerView.adapter = AuctionListAdapter(items, this@HomeFragment)
+                    if (act.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+                        act.setLoading(false)
+                        act.enableLookup()
+                    }
+                }
+            } catch (ex: Exception) {
+                withContext(Dispatchers.Main) {
+                    showOkDialog("Failed to load current auctions", requireContext())
+                }
+            }
+        }
     }
-    
-    private fun startAuctionMonitoring() {
-        // Your auction monitoring logic
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-    
-    @Subscribe
-    fun onAuctionUpdated(event: AuctionUpdatedEvent) {
-        // Handle auction updates in background
-        handleAuctionUpdate(event.auction)
+
+    override fun onAuctionClick(item: SBAuction) {
+        if (item.myUpgradeType == SBUpgradeType.BOUGHT_NOW) {
+            navigateTo(
+                HomeFragmentDirections.actionHomeToSdk(
+                    SDKDestination.DESTINATION_BUY_NOW.name,
+                    Gson().toJson(item)
+                )
+            )
+            return
+        }
+        navigateTo(
+            HomeFragmentDirections.actionHomeToSdk(
+                SDKDestination.DESTINATION_LIVE_AUCTION.name,
+                Gson().toJson(item)
+            )
+        )
     }
-    
-    private fun handleAuctionUpdate(auction: Any) {
-        // Process auction update
+
+    override fun onCompletedClick(item: SBCompletedAuction) {
+        navigateTo(
+            HomeFragmentDirections.actionHomeToSdk(
+                SDKDestination.DESTINATION_END_AUCTION.name,
+                Gson().toJson(item)
+            )
+        )
     }
-    
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBus.getDefault().unregister(this)
+
+    override fun onInstantUpgradeClick(item: SBInstantUpgrade) {
+        navigateTo(
+            HomeFragmentDirections.actionHomeToSdk(
+                SDKDestination.DESTINATION_INSTANT_UPGRADE.name,
+                Gson().toJson(item)
+            )
+        )
     }
-    
-    override fun onBind(intent: Intent?): IBinder? {
-        return null
+
+    private fun navigateTo(directions: NavDirections) {
+        findNavController().navigate(directions)
     }
 }
 ```
-
-## Key Points
-
-1. **Always register for EventBus events** in `onCreate()` or `onViewCreated()`
-2. **Always unregister** in `onDestroy()` or `onDestroyView()`
-3. **Use `runOnUiThread()`** when updating UI from event handlers
-4. **Configure SDK resources** by calling `SeatBoostSDK.setResources(resources)`
-5. **Access SDK instance** through `SeatBoostSDK.instance`
-6. **Use the cache** to access stored data like auctions and user information
-
-## Common Events to Handle
-
-- `BidderLoginEvent` - User login events
-- `BidderLogoutEvent` - User logout events
-- `AuctionUpdatedEvent` - Auction data updates
-- `AuctionEndEvent` - Auction end events
-- `ToastEvent` - Toast messages from SDK
-
-## Next Steps
-
-- [UI Integration Example](/examples/ui-integration.md) - Advanced Android UI integration implementation
-- [Getting Started - Android](/getting-started-android.md) - Complete setup guide
-- [UI Components](/ui/) - SDK UI components documentation
-- [REST API](/rest-api/) - API endpoints and usage
-- [Object Model](/object-model/) - Data models and structures
-- [Push Notifications](/push-notifications/configure-android-app.md) - Android push notification setup
+These examples are taken from SeatBoost's demo app, called AeroBest. You can also take a look at the AeroBest code to see a complete example.
