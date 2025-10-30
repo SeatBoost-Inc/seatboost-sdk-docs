@@ -1,190 +1,134 @@
-# Getting Started with SeatBoost SDK
+# Getting Started with the Android SDK
 
-This guide will walk you through setting up the SeatBoost SDK in your Android project from scratch.
+This guide outlines the steps to install and configure the SeatBoost Android SDK in your project.
 
 ## Installation
 
-### 1. Project Setup
+Follow these steps to add the SDK to your Android application:
 
-Add the SDK module to your project:
+1.  **Unzip SDK:** Unzip the provided `seatboost-sdk-android.zip` file.
+2.  **Locate Repo:** Inside, you will find a folder named `seatboost`. This folder is a local Maven repository.
+3.  **Add Maven Repo:** Add this local repository to your **root** project's `build.gradle` (or `settings.gradle` if using centralized repositories) file. Place the `seatboost` folder (e.g., within a `libs` directory) in your project's root.
 
-```gradle
-// settings.gradle
-include ':app'
-include ':seatboostsdk'
-```
-
-### 2. Dependencies
-
-Add the following dependencies to your `build.gradle` (app level):
-
-```gradle
-dependencies {
-    // SeatBoost SDK
-    implementation project(path: ":seatboostsdk")
-    
-    // Required dependencies
-    implementation 'androidx.core:core-ktx:1.12.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    
-    // Retrofit for API communication
-    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
-    
-    // RxJava
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    
-    // Gson
-    implementation 'com.google.code.gson:gson:2.10.1'
-    
-    // EventBus
-    implementation 'org.greenrobot:eventbus:3.0.0'
-    
-    // Joda Time
-    implementation 'net.danlew:android.joda:2.9.9.4'
-    
-    // Material Dialogs
-    implementation 'com.afollestad.material-dialogs:core:3.3.0'
-    implementation 'com.afollestad.material-dialogs:bottomsheets:3.3.0'
-    
-    // Camera for code scanning
-    implementation "androidx.camera:camera-camera2:1.4.2"
-    implementation "androidx.camera:camera-lifecycle:1.4.2"
-    implementation "androidx.camera:camera-view:1.4.2"
-    
-    // ML Kit for barcode reading
-    implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.1'
-    
-    // Stripe for payments
-    implementation('com.stripe:stripe-android:20.38.0') {
-        exclude group: 'com.google.code.gson', module: 'gson'
-    }
-    
-    // Adyen for payments
-    implementation "com.adyen.checkout:3ds2:4.13.6"
-    
-    // Firebase (optional)
-    implementation 'com.google.firebase:firebase-messaging:23.4.1'
-    
-    // Other optional dependencies
-    implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'com.github.Cutta:TagView:1.3'
-    implementation 'com.github.jinatonic.confetti:confetti:1.1.0'
-}
-```
-
-### 3. AndroidManifest.xml Configuration
-
-Add the required permissions:
-
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.VIBRATE" />
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
-<uses-feature android:name="android.hardware.camera.any" />
-```
-
-Add the SDK activities:
-
-```xml
-<activity
-    android:name="com.industrialrocket.seatboost.sdk.activity.BarCodeScannerActivity"
-    android:exported="false"
-    android:windowSoftInputMode="stateHidden" />
-
-<activity
-    android:name="com.industrialrocket.seatboost.sdk.activity.HelpActivity"
-    android:configChanges="orientation"
-    android:screenOrientation="unspecified"
-    android:theme="@style/TransparentDialog"
-    android:windowSoftInputMode="adjustResize" />
-```
-
-### 4. BuildConfig Configuration
-
-Configure environment URLs in your `build.gradle`:
-
-```gradle
-android {
-    buildTypes {
-        debug {
-            buildConfigField "String", "BASE_URL", "\"https://dev.bidwinengine.com/\""
-            buildConfigField "String", "BASE_V2_URL", "\"https://dev-api.bidwinengine.com/\""
-            buildConfigField "String", "BASE_PAYMENT_URL", "\"https://dev-payment.bidwinengine.com/\""
-            buildConfigField "String", "BASE_IDENTITY_URL", "\"https://dev-iam.bidwinengine.com/\""
-            buildConfigField "String", "DEFAULT_NAME", "\"DEVELOPMENT\""
-        }
-        
-        release {
-            buildConfigField "String", "BASE_URL", "\"https://www.bidwinengine.com/\""
-            buildConfigField "String", "BASE_V2_URL", "\"https://api.bidwinengine.com/\""
-            buildConfigField "String", "BASE_PAYMENT_URL", "\"https://payment.bidwinengine.com/\""
-            buildConfigField "String", "BASE_IDENTITY_URL", "\"https://iam.bidwinengine.com/\""
-            buildConfigField "String", "DEFAULT_NAME", "\"PROD\""
+    *Example for root `build.gradle` (Groovy):*
+    ```groovy
+    allprojects {
+        repositories {
+            // ... other repositories
+            maven {
+                url = uri("$rootDir/libs/seatboost")
+            }
         }
     }
-}
-```
+    ```
 
-## Initialization
+4.  **Add Dependency:** In your **app module's** `build.gradle` file, add the SeatBoost SDK as a new dependency:
 
-### 1. Application Class Setup
+    *Example for app `build.gradle` (Groovy):*
+    ```groovy
+    dependencies {
+        // ... other dependencies
+        implementation("com.industrialrocket:seatboost-sdk:1.0.0")
+    }
+    ```
+
+5.  **Sync Project:** Sync your Gradle files in Android Studio.
+
+---
+
+## Configuration
+
+The SDK must be initialized before use. We recommend performing this initialization within a custom Android `Application` class.
+
+If you don't have one, create a new class that extends `Application` and register it in your `AndroidManifest.xml`.
+
+**Example `MyApplication.kt`:**
 
 ```kotlin
+import android.app.Application
+import android.app.Activity
+import android.util.Log
+import androidx.fragment.app.Fragment
+import com.industrialrocket.seatboost.sdk.cache.SeatBoostCache
+import com.industrialrocket.seatboost.sdk.SeatBoostSDK
+import com.industrialrocket.seatboost.sdk.model.SBServerError
+import com.industrialrocket.seatboost.sdk.utils.SBLog
+
+/**
+ * Custom Application class for initializing the SeatBoost SDK.
+ * Remember to register this class in your AndroidManifest.xml file.
+ *
+ * <application
+ * android:name=".MyApplication"
+ * ... >
+ * </application>
+ */
 class MyApplication : Application() {
-    
+
     override fun onCreate() {
         super.onCreate()
-        
-        // Initialize the SDK
-        val cache = SeatBoostCache()
+
+        // 1. Create an instance of the SeatBoostCache
+        val mSBCache = SeatBoostCache()
+
+        // 2. Initialize the SeatBoostSDK
         SeatBoostSDK.init(
-            cache = cache,
-            applicationInstance = this,
-            defaultEnvironmentName = BuildConfig.DEFAULT_NAME,
-            baseAPIUrl = BuildConfig.BASE_URL,
-            baseV2APIUrl = BuildConfig.BASE_V2_URL,
-            basePaymentUrl = BuildConfig.BASE_PAYMENT_URL,
-            baseIdentityUrl = BuildConfig.BASE_IDENTITY_URL,
-            appVersion = BuildConfig.VERSION_NAME
+            cache = mSBCache,
+            context = this,
+            defaultEnvironmentName = "PRE_PROD",
+            baseAPIUrl = "[https://pre-prod.bidwinengine.com/](https://pre-prod.bidwinengine.com/)",
+            baseV2APIUrl = "[https://pre-prod-api.bidwinengine.com/](https://pre-prod-api.bidwinengine.com/)",
+            basePaymentUrl = "[https://pre-prod-payment.bidwinengine.com/](https://pre-prod-payment.bidwinengine.com/)",
+            baseIdentityUrl = "[https://pre-prod-iam.bidwinengine.com/](https://pre-prod-iam.bidwinengine.com/)",
+            appVersion = "AeroBest/1.0-Android" // Replace with your app name/version
         ) { title, enable ->
-            // Configure custom logging system
-            MyCustomLogger(title, enable)
+            // Return your custom logger implementation
+            object : SBLog {
+                override fun d(vararg messages: String) {
+                    Log.d("SDK", messages.joinToString())
+                }
+
+                override fun w(vararg messages: String) {
+                    Log.w("SDK", messages.joinToString())
+                }
+
+                override fun e(vararg messages: String) {
+                    Log.e("SDK", messages.joinToString())
+                }
+
+                override fun e(e: Throwable, vararg messages: String) {
+                    Log.e("SDK", e.message + ": " + messages.joinToString())
+                }
+
+                override fun trackScreen(
+                    activity: Activity,
+                    fragment: Fragment?,
+                    classOverride: String?
+                ) {
+                    // Implement your analytics screen tracking logic here
+                }
+
+                override fun logEvent(
+                    name: String,
+                    vararg params: Pair<String, Any?>
+                ) {
+                    // Implement your analytics event logging logic here
+                }
+
+                override fun recordException(error: SBServerError) {
+                    // Implement your exception reporting logic (e.g., Crashlytics)
+                }
+
+                override fun recordException(error: Throwable) {
+                    // Implement your exception reporting logic (e.g., Crashlytics)
+                }
+            }
         }
+
+        // 3. Initialize resources
+        SeatBoostSDK.initResources(resources)
+
+        // 4. Set the airline code
+        SeatBoostSDK.setAirlineCode("SDK") // Replace "SDK" with your integration code
     }
 }
-```
-
-### 2. Resources Configuration
-
-In your Activities, configure the SDK resources:
-
-```kotlin
-class MainActivity : AppCompatActivity() {
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        
-        // Configure SDK resources
-        SeatBoostSDK.setResources(resources)
-        
-        // Rest of your implementation
-    }
-}
-```
-
-## Next Steps
-
-- [Basic Integration Example](examples/basic-integration.md) - Complete Android integration examples
-- [UI Integration Example](examples/ui-integration.md) - Android UI integration implementation
-- [UI Components](ui/) - SDK UI components documentation
-- [REST API](rest-api/) - API endpoints and usage
-- [Object Model](object-model/) - Data models and structures
-- [Push Notifications](push-notifications/configure-android-app.md) - Android push notification setup
