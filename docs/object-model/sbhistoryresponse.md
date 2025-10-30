@@ -1,27 +1,16 @@
 # SBHistoryResponse
 
-`open class SBHistoryResponse`
-
-A response model containing historical data related to auctions and upgrades.
+Contains the history of auctions and instant upgrades.
 
 ---
 
 ## Fields
 
-* **currentAuctions**: `List<`[sbauction.md](./sbauction.md)`>`
-    * A list of currently active auctions.
-
-* **currentAuctionsTokens**: `Map<String, String>`
-    * A dictionary of tokens for current (active) auctions, keyed by auction ID.
-
-* **completedAuctions**: `List<`[sbcompletedauction.md](./sbcompletedauction.md)`>`
-    * A list of auctions that have already finished.
-
-* **completedAuctionsTokens**: `Map<String, String>`
-    * A dictionary of tokens for completed auctions, keyed by auction ID.
-
-* **instantUpgrades**: `List<`[sbinstantupgrade.md](./sbinstantupgrade.md)`>`
-    * A list of instant upgrade history items.
-
-* **instantUpgradeTokens**: `Map<String, String>`
-    * A dictionary of tokens for instant upgrades.
+| **Property Name** | **Type** | **Description** |
+|-|-|-|
+| `currentAuctions` | `List<`[SBAuction](./sbauction.md)`>` | A list of currently ongoing auctions. |
+| `currentAuctionsTokens` | `Map<String, String>` | A dictionary of tokens for ongoing auctions, keyed by the auction ID. |
+| `completedAuctions` | `List<`[SBCompletedAuction](./sbcompletedauction.md)`>` | List of closed auctions. |
+| `completedAuctionsTokens` | `Map<String, String>` | A dictionary of tokens for closed auctions, keyed by the auction ID. |
+| `completedAuctions` | `List<`[SBInstantUpgrade](./sbinstantupgrade.md)`>` | List of instant upgrades. |
+| `instantUpgradeTokens` | `Map<String, String>` | A dictionary of tokens for instant upgrades, keyed by the instant upgrade ID. |
