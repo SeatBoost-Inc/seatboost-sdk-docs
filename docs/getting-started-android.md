@@ -8,7 +8,7 @@ Follow these steps to add the SDK to your Android application:
 
 1.  **Unzip SDK:** Unzip the provided `seatboost-sdk-android.zip` file.
 2.  **Locate Repo:** Inside, you will find a folder named `seatboost`. This folder is a local Maven repository.
-3.  **Add Maven Repo:** Add this local repository to your **root** project's `build.gradle` (or `settings.gradle` if using centralized repositories) file. Place the `seatboost` folder (e.g., within a `libs` directory) in your project's root.
+3.  **Add Maven Repo:** Add this local repository to your **root** project's `build.gradle` file. Place the `seatboost` folder (e.g., within a `libs` directory) in your project's root.
 
     *Example for root `build.gradle` (Groovy):*
     ```groovy
@@ -129,6 +129,6 @@ class MyApplication : Application() {
         SeatBoostSDK.initResources(resources)
 
         // 4. Set the airline code
-        SeatBoostSDK.setAirlineCode("SDK") // Replace "SDK" with your integration code
+        SeatBoostSDK.setAirlineCode("SDK") // Replace "SDK" with the airline code for your integration
     }
 }
