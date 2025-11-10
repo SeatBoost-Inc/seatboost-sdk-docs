@@ -26,7 +26,7 @@ SeatBoostSDK.login(email = userEmail, firebaseToken = "", appVersion = "AeroBest
 
 Inside a coroutine. You should set the `firebaseToken` property to an FCM registration token if notifications are required for the integration, otherwise, just use an empty string as shown in the example. 
 
-This function returns an [`SBAuthV2Response`](../object-model/sbauthv2response.md) if the call succeeds, and throws if there are any errors. You are not required to use the return data, as it is saved automatically by the SDK.
+This function returns an [`SBAuthV2Response`](/object-model/sbauthv2response.md) if the call succeeds, and throws if there are any errors. You are not required to use the return data, as it is saved automatically by the SDK.
 
 ## Auctions and Instant Upgrades History
 
@@ -40,7 +40,7 @@ SBRestClient.shared.historySuspend(
 )
 ```
 
-This is a **suspending function**, which returns a [`SBHistoryResponse`](../object-model/sbhistoryresponse.md) and throws an exception if the request fails.
+This is a **suspending function**, which returns a [`SBHistoryResponse`](/object-model/sbhistoryresponse.md) and throws an exception if the request fails.
 
 Alternatively, you can call:
 
@@ -52,8 +52,8 @@ SBRestClient.shared.history(
 )
 ```
 
-This version returns an [`SBPromise<SBHistoryResponse>`](../object-model/sbhistoryresponse.md)
-(also see [`SBPromise`](../object-model/sbpromise.md)).
+This version returns an [`SBPromise<SBHistoryResponse>`](/object-model/sbhistoryresponse.md)
+(also see [`SBPromise`](/object-model/sbpromise.md)).
 
 ---
 
