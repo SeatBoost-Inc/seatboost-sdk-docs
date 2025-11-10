@@ -23,6 +23,9 @@ Contact the SeatBoost support team to obtain the `seatboost-ios-sdk.zip` file, w
 
 Update your main app's `Podfile` to include the SeatBoost SDK as a local pod. Add the following configuration:
 
+- Use the base `SeatBoostSdk` pod for the standard (Stripe-based) payment flows.
+- If your airline requires Adyen through IberiaPay, also include the optional `SeatBoostSdk/IberiaPay` subspec to enable the Adyen dependencies.
+
 ```Podfile
 platform :ios, '13.0'
 use_frameworks!
@@ -37,6 +40,9 @@ target 'YourAppName' do
 
   # Main SDK - this will automatically pull in all other dependencies
   pod 'SeatBoostSdk', :path => '../seatboost-ios-sdk/SeatBoostSdk-Local.podspec'
+
+  # Optional: Adyen support for airlines using IberiaPay
+  # pod 'SeatBoostSdk/IberiaPay', :path => '../seatboost-ios-sdk/SeatBoostSdk-Local.podspec'
   
   # Optional: Add Firebase if push notifications are needed
   # pod 'FirebaseAnalytics'
