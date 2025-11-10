@@ -14,6 +14,20 @@ You can do this any time between the SDK’s initialization and the first usage 
 
 ---
 
+## Logging in
+
+After loading the bootstrap, you should log the user in, you can do this by calling:
+
+```kotlin
+
+SeatBoostSDK.login(email = userEmail, firebaseToken = "", appVersion = "AeroBest/1.0")
+
+```
+
+Inside a coroutine. You should set the `firebaseToken` property to an FCM registration token if notifications are required for the integration, otherwise, just use an empty string as shown in the example. 
+
+This function returns an [`SBAuthV2Response`](../object-model/sbauthv2response.md) if the call succeeds, and throws if there are any errors. You are not required to use the return data, as it is saved automatically by the SDK.
+
 ## Auctions and Instant Upgrades History
 
 You can call:
