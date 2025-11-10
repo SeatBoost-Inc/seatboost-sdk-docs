@@ -76,10 +76,10 @@ class MyApplication : Application() {
             cache = mSBCache,
             context = this,
             defaultEnvironmentName = "PRE_PROD",
-            baseAPIUrl = "[https://pre-prod.bidwinengine.com/](https://pre-prod.bidwinengine.com/)",
-            baseV2APIUrl = "[https://pre-prod-api.bidwinengine.com/](https://pre-prod-api.bidwinengine.com/)",
-            basePaymentUrl = "[https://pre-prod-payment.bidwinengine.com/](https://pre-prod-payment.bidwinengine.com/)",
-            baseIdentityUrl = "[https://pre-prod-iam.bidwinengine.com/](https://pre-prod-iam.bidwinengine.com/)",
+            baseAPIUrl = "https://pre-prod.bidwinengine.com/",
+            baseV2APIUrl = "https://pre-prod-api.bidwinengine.com/",
+            basePaymentUrl = "https://pre-prod-payment.bidwinengine.com/",
+            baseIdentityUrl = "https://pre-prod-iam.bidwinengine.com/",
             appVersion = "AeroBest/1.0-Android" // Replace with your app name/version
         ) { title, enable ->
             // Return your custom logger implementation
