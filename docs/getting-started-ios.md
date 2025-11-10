@@ -38,7 +38,7 @@ target 'YourAppName' do
   pod 'AFNetworking', :git => 'https://github.com/dalmer/AFNetworking', :branch => '2.x.NoWebView'
   pod 'MDHTMLLabel', :git => 'https://github.com/mattdonnelly/MDHTMLLabel', :branch => 'master'
 
-  # Main SDK - this will automatically pull in all other dependencies
+  # Main SDK - this will automatically pull in all core dependencies
   pod 'SeatBoostSdk', :path => '../seatboost-ios-sdk/SeatBoostSdk-Local.podspec'
 
   # Optional: Adyen support for airlines using IberiaPay
