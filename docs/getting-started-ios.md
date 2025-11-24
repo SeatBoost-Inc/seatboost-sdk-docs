@@ -4,85 +4,133 @@ This guide will walk you through setting up the SeatBoost SDK in your iOS projec
 
 ### Requirements
 
-The SeatBoost SDK requires XCode 14 or later and is compatible with apps targeting iOS 13 or above.
+The SeatBoost SDK requires Xcode 14 or later and is compatible with apps targeting iOS 13.0 or above.
 
 ### Installation
 
-The SeatBoost SDK is distributed as a local pod that includes all necessary dependencies. Follow these steps to integrate it into your project:
+The SeatBoost iOS SDK is distributed as an XCFramework that can be integrated into your project via drag-and-drop in Xcode.
 
-#### 1. Obtain the SDK Package
+## Installation Steps
 
-Contact the SeatBoost support team to obtain the `seatboost-ios-sdk.zip` file, which contains the complete SDK repository.
+### 1. Download the XCFramework
 
-#### 2. Extract and Setup the SDK
+Contact the SeatBoost support team to obtain the XCFramework distribution package. Extract `SeatBoostSdk.xcframework` from the distribution package.
 
-1. Extract the `seatboost-ios-sdk.zip` file to your project parent directory
-2. Ensure the extracted folder is named `seatboost-ios-sdk` and is located at the same level as your main app project
+### 2. Add Framework to Xcode Project
 
-#### 3. Update Your Podfile
+- Open your Xcode project
+- Drag `SeatBoostSdk.xcframework` into your project navigator
+- In the dialog, ensure:
+  - ✅ **Copy items if needed** is checked
+  - Your app target is selected
+- Click **Finish**
 
-Update your main app's `Podfile` to include the SeatBoost SDK as a local pod. Add the following configuration:
+### 3. Configure Build Settings
 
-- Use the base `SeatBoostSdk` pod for the standard (Stripe-based) payment flows.
-- If your airline requires Adyen through IberiaPay, also include the optional `SeatBoostSdk/IberiaPay` subspec to enable the Adyen dependencies.
+- Select your app target in Xcode
+- Go to **General** tab
+- Under **Frameworks, Libraries, and Embedded Content**:
+  - Find `SeatBoostSdk.xcframework`
+  - Set it to **Embed & Sign**
 
-```Podfile
+### 4. Configure Linker Flags (if using Objective-C)
+
+If your project contains Objective-C code:
+- Go to **Build Settings** tab
+- Search for **Other Linker Flags**
+- Add `-ObjC` (the SDK includes Objective-C categories)
+
+### 5. Add Required Dependencies
+
+The XCFramework has **most dependencies statically linked** into the framework binary. However, some dependencies must be added separately because their types are exposed in the SDK's public API.
+
+**Required Dependencies:**
+
+These **must be added** to your project because their types are part of the SDK's public API:
+
+- **Stripe**
+- **StripePayments**
+- **StripePaymentsUI**
+- **StripeCardScan**
+- **SwipeView**
+- **MDHTMLLabel**
+- **APNumberPad**
+- **SwiftSoup**
+
+Add them via CocoaPods or Swift Package Manager. Here's an example using CocoaPods:
+
+```ruby
 platform :ios, '13.0'
 use_frameworks!
 
-target 'YourAppName' do
-  # YourApp pods
-  # ...
+target 'YourApp' do
+  # Stripe modules required because Stripe types are part of SeatBoostSdk public API
+  pod 'Stripe', '~> 24.5.0'
+  pod 'StripePayments', '~> 24.5.0'
+  pod 'StripePaymentsUI', '~> 24.5.0'
+  pod 'StripeCardScan', '~> 24.5.0'
 
-  # Override specific SDK dependencies that need custom git sources
-  pod 'AFNetworking', :git => 'https://github.com/dalmer/AFNetworking', :branch => '2.x.NoWebView'
-  pod 'MDHTMLLabel', :git => 'https://github.com/mattdonnelly/MDHTMLLabel', :branch => 'master'
+  # Required because they're used in public API
+  pod 'SwipeView'
+  pod 'MDHTMLLabel'
+  pod 'APNumberPad', '1.1.3'
+  pod 'SwiftSoup'
 
-  # Main SDK - this will automatically pull in all core dependencies
-  pod 'SeatBoostSdk', :path => '../seatboost-ios-sdk/SeatBoostSdk-Local.podspec'
-
-  # Optional: Adyen support for airlines using IberiaPay
-  # pod 'SeatBoostSdk/IberiaPay', :path => '../seatboost-ios-sdk/SeatBoostSdk-Local.podspec'
-  
-  # Optional: Add Firebase if push notifications are needed
-  # pod 'FirebaseAnalytics'
-  # pod 'Firebase/Crashlytics'
-  # pod 'Firebase/Messaging'
-end
-
-# Script to fix deployment target for old libraries
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      # Fix deployment target/architecture for libraries that have old targets
-      if ['SwipeView', 'NTPKit', 'AFNetworking', 'DeviceKit', 'FontAwesome.swift', 'MDHTMLLabel', 'MMMarkdown', 'APNumberPad', 'ISO8601DateFormatter', 'AMXFontAutoScale'].include?(target.name)
-        config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
-      end
-    end
-  end
+  # Optional: Only if using IberiaPay payment methods
+  # pod 'Adyen'
 end
 ```
 
-#### 4. Install Dependencies
-
-Run the following command in your project directory:
-
+Then run:
 ```bash
 pod install
 ```
 
-#### 5. Configure Xcode Build Settings
+**Optional Dependencies:**
 
-**Important:** You must disable "User script sandboxing" in your Xcode project build settings:
+##### Adyen SDK (Optional)
 
-1. Open your project workspace in Xcode (e.g., `YourAppName.xcworkspace`)
-2. In the project navigator, select your app target
-3. Go to **Targets** → **YourAppName** → **Build Options**
-4. Find "User Script Sandboxing" and set it to **No**
+**Required only if**: Your airline uses IberiaPay payment methods.
 
-This step is required for the SDK to function properly with the local pod installation.
+Most airlines use Stripe and **do not need** Adyen. Add only if required:
+
+```ruby
+pod 'Adyen'
+```
+
+##### Firebase (Optional)
+
+Add Firebase if you need push notifications:
+
+```ruby
+pod 'Firebase/Messaging'
+pod 'Firebase/Analytics'
+```
+
+### XCFramework Notes
+
+- **Minimum iOS**: 13.0
+- **Swift Version**: 5.9+
+- **Privacy Manifest**: Included in the framework
+- **Resources**: Storyboards, nibs, fonts, and assets are embedded in the framework
+- **Updating**: Replace the `.xcframework` when upgrading to a new SDK version
+
+## Privacy Manifest
+
+The SDK includes a `PrivacyInfo.xcprivacy` file that declares:
+
+- **Email address collection**: For app functionality (not linked, not for tracking)
+- **Disk space API access**: Reason code E174.1
+- **UserDefaults API access**: Reason code CA92.1
+
+### Handling Multiple PrivacyInfo Files
+
+If your app has its own `PrivacyInfo.xcprivacy` file:
+
+1. **Recommended**: Keep both files separate. iOS will automatically merge them during the build process.
+2. **Alternative**: Manually merge the contents. Ensure all declarations from the SDK's privacy manifest are included in your merged file.
+
+If you encounter build errors like "Multiple commands produce PrivacyInfo.xcprivacy", verify that both privacy manifests are properly referenced in their respective targets.
 
 ### Configuration
 
