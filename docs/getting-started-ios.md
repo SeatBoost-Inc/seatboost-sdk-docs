@@ -134,9 +134,9 @@ If you encounter build errors like "Multiple commands produce PrivacyInfo.xcpriv
 
 ### Configuration
 
-Before you can use the SDK, you must configure it with the correct server endpoints. This is a crucial step that should be done when your application launches.
+Before you can use the SDK, you must call `configureApp` to set up the SDK with the correct server endpoints and airline identifier. This is a crucial step that should be done when your application launches.
 
-The best place to do this is within your `AppDelegate.swift`'s `application(_:didFinishLaunchingWithOptions:)` method.
+The best place to do this is within your `AppDelegate.swift`'s `application(_:didFinishLaunchingWithOptions:)` method. When calling `configureApp`, you must provide the `appVendor` parameter, which should be set to the **2-digit IATA code** of the airline consuming the SDK. For example, if your airline's IATA code is "AB", use `"AB"` as the `appVendor` value.
 
 ```Swift
 import SeatBoostSdk
@@ -145,7 +145,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
     let deviceId = UIDevice.current.identifierForVendor?.uuidString
 
-    SBSdk.shared.configureApp(appVendor: "AeroBest",
+    SBSdk.shared.configureApp(appVendor: "AB", // 2-digit IATA code of your airline
                                   serverURL: Config.shared.serverUrl,
                                   serverV2URL: Config.shared.serverV2Url,
                                   identityServerUrl: Config.shared.identityServerUrl,
