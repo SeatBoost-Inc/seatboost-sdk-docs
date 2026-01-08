@@ -146,11 +146,11 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     let deviceId = UIDevice.current.identifierForVendor?.uuidString
 
     SBSdk.shared.configureApp(appVendor: "AB", // 2-digit IATA code of your airline
-                                  serverURL: Config.shared.serverUrl,
-                                  serverV2URL: Config.shared.serverV2Url,
-                                  identityServerUrl: Config.shared.identityServerUrl,
-                                  paymentServerUrl: Config.shared.paymentServerUrl,
-                                  deviceId: deviceId!)
+                              serverURL: Config.shared.serverUrl,
+                              serverV2URL: Config.shared.serverV2Url,
+                              identityServerUrl: Config.shared.identityServerUrl,
+                              paymentServerUrl: Config.shared.paymentServerUrl,
+                              deviceId: deviceId!)
     SBSdk.shared.initialize()
 				
     // Existing code.
