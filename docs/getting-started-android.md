@@ -42,6 +42,8 @@ The SDK must be initialized before use. We recommend performing this initializat
 
 If you don't have one, create a new class that extends `Application` and register it in your `AndroidManifest.xml`.
 
+When calling `SeatBoostSDK.init()`, you must provide the `appVendor` parameter, which should be set to the **2-digit IATA code** of the airline consuming the SDK. For example, if your airline's IATA code is "AB", use `"AB"` as the `appVendor` value.
+
 **Example `MyApplication.kt`:**
 
 ```kotlin
@@ -76,6 +78,7 @@ class MyApplication : Application() {
             cache = mSBCache,
             context = this,
             defaultEnvironmentName = "PRE_PROD",
+            appVendor = "AB", // 2-digit IATA code of your airline
             baseAPIUrl = "https://pre-prod.bidwinengine.com/",
             baseV2APIUrl = "https://pre-prod-api.bidwinengine.com/",
             basePaymentUrl = "https://pre-prod-payment.bidwinengine.com/",
