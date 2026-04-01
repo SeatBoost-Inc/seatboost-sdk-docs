@@ -87,3 +87,18 @@ extension AppDelegate : MessagingDelegate {
     }
 }
 ```
+
+7) Implement the **SBPushNotificationsDelegate** to handle auction updates and provide the auction token required by the SDK.
+
+```swift
+extension AppDelegate: SBPushNotificationsDelegate {
+    func auctionUpdated(_ auctionResponse: SeatBoostSdk.SBAuctionResponse) {
+        // Update the client session or anything that needs to have the auction data.
+    }
+
+    func getAuctionToken(forEmail: String, andAuctionId: String) -> String {
+        // This should return the Auction token that should be stored by the client. The line below is an example that gets this token from DB.
+        DBService.sharedInstance.getAuthTokenForEmail(Session.sharedInstance.email, andAuctionId: andAuctionId)
+    }
+}
+```
