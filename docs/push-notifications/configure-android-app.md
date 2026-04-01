@@ -12,7 +12,7 @@ This guide will help you configure push notifications for Android using Firebase
 
 ## 1. Firebase Configuration
 
-> **Note:** The Firebase project configuration and `google-services.json` file are provided by the SeatBoost admin team after you submit the required information (see [Configure SeatBoost Service (Android)](configure-android-service.md)).
+> **Note:** The Firebase project configuration and `google-services.json` file are provided by the SeatBoost admin team after you submit the required information (see [Configure SeatBoost Service (Android)](push-notifications/configure-android-service.md)).
 
 ### 1.1 Add google-services.json
 
@@ -382,16 +382,46 @@ override fun onRequestPermissionsResult(
 }
 ```
 
-## 9. Checklist
+## 9. Final Steps
 
-- [ ] Firebase BoM + `firebase-messaging` (and plugin) added; project syncs
-- [ ] `google-services.json` in the app module
-- [ ] `SBFirebaseMessagingService` registered in the manifest
-- [ ] Notification channel ID string matches manifest meta-data
-- [ ] `SeatBoostSDK.init` completed before login; `SeatBoostSDK.login` uses `StorageManager.getFCMToken()`
-- [ ] Notification permission requested on Android 13+ if you show notifications
+### 9.1 Complete Integration Checklist
 
-## 10. References
+After completing the Android app configuration, ensure you have:
 
-- [Configure SeatBoost Service (Android)](configure-android-service.md) — package name, SHA fingerprints
-- [Firebase Cloud Messaging — Android client](https://firebase.google.com/docs/cloud-messaging/android/client)
+- [ ] Added Firebase dependencies to your `build.gradle`
+- [ ] Downloaded and added `google-services.json` to your app module
+- [ ] Created and registered `SBFirebaseMessagingService` in `AndroidManifest.xml`
+- [ ] Added required permissions to `AndroidManifest.xml`
+- [ ] Implemented notification channel creation (Android 8.0+)
+- [ ] Set up FCM token management in your `Application` class
+- [ ] Integrated with your existing authentication system
+- [ ] Added notification permission handling (Android 13+)
+- [ ] Implemented event handling for notification types
+
+### 9.2 Firebase Backend Configuration
+
+**Important:** Before proceeding, ensure you have completed the Firebase backend configuration as described in the [previous step](push-notifications/configure-android-service.md). This includes:
+
+- [ ] **Information submitted to SeatBoost team** (package name, SHA-1 fingerprints)
+- [ ] **google-services.json file received** from SeatBoost team
+- [ ] Firebase project configured by SeatBoost team
+
+If you haven't completed these steps yet, please follow the instructions in the [Firebase Configuration](push-notifications/configure-android-service.md) page first.
+
+### 9.3 Support and Resources
+
+- **SeatBoost Support:** Contact the SeatBoost team for assistance
+- **Firebase Documentation:** [Firebase Cloud Messaging for Android](https://firebase.google.com/docs/cloud-messaging/android/client)
+- **Android Notification Best Practices:** [Android Notification Guidelines](https://developer.android.com/guide/topics/ui/notifiers/notifications)
+
+### 9.4 Common Issues and Solutions
+
+| Issue | Solution |
+|-------|----------|
+| Notifications not received | Check FCM token registration and Firebase configuration |
+| Service not registered | Verify `SBFirebaseMessagingService` in `AndroidManifest.xml` |
+| Permission denied | Implement proper permission handling for Android 13+ |
+| Token not updating | Ensure `onNewToken()` is properly implemented |
+---
+
+**Congratulations!** You have successfully configured push notifications for the SeatBoost SDK in your Android application. The integration is now ready for testing and production deployment.
