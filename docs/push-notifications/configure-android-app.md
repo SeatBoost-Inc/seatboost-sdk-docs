@@ -12,7 +12,7 @@ This guide will help you configure push notifications for Android using Firebase
 
 ## 1. Firebase Configuration
 
-> **Note:** The Firebase project configuration and `google-services.json` file are provided by the SeatBoost admin team after you submit the required information (see [Configure SeatBoost Service (Android)](push-notifications/configure-android-service.md)).
+> **Note:** The Firebase project configuration and `google-services.json` file are provided by the SeatBoost admin team after you submit the required information (see [Configure SeatBoost Service (Android)](configure-android-service.md)).
 
 ### 1.1 Add google-services.json
 
@@ -400,13 +400,13 @@ After completing the Android app configuration, ensure you have:
 
 ### 9.2 Firebase Backend Configuration
 
-**Important:** Before proceeding, ensure you have completed the Firebase backend configuration as described in the [previous step](push-notifications/configure-android-service.md). This includes:
+**Important:** Before proceeding, ensure you have completed the Firebase backend configuration as described in the [previous step](configure-android-service.md). This includes:
 
 - [ ] **Information submitted to SeatBoost team** (package name, SHA-1 fingerprints)
 - [ ] **google-services.json file received** from SeatBoost team
 - [ ] Firebase project configured by SeatBoost team
 
-If you haven't completed these steps yet, please follow the instructions in the [Firebase Configuration](push-notifications/configure-android-service.md) page first.
+If you haven't completed these steps yet, please follow the instructions in the [Firebase Configuration](configure-android-service.md) page first.
 
 ### 9.3 Support and Resources
 
