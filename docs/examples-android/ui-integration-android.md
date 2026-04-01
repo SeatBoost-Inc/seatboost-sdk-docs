@@ -717,8 +717,8 @@ startActivity(intent)
 
 ## Next Steps
 
-- [Basic Integration Example](/examples-android/basic-integration-android.md) — bootstrap, login, and `SBAirlineFlow`
-- [Getting Started - Android](/getting-started-android.md) — Gradle, init, and configuration
+- [Basic Integration Example](/examples-android/basic-integration-android.md) - Basic Android integration
+- [Getting Started - Android](/getting-started-android.md) - Complete setup guide
 - [UI Components](/ui/) - SDK UI components documentation
 - [REST API](/rest-api/) - API endpoints and usage
 - [Object Model](/object-model/) - Data models and structures
