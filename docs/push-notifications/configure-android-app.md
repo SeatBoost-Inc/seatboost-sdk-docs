@@ -5,57 +5,83 @@ This guide will help you configure push notifications for Android using Firebase
 ## Prerequisites
 
 - Android Studio
-- SeatBoost SDK integrated
-- Minimum Android API level 21
-- Firebase configuration completed by SeatBoost team
-- Your own authentication system integrated
+- SeatBoost SDK integrated (see [Getting Started - Android](/getting-started-android.md))
+- **Minimum API level:** follow your SDK package; current reference integrations use **API 26+**
+- Firebase configuration completed by the SeatBoost team
+- Your own authentication flow that calls `SeatBoostSDK.login` after the user signs in (FCM token is associated with the session on the server)
 
 ## 1. Firebase Configuration
 
-> **Note**: The Firebase project configuration and `google-services.json` file will be provided by the SeatBoost admin team after you submit the required information.
+> **Note:** The Firebase project configuration and `google-services.json` file are provided by the SeatBoost admin team after you submit the required information (see [Configure SeatBoost Service (Android)](configure-android-service.md)).
 
 ### 1.1 Add google-services.json
 
 1. **Receive the `google-services.json` file** from the SeatBoost admin team
-2. **Place the file** in the `app/` folder of your Android project
-3. **Ensure the file is added** to your project's source control
+2. **Place the file** in the `app/` module of your Android project
+3. **Ensure the file is handled** according to your security policy (often committed for debug; treat release secrets appropriately)
 
 ### 1.2 Configure Dependencies
 
-Add the following dependencies to your `build.gradle` files:
+Add the Google Services Gradle plugin and Firebase dependencies.
 
-**Project root level `<project>/build.gradle.kts`:**
+**Option A — Kotlin DSL (`build.gradle.kts`)**
+
+**Root `build.gradle.kts`:**
 ```kotlin
 plugins {
-    // ...
-    // Add the dependency for the Google services Gradle plugin
     id("com.google.gms.google-services") version "4.4.3" apply false
+    // Optional: Crashlytics
+    // id("com.google.firebase.crashlytics") version "3.0.6" apply false
 }
 ```
 
-**Module level `<project>/<app-module>/build.gradle.kts` (app):**
+**App module `build.gradle.kts`:**
 ```kotlin
 plugins {
     id("com.android.application")
-    // Add the Google services Gradle plugin
     id("com.google.gms.google-services")
-    // ...
+    // id("com.google.firebase.crashlytics") // optional
 }
 
 dependencies {
-    // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
-    
-    // Firebase dependencies for push notifications
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-crashlytics")
+    // implementation("com.google.firebase:firebase-crashlytics") // optional
 }
 ```
 
+**Option B — Groovy (`build.gradle`)** (common in older or multi-module templates)
+
+**Root `build.gradle`:**
+```groovy
+buildscript {
+    dependencies {
+        classpath("com.google.gms:google-services:4.4.3")
+        // classpath("com.google.firebase:firebase-crashlytics-gradle:3.0.6") // optional
+    }
+}
+```
+
+**App module `build.gradle`:**
+```groovy
+apply plugin: "com.android.application"
+apply plugin: "com.google.gms.google-services"
+// apply plugin: "com.google.firebase.crashlytics" // optional
+
+dependencies {
+    implementation platform("com.google.firebase:firebase-bom:34.3.0")
+    implementation "com.google.firebase:firebase-messaging"
+    implementation "com.google.firebase:firebase-analytics"
+    // implementation "com.google.firebase:firebase-crashlytics" // optional
+}
+```
+
+Use the Firebase BoM version that matches your project; `34.3.0` is a known-good line with recent SDK work.
+
 ### 1.3 Sync Project
 
-After adding the plugin and SDKs, **sync your Android project** with Gradle files.
+After adding the plugin and dependencies, **sync** the project with Gradle.
 
 ## 2. AndroidManifest.xml Configuration
 
@@ -93,43 +119,49 @@ Add the necessary permissions to your `AndroidManifest.xml`:
 </manifest>
 ```
 
+Adjust `android:name` to match the package and class name of your service.
+
 ### 2.2 Optional Notification Customization
 
-If your company's app doesn't already have notification icon and color configurations, you can add these meta-data tags to your AndroidManifest.xml:
+If your app does not already define notification icon and color, you can add:
 
 ```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application>
+<meta-data
+        android:name="com.google.firebase.messaging.default_notification_icon"
+        android:resource="@mipmap/ic_notification" />
 
-        <!-- Optional: Custom notification icon -->
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_notification" />
-
-        <!-- Optional: Custom notification color -->
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/notification_color" />
-
-    </application>
-</manifest>
+<meta-data
+        android:name="com.google.firebase.messaging.default_notification_color"
+        android:resource="@color/notification_color" />
 ```
 
-**Note**: These configurations are optional. If your app already has notification styling configured, you can skip this step. If not provided, Android will use default system icons and colors. The SeatBoost SDK handles notification display through its own `NotificationUtil` class.
+## 3. Application Class: SDK Init, Channel, and FCM Token
 
-## 3. Application Class Configuration
+Initialize the SeatBoost SDK in the same `Application` class you use for the rest of your app. The initializer **`context`** parameter must be your `Application` instance. Include **`appVendor`** (2-letter IATA), environment name, and the **four base URLs** for your tier (see [Getting Started - Android](/getting-started-android.md)).
 
-### 3.1 Initialize SeatBoost SDK
-
-Configure the SeatBoost SDK in your `Application` class:
+Create the notification channel on **Android 8+** before showing notifications. After init, request an FCM token if none is stored yet so `StorageManager` can supply it on `SeatBoostSDK.login`.
 
 ```kotlin
+import android.app.Application
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.Color
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
+import com.google.firebase.messaging.FirebaseMessaging
+import com.industrialrocket.seatboost.sdk.SeatBoostSDK
+import com.industrialrocket.seatboost.sdk.cache.SeatBoostCache
+import com.industrialrocket.seatboost.sdk.manager.StorageManager
+// ... SBLog implementation imports (see Getting Started)
+
 class MyApplication : Application() {
-    
+
     override fun onCreate() {
         super.onCreate()
-        
-        // Create notification channel for Android 8.0+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel()
         }
@@ -145,244 +177,138 @@ class MyApplication : Application() {
         val cache = SeatBoostCache()
         SeatBoostSDK.init(
             cache = cache,
-            applicationInstance = this,
+            context = this,
             defaultEnvironmentName = "production",
-            baseAPIUrl = "https://api.seatboost.com",
-            baseV2APIUrl = "https://api-v2.seatboost.com",
-            basePaymentUrl = "https://payment.seatboost.com",
-            baseIdentityUrl = "https://identity.seatboost.com",
-            appVersion = BuildConfig.VERSION_NAME
-        ) { title, enable ->
-            // Factory to create logs
-            SeatBoostLog(title, enable)
-        }
+            appVendor = "AB",
+            baseAPIUrl = "https://api.seatboost.com/",
+            baseV2APIUrl = "https://api-v2.seatboost.com/",
+            basePaymentUrl = "https://payment.seatboost.com/",
+            baseIdentityUrl = "https://identity.seatboost.com/",
+            appVersion = "MyApp/${BuildConfig.VERSION_NAME}-Android",
+        ) { _, _ -> /* SBLog factory — see Getting Started */ }
+
+        SeatBoostSDK.initResources(resources)
+        SeatBoostSDK.setAirlineCode("AB") // your IATA airline code
     }
-    
+
     private fun ensureFCMTokenForSeatBoost() {
-        val currentToken = StorageManager.getFCMToken()
-        if (currentToken.isEmpty()) {
-            FirebaseMessaging.getInstance().token
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val token = task.result
-                        StorageManager.saveFCMToken(token)
-                        Log.d("FCM", "FCM Token generated: $token")
-                    } else {
-                        Log.e("FCM", "Failed to get FCM token: ${task.exception}")
-                    }
+        if (StorageManager.getFCMToken().isEmpty()) {
+            FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    StorageManager.saveFCMToken(task.result)
+                } else {
+                    Log.e("FCM", "Failed to get token", task.exception)
                 }
+            }
         }
     }
-    
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotificationChannel() {
         val channelId = getString(R.string.seatboost_notification_channel_id)
-        val channelName = "SeatBoost Notifications"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        
-        val channel = NotificationChannel(channelId, channelName, importance).apply {
+        val channel = NotificationChannel(
+            channelId,
+            "SeatBoost Notifications",
+            NotificationManager.IMPORTANCE_DEFAULT
+        ).apply {
             lightColor = Color.BLUE
             vibrationPattern = longArrayOf(0, 200, 100, 200)
             enableVibration(true)
             lockscreenVisibility = Notification.VISIBILITY_PRIVATE
             enableLights(true)
         }
-        
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
+        val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        nm.createNotificationChannel(channel)
     }
 }
 ```
 
 ## 4. Firebase Messaging Service
 
-### 4.1 Create Your Messaging Service
+Implement `FirebaseMessagingService`. Persist the token, ignore messages when the user is not logged in to SeatBoost, and route payload handling by `msg` when the user has relevant auctions in `StorageManager`.
 
-Create a class that extends `FirebaseMessagingService` in your app:
+The SDK ships with **GreenRobot EventBus** on the classpath; you can post `AuctionParticipantRemovedEvent` (from the SDK) when `msg` is `participant_updated`. Other message types (`reward_issued`, `flight_updated`, default auction updates) can be handled in your app (UI refresh, custom events) as needed.
 
 ```kotlin
+package com.example.myapp.fcm
+
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
+import com.industrialrocket.seatboost.sdk.events.AuctionParticipantRemovedEvent
+import com.industrialrocket.seatboost.sdk.manager.StorageManager
+import org.greenrobot.eventbus.EventBus
+
 class SBFirebaseMessagingService : FirebaseMessagingService() {
-    
-    companion object {
-        private const val TAG = "MyFirebaseMessaging"
-    }
-    
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d(TAG, "Refreshed token: $token")
         
         // Save FCM token to SeatBoost SDK storage
         StorageManager.saveFCMToken(token)
-        
-        // If user is logged in to SeatBoost, the token will be sent to server
-        // during the next authentication call
     }
-    
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
-        Log.d(TAG, "From: ${remoteMessage.from}")
-        
+
         // Check if user is logged in to SeatBoost
         if (!StorageManager.isLoggedIn()) {
-            Log.d(TAG, "User not logged in to SeatBoost, ignoring notification")
             return
         }
-        
-        // Process the SeatBoost message
-        processSeatBoostMessage(remoteMessage)
-    }
-    
-    private fun processSeatBoostMessage(remoteMessage: RemoteMessage) {
+
         val data = remoteMessage.data
         val auctionId = data["auction"]
         
         // Validate auction exists in SeatBoost cache
-        if (auctionId == null || !StorageManager.hasPastAuction(auctionId)) {
-            Log.d(TAG, "Invalid auction ID or auction not found: $auctionId")
+        if (!StorageManager.hasPastAuction(auctionId)) {
             return
         }
-        
-        val messageType = data["msg"]
-        when (messageType) {
-            "reward_issued" -> handleRewardIssued(data, auctionId)
-            "flight_updated" -> handleFlightUpdate(data, auctionId)
-            "participant_updated" -> handleParticipantUpdate(data)
-            else -> handleAuctionUpdate(data, auctionId)
-        }
-    }
-    
-    private fun handleRewardIssued(data: Map<String, String>, auctionId: String) {
-        val rewardJson = data["reward"]
-        if (rewardJson != null) {
-            try {
-                val reward = Gson().fromJson(rewardJson, Reward::class.java)
-                EventBus.getDefault().post(RewardIssuedEvent(auctionId, reward))
-            } catch (e: Exception) {
-                Log.e(TAG, "Error parsing reward: ${e.message}")
+
+        when (data["msg"]) {
+            "reward_issued" -> { /* optional: parse data["reward"] if you show rewards in-app */ }
+            "flight_updated" -> { /* optional: refresh flight UI using data["flightStatus"] */ }
+            "participant_updated" -> {
+                val removed = data["isParticipantRemoved"]?.toBoolean() ?: false
+                EventBus.getDefault().post(AuctionParticipantRemovedEvent(removed))
             }
-        }
-    }
-    
-    private fun handleFlightUpdate(data: Map<String, String>, auctionId: String) {
-        val flightStatus = data["flightStatus"]
-        if (flightStatus != null) {
-            EventBus.getDefault().post(FlightUpdatedEvent(auctionId, flightStatus))
-        }
-    }
-    
-    private fun handleParticipantUpdate(data: Map<String, String>) {
-        val isParticipantRemoved = data["isParticipantRemoved"]?.toBoolean() ?: false
-        EventBus.getDefault().post(ParticipantUpdatedEvent(isParticipantRemoved))
-    }
-    
-    private fun handleAuctionUpdate(data: Map<String, String>, auctionId: String) {
-        val status = data["status"]
-        if (status != null) {
-            EventBus.getDefault().post(AuctionUpdatedEvent(auctionId, status))
+            else -> { /* optional: handle auction status via data["status"] */ }
         }
     }
 }
 ```
 
-## 5. Integration with Your Authentication System
+## 5. Login and FCM Token
 
-### 5.1 Login Integration
-
-Integrate SeatBoost authentication with your existing login system:
+After your user authenticates with **your** identity provider, call SeatBoost login so the server receives the current FCM token (saved in `StorageManager`) together with the session:
 
 ```kotlin
-class AuthenticationManager {
-    
-    fun loginUser(email: String, password: String) {
-        // Your company's login logic
-        performCompanyLogin(email, password)
-        
-        // Authenticate with SeatBoost SDK
-        authenticateWithSeatBoost(email)
-    }
-    
-    private fun authenticateWithSeatBoost(email: String) {
-        // The FCM token will be automatically included in the authentication request
-        LoginManager.logInWithEmail(email)
-    }
-    
-    fun logoutUser() {
-        // Your company's logout logic
-        performCompanyLogout()
-        
-        // Logout from SeatBoost
-        LoginManager.logout()
-    }
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import com.industrialrocket.seatboost.sdk.SeatBoostSDK
+import com.industrialrocket.seatboost.sdk.manager.StorageManager
+
+suspend fun loginToSeatBoost(email: String) = withContext(Dispatchers.IO) {
+    SeatBoostSDK.login(
+        email = email,
+        firebaseToken = StorageManager.getFCMToken(),
+        appVersion = SeatBoostSDK.instance.APP_VERSION,
+    )
 }
 ```
 
-## 6. Notification Types and Handling
+If push is disabled or the token is not yet available, `getFCMToken()` may be empty until `onNewToken` or `ensureFCMTokenForSeatBoost` completes; a later login or token refresh can update the backend.
 
-### 6.1 Supported Notification Types
+## 6. Notification Types (Payload)
 
-The SeatBoost SDK supports the following notification types:
+Typical `data` keys:
 
-| Type | Description | Data Fields |
-|------|-------------|-------------|
-| `auction_updated` | Auction status changes | `auction`, `status` |
-| `reward_issued` | New reward available | `auction`, `reward` (JSON) |
-| `flight_updated` | Flight status changes | `auction`, `status`, `flightStatus` |
-| `participant_updated` | Participant list changes | `auction`, `isParticipantRemoved` |
+| `msg` (optional)        | Role |
+|-------------------------|------|
+| `reward_issued`         | Reward payload in `reward` (JSON string) |
+| `flight_updated`        | Flight status in `flightStatus` |
+| `participant_updated`   | `isParticipantRemoved` — SDK event `AuctionParticipantRemovedEvent` |
+| (default / other)       | Auction-related updates; often includes `status` |
 
-### 6.2 Event Handling
-
-Use EventBus to handle notification events in your activities:
-
-```kotlin
-class MainActivity : AppCompatActivity() {
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        
-        // Register for SeatBoost events
-        EventBus.getDefault().register(this)
-    }
-    
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBus.getDefault().unregister(this)
-    }
-    
-    @Subscribe
-    fun onAuctionUpdated(event: AuctionUpdatedEvent) {
-        // Update UI with new auction information
-        updateAuctionUI(event.auction)
-    }
-    
-    @Subscribe
-    fun onAuctionEnded(event: AuctionEndEvent) {
-        // Handle auction end
-        showAuctionEndDialog(event.auction, event.availableAuctions)
-    }
-    
-    @Subscribe
-    fun onFlightUpdated(event: FlightUpdatedEvent) {
-        // Update flight information
-        updateFlightStatus(event.auction)
-    }
-    
-    @Subscribe
-    fun onParticipantRemoved(event: AuctionParticipantRemovedEvent) {
-        // Handle participant changes
-        if (event.isParticipantRemoved) {
-            showParticipantRemovedMessage()
-        }
-    }
-    
-    @Subscribe
-    fun onAuctionChangedMessaging(event: AuctionChangedMessagingEvent) {
-        // Handle auction status changes from notifications
-        // This event is triggered when the SDK needs to fetch updated auction data
-        // The callback will be executed when the auction data is retrieved
-        event.callback.onRequestSuccess(auctionResponse)
-    }
-}
-```
+Always validate `auction` and the user’s relationship to that auction (for example via `StorageManager.hasPastAuction`) before updating UI.
 
 ## 7. Resource Configuration
 
@@ -394,28 +320,12 @@ Add the necessary strings in `res/values/strings.xml`:
 <resources>
     <!-- Required: Notification channel ID (must match AndroidManifest.xml) -->
     <string name="seatboost_notification_channel_id" translatable="false">seatboost_channel_id</string>
-    
 </resources>
 ```
 
-### 7.2 Optional Notification Color
+### 7.2 Optional Colors and Icons
 
-If you want to customize the notification color, add it in `res/values/colors.xml`:
-
-```xml
-<resources>
-    <!-- Optional: Custom notification colors -->
-    <color name="notification_color">#FF1976D2</color>
-
-</resources>
-```
-
-### 7.3 Optional Notification Icons
-
-If you want to customize notification icons, create them in `res/mipmap/`:
-- `ic_notification.png` (24x24dp)
-- `ic_notification.png` (36x36dp)
-- `ic_notification.png` (48x48dp)
+See section 2.2 and [Android notification guidelines](https://developer.android.com/guide/topics/ui/notifiers/notifications).
 
 ## 8. Permission Handling
 
@@ -512,7 +422,6 @@ If you haven't completed these steps yet, please follow the instructions in the 
 | Service not registered | Verify `SBFirebaseMessagingService` in `AndroidManifest.xml` |
 | Permission denied | Implement proper permission handling for Android 13+ |
 | Token not updating | Ensure `onNewToken()` is properly implemented |
-
 ---
 
 **Congratulations!** You have successfully configured push notifications for the SeatBoost SDK in your Android application. The integration is now ready for testing and production deployment.

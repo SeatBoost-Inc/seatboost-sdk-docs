@@ -717,7 +717,7 @@ startActivity(intent)
 
 ## Next Steps
 
-- [Basic Integration Example](/examples/basic-integration.md) - Basic Android integration
+- [Basic Integration Example](/examples-android/basic-integration-android.md) - Basic Android integration
 - [Getting Started - Android](/getting-started-android.md) - Complete setup guide
 - [UI Components](/ui/) - SDK UI components documentation
 - [REST API](/rest-api/) - API endpoints and usage

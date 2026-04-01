@@ -7,8 +7,8 @@ The SeatBoost SDK has been meticulously engineered with the purpose of assisting
 ##### Android
 
 - **[Getting Started - Android](getting-started-android.md)** - Complete Android SDK setup guide
-- **[Basic Integration Example](examples-android/basic-integration.md)** - Android integration examples
-- **[UI Integration Example](examples-android/ui-integration.md)** - Android UI integration implementation
+- **[Basic Integration Example](examples-android/basic-integration-android.md)** - Android integration examples
+- **[UI Integration Example](examples-android/ui-integration-android.md)** - Android UI integration implementation
 
 ##### iOS
 

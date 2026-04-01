@@ -7,32 +7,48 @@ This guide outlines the steps to install and configure the SeatBoost Android SDK
 Follow these steps to add the SDK to your Android application:
 
 1.  **Unzip SDK:** Unzip the provided `seatboost-sdk-android.zip` file.
-2.  **Locate Repo:** Inside, you will find a folder named `seatboost`. This folder is a local Maven repository.
-3.  **Add Maven Repo:** Add this local repository to your **root** project's `build.gradle` file. Place the `seatboost` folder (e.g., within a `libs` directory) in your project's root.
+2.  **Locate Repo:** Inside, you will find a folder that acts as a **local Maven repository** (often named `seatboost` or `seatboostsdk`). Use the folder name and path you receive with your SDK drop.
+3.  **Add Maven repositories:** Add the local repository **and** the JitPack repository to your **root** `build.gradle` (or your `settings.gradle` / `dependencyResolutionManagement` repository block, depending on your Gradle setup). The SDK depends on artifacts resolved via JitPack (for example Philology), so JitPack is required.
+
+    Place the local Maven folder at a known path (for example `seatboostsdk/` or `libs/seatboost/` at the project root).
 
     *Example for root `build.gradle` (Groovy):*
     ```groovy
     allprojects {
         repositories {
-            // ... other repositories
+            google()
+            mavenCentral()
+            maven { url = uri("https://jitpack.io") }
             maven {
-                url = uri("$rootDir/libs/seatboost")
+                url = uri("$rootDir/seatboostsdk") // or "$rootDir/libs/seatboost"
             }
         }
     }
     ```
 
-4.  **Add Dependency:** In your **app module's** `build.gradle` file, add the SeatBoost SDK as a new dependency:
+4.  **Add dependency:** In your **app module's** `build.gradle` file, add the SeatBoost SDK. Use the **artifact version supplied with your SDK package** (reference integrations have used `3.8`).
 
     *Example for app `build.gradle` (Groovy):*
     ```groovy
     dependencies {
         // ... other dependencies
-        implementation("com.industrialrocket:seatboost-sdk:1.0.0")
+        implementation("com.industrialrocket:seatboost-sdk:3.8")
     }
     ```
 
-5.  **Sync Project:** Sync your Gradle files in Android Studio.
+5.  **Enable Data Binding (required):** The SDK AAR participates in Data Binding merging. Enable Data Binding on the **app** module:
+
+    ```groovy
+    android {
+        buildFeatures {
+            dataBinding true
+        }
+    }
+    ```
+
+6.  **Minimum SDK:** Use at least the minimum API level required by your SDK delivery. Recent integrations are built and tested with **API 26** and above; confirm against your release notes.
+
+7.  **Sync Project:** Sync your Gradle files in Android Studio.
 
 ---
 
@@ -42,7 +58,13 @@ The SDK must be initialized before use. We recommend performing this initializat
 
 If you don't have one, create a new class that extends `Application` and register it in your `AndroidManifest.xml`.
 
-When calling `SeatBoostSDK.init()`, you must provide the `appVendor` parameter, which should be set to the **2-digit IATA code** of the airline consuming the SDK. For example, if your airline's IATA code is "AB", use `"AB"` as the `appVendor` value.
+When calling `SeatBoostSDK.init()`, you must provide:
+
+- **`context`:** Your `Application` instance.
+- **`appVendor`:** The **2-digit IATA code** of the airline consuming the SDK (for example `"AB"`).
+- **`defaultEnvironmentName`:** A logical environment name (`"PRE_PROD"` or `"PROD"`). Use the values and **base URLs** provided for your program.
+- **Base URLs:** `baseAPIUrl`, `baseV2APIUrl`, `basePaymentUrl`, and `baseIdentityUrl` for your environment. SeatBoost will supply the correct endpoints for each tier.
+
 
 **Example `MyApplication.kt`:**
 
@@ -83,8 +105,8 @@ class MyApplication : Application() {
             baseV2APIUrl = "https://pre-prod-api.bidwinengine.com/",
             basePaymentUrl = "https://pre-prod-payment.bidwinengine.com/",
             baseIdentityUrl = "https://pre-prod-iam.bidwinengine.com/",
-            appVersion = "AeroBest/1.0-Android" // Replace with your app name/version
-        ) { title, enable ->
+            appVersion = "MyApp/1.0-Android" // Or: "MyApp/${BuildConfig.VERSION_NAME}-Android"
+        ) { _, _ ->
             // Return your custom logger implementation
             object : SBLog {
                 override fun d(vararg messages: String) {
@@ -135,3 +157,4 @@ class MyApplication : Application() {
         SeatBoostSDK.setAirlineCode("SDK") // Replace "SDK" with the airline code for your integration
     }
 }
+```
