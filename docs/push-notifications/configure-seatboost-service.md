@@ -9,4 +9,4 @@ The organization using the SeatBoost SDK must provide the following information 
 * **Key ID**: The Key ID associated to the APNs auth key in the apple developer portal.
 * **Team ID**: It is a unique identifier assigned to a development team or organization. This identifier is used to distinguish between different developer accounts and teams within the Apple ecosystem. 
 
-The SeatBoost admin team will use these information to configure properly the SeatBoost Service and their Firebase Cloud Messaging environment.
+Please send this information to the SeatBoost admin team, who will use it to configure the SeatBoost Service and their Firebase Cloud Messaging environment properly.
