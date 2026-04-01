@@ -8,7 +8,7 @@ To do that, call the following inside a coroutine:
 
 ```kotlin
 CacheManager.bootstrap = SBRestClient.shared.bootstrap()
-````
+```
 
 You can do this any time between the SDK’s initialization and the first usage of any SDK functionality.
 
@@ -19,12 +19,17 @@ You can do this any time between the SDK’s initialization and the first usage 
 After loading the bootstrap, you should log the user in, you can do this by calling:
 
 ```kotlin
+import com.industrialrocket.seatboost.sdk.SeatBoostSDK
+import com.industrialrocket.seatboost.sdk.manager.StorageManager
 
-SeatBoostSDK.login(email = userEmail, firebaseToken = "", appVersion = "AeroBest/1.0")
-
+SeatBoostSDK.login(
+    email = userEmail,
+    firebaseToken = StorageManager.getFCMToken(),
+    appVersion = SeatBoostSDK.instance.APP_VERSION,
+)
 ```
 
-Inside a coroutine. You should set the `firebaseToken` property to an FCM registration token if notifications are required for the integration, otherwise, just use an empty string as shown in the example. 
+Inside a coroutine. Pass the current **FCM registration token** via `StorageManager.getFCMToken()` when push notifications are part of your integration (see [Configure Android App](/push-notifications/configure-android-app.md)). If you do not use FCM, you can pass an empty string; the token is still sent on login when available so the backend can target the device. 
 
 This function returns an [`SBAuthV2Response`](/object-model/sbauthv2response.md) if the call succeeds, and throws if there are any errors. You are not required to use the return data, as it is saved automatically by the SDK.
 
