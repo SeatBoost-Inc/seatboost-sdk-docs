@@ -6,11 +6,13 @@ All the necessary changes must be implemented within the **AppDelegate** of your
 
 2) Move your config file into the root of your Xcode project. If prompted, select to add the config file to all targets.
 
-3) Add Firebase SDKs to your app puttting the line below in your **Podfile** and run **pod install**.
+3) Add Firebase SDKs to your app putting the line below in your **Podfile** and run **pod install**.
 
 ```
-    pod 'Firebase/Messaging', '9.0.0'
+    pod 'Firebase/Messaging', '~> 9.0.0'
 ```
+
+> Use version `9.0.0` or higher.
 
 4) Initialize Firebase in your app. Please, add the following initialization code to your application. 
 
@@ -45,7 +47,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     }
 ```
 
-5) Add the code below to handle the notifications in the SeatBoost SDK, this will redirect the notification in memory messages that will refresh the UI components properly. 
+5) Add the code below to handle the notifications in the SeatBoost SDK, this will redirect the notification in memory messages that will refresh the UI components properly. Both methods are required — the first handles foreground notifications, the second handles background fetch notifications.
 
 ```swift
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
@@ -73,17 +75,30 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     }
 ```
 
-6) Implements the **didReceiveRegistrationToken** method to get and pass registrationToken to the SDK to configure the SeatBoost SDK Push Notifications Service.
+6) Implement the **didReceiveRegistrationToken** method to get and pass registrationToken to the SDK to configure the SeatBoost SDK Push Notifications Service. Note that `delegate: self` refers to the `SBPushNotificationsDelegate` conformance implemented in the next step.
 
 ```swift
-extension AppDelegate : MessagingDelegate {
-    
+extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if fcmToken != nil {
-        
             SBSdk.shared.configurePushNotificationsService(registrationToken: fcmToken!, delegate: self)
             SBSdk.shared.initialize()
         }
+    }
+}
+```
+
+7) Implement the **SBPushNotificationsDelegate** to handle auction updates and provide the auction token required by the SDK. Make sure your `AppDelegate` class declaration conforms to this delegate:
+
+```swift
+extension AppDelegate: SBPushNotificationsDelegate {
+    func auctionUpdated(_ auctionResponse: SeatBoostSdk.SBAuctionResponse) {
+        // Update the client session or anything that needs to have the auction data.
+    }
+
+    func getAuctionToken(forEmail: String, andAuctionId: String) -> String {
+        // This should return the Auction token that should be stored by the client. The line below is an example that gets this token from DB.
+        DBService.sharedInstance.getAuthTokenForEmail(Session.sharedInstance.email, andAuctionId: andAuctionId)
     }
 }
 ```
