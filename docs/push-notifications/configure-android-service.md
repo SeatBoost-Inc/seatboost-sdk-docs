@@ -128,7 +128,7 @@ After submitting the required information:
 2. Receive the `google-services.json` file
 3. [Configure your Android app](push-notifications/configure-android-app.md) to receive notifications
 4. Test the integration using the provided configuration
-5. Implement notification handling in your app
+5. Implement `FirebaseMessagingService` and route data payloads through `SeatBoostSDK.handleNotification` as described in [Configure Android App](push-notifications/configure-android-app.md)
 6. Deploy to production with proper testing
 
 For more information about Firebase Cloud Messaging, see the [official documentation](https://firebase.google.com/docs/cloud-messaging/android/client).

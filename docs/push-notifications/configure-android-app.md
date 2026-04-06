@@ -187,6 +187,12 @@ class MyApplication : Application() {
             appVersion = "MyApp/${BuildConfig.VERSION_NAME}-Android",
         ) { _, _ -> /* SBLog factory — see Getting Started */ }
 
+        // Optional: show a local/system notification when an auction ends with a cancelled flight
+        // and the live auction UI is not visible (see section 4). Omit if you do not use this UX.
+        SeatBoostSDK.instance.flightCancelledNotificationHandler = { auction, ctx ->
+            MyNotificationHelper.showFlightCancelledIfNeeded(auction, ctx)
+        }
+
         SeatBoostSDK.initResources(resources)
         SeatBoostSDK.setAirlineCode("AB") // your IATA airline code
     }
@@ -225,25 +231,46 @@ class MyApplication : Application() {
 
 ## 4. Firebase Messaging Service
 
-Implement `FirebaseMessagingService`. Persist the token, ignore messages when the user is not logged in to SeatBoost, and route payload handling by `msg` when the user has relevant auctions in `StorageManager`.
+Implement `FirebaseMessagingService`. Persist the token, ignore messages when the user is not logged in to SeatBoost, and ensure the payload is for an auction the user is already associated with (for example using `StorageManager.hasPastAuction`).
 
-The SDK ships with **GreenRobot EventBus** on the classpath; you can post `AuctionParticipantRemovedEvent` (from the SDK) when `msg` is `participant_updated`. Other message types (`reward_issued`, `flight_updated`, default auction updates) can be handled in your app (UI refresh, custom events) as needed.
+### 4.1 Delegate handling to the SDK
+
+**SeatBoost Android SDK** centralizes push **data** handling in `SeatBoostSDK.handleNotification`. It refreshes auction state via the REST API where needed, posts **GreenRobot EventBus** events used by the SDK UI layer (`AuctionUpdatedEvent`, `AuctionEndEvent`, `FlightUpdatedEvent`, `AuctionParticipantRemovedEvent`, and others), and coordinates with `CacheManager` (for example bidder position and live-activity visibility).
+
+Call it from `onMessageReceived` with:
+
+- `context` — typically your service instance
+- `data` — `remoteMessage.data` (the FCM data map)
+- `notificationBody` — `remoteMessage.notification?.body`, or `null` if the message is data-only (used for `participant_updated` message text when present)
+- `disposable` — a `CompositeDisposable` you create in `onCreate()` and `clear()` in `onDestroy()`; the SDK adds `auctionStatus` RxJava subscriptions to it
+
+The SDK returns early if the user is not logged in, the auction is not in local storage, or the payload is incomplete.
 
 ```kotlin
 package com.example.myapp.fcm
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.industrialrocket.seatboost.sdk.events.AuctionParticipantRemovedEvent
+import com.industrialrocket.seatboost.sdk.SeatBoostSDK
 import com.industrialrocket.seatboost.sdk.manager.StorageManager
-import org.greenrobot.eventbus.EventBus
+import io.reactivex.disposables.CompositeDisposable
 
 class SBFirebaseMessagingService : FirebaseMessagingService() {
 
+    private var apiDisposable: CompositeDisposable? = null
+
+    override fun onCreate() {
+        super.onCreate()
+        apiDisposable = CompositeDisposable()
+    }
+
+    override fun onDestroy() {
+        apiDisposable?.clear()
+        super.onDestroy()
+    }
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        
-        // Save FCM token to SeatBoost SDK storage
         StorageManager.saveFCMToken(token)
     }
 
@@ -263,18 +290,42 @@ class SBFirebaseMessagingService : FirebaseMessagingService() {
             return
         }
 
-        when (data["msg"]) {
-            "reward_issued" -> { /* optional: parse data["reward"] if you show rewards in-app */ }
-            "flight_updated" -> { /* optional: refresh flight UI using data["flightStatus"] */ }
-            "participant_updated" -> {
-                val removed = data["isParticipantRemoved"]?.toBoolean() ?: false
-                EventBus.getDefault().post(AuctionParticipantRemovedEvent(removed))
-            }
-            else -> { /* optional: handle auction status via data["status"] */ }
-        }
+        val notificationBody = remoteMessage.notification?.body
+        val disposable = apiDisposable ?: return
+        SeatBoostSDK.handleNotification(this, data, notificationBody, disposable)
     }
 }
 ```
+
+From Java, call the same entry point: `SeatBoostSDK.handleNotification(this, extras, notificationBody, apiDisposable);`
+
+### 4.2 Optional: `SBPushNotificationsDelegate`
+
+If bearer tokens for auctions are **not** always available from `StorageManager.getPastAuction(auctionId)` (for example you store tokens in app-specific secure storage), implement `SBPushNotificationsDelegate` and register it after `SeatBoostSDK.init`:
+
+- `getAuctionToken(forEmail, auctionId)` — return the raw bearer token string used for `Authorization: Bearer …` on auction APIs
+- `auctionUpdated(auctionResponse)` — called when the SDK completes an auction refresh after a push (ended auction, generic update, or flight flow); use it to sync your own app state if needed
+
+```kotlin
+import com.industrialrocket.seatboost.sdk.SBPushNotificationsDelegate
+import com.industrialrocket.seatboost.sdk.model.SBAuctionResponse
+
+SeatBoostSDK.configurePushNotificationsDelegate(object : SBPushNotificationsDelegate {
+    override fun getAuctionToken(forEmail: String, auctionId: String): String {
+        return myTokenStore.getAuctionBearer(forEmail, auctionId)
+    }
+
+    override fun auctionUpdated(auctionResponse: SBAuctionResponse) {
+        // Optional: persist or mirror auction state outside the SDK
+    }
+})
+```
+
+If no delegate is set, the SDK uses `StorageManager` only.
+
+### 4.3 Optional: cancelled flight local notification
+
+When an auction **ends** and the flight is **cancelled**, the SDK can invoke `SeatBoostSDK.instance.flightCancelledNotificationHandler` **only if** the live auction UI is not visible (`CacheManager` / live activity flag). Set this lambda in your `Application` class after `SeatBoostSDK.init` to post a system notification (see section 3). If you do not set it, no extra notification is shown for this case.
 
 ## 5. Login and FCM Token
 
@@ -299,16 +350,15 @@ If push is disabled or the token is not yet available, `getFCMToken()` may be em
 
 ## 6. Notification Types (Payload)
 
-Typical `data` keys:
+Typical `data` keys. When you use `SeatBoostSDK.handleNotification`, the SDK interprets these and refreshes state or posts EventBus events as described in section 4.1.
 
 | `msg` (optional)        | Role |
 |-------------------------|------|
-| `reward_issued`         | Reward payload in `reward` (JSON string) |
-| `flight_updated`        | Flight status in `flightStatus` |
-| `participant_updated`   | `isParticipantRemoved` — SDK event `AuctionParticipantRemovedEvent` |
-| (default / other)       | Auction-related updates; often includes `status` |
+| `flight_updated`        | Triggers auction refresh for flight changes; `flightStatus` may be present (for example delayed, cancelled, moved). SDK posts `FlightUpdatedEvent` after a successful refresh. |
+| `participant_updated` | `isParticipantRemoved`; SDK persists participant info and posts sticky `AuctionParticipantRemovedEvent`. Uses `notificationBody` when the FCM message includes a notification payload. |
+| (default / other)       | General auction updates; SDK calls auction status after a short delay, posts `AuctionUpdatedEvent`, and updates bidder position when applicable. |
 
-Always validate `auction` and the user’s relationship to that auction (for example via `StorageManager.hasPastAuction`) before updating UI.
+Always validate `auction` and the user’s relationship to that auction (for example via `StorageManager.hasPastAuction`) before updating UI. Your `onMessageReceived` should apply the same checks before calling `handleNotification`.
 
 ## 7. Resource Configuration
 
@@ -396,7 +446,7 @@ After completing the Android app configuration, ensure you have:
 - [ ] Set up FCM token management in your `Application` class
 - [ ] Integrated with your existing authentication system
 - [ ] Added notification permission handling (Android 13+)
-- [ ] Implemented event handling for notification types
+- [ ] Routed FCM data through `SeatBoostSDK.handleNotification` (and optional delegate / cancelled-flight handler as needed)
 
 ### 9.2 Firebase Backend Configuration
 
@@ -422,6 +472,7 @@ If you haven't completed these steps yet, please follow the instructions in the 
 | Service not registered | Verify `SBFirebaseMessagingService` in `AndroidManifest.xml` |
 | Permission denied | Implement proper permission handling for Android 13+ |
 | Token not updating | Ensure `onNewToken()` is properly implemented |
+| Auction APIs fail after push | If tokens are not only in `StorageManager`, implement `SBPushNotificationsDelegate.getAuctionToken` |
 ---
 
 **Congratulations!** You have successfully configured push notifications for the SeatBoost SDK in your Android application. The integration is now ready for testing and production deployment.
