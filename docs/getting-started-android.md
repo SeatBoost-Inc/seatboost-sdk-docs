@@ -2,13 +2,20 @@
 
 This guide outlines the steps to install and configure the SeatBoost Android SDK in your project.
 
+## Requirements
+
+- **Java 17 or later** for both `sourceCompatibility` / `targetCompatibility` and the Kotlin `jvmTarget`. Java 17 is the minimum (the SDK is built with 17).
+- **Minimum SDK:** API **26** and above.
+- **Data Binding** enabled on the app module. The SDK AAR participates in Data Binding merging.
+- **JitPack** in your repository list. The SDK resolves some third-party libraries through JitPack.
+
 ## Installation
 
 Follow these steps to add the SDK to your Android application:
 
 1.  **Unzip SDK:** Unzip the provided `seatboost-sdk-android.zip` file.
 2.  **Locate Repo:** Inside, you will find a folder that acts as a **local Maven repository** (often named `seatboost` or `seatboostsdk`). Use the folder name and path you receive with your SDK drop.
-3.  **Add Maven repositories:** Add the local repository **and** the JitPack repository to your **root** `build.gradle` (or your `settings.gradle` / `dependencyResolutionManagement` repository block, depending on your Gradle setup). The SDK depends on artifacts resolved via JitPack (for example Philology), so JitPack is required.
+3.  **Add Maven repositories:** Add the local repository **and** the JitPack repository to your **root** `build.gradle` (or your `settings.gradle` / `dependencyResolutionManagement` repository block, depending on your Gradle setup).
 
     Place the local Maven folder at a known path (for example `seatboostsdk/` or `libs/seatboost/` at the project root).
 
@@ -26,17 +33,30 @@ Follow these steps to add the SDK to your Android application:
     }
     ```
 
-4.  **Add dependency:** In your **app module's** `build.gradle` file, add the SeatBoost SDK. Use the **artifact version supplied with your SDK package** (reference integrations have used `3.8`).
+4.  **Add dependency:** In your **app module's** `build.gradle` file, add the SeatBoost SDK. Use the **artifact version supplied with your SDK package** (reference integrations have used `4.0`).
 
     *Example for app `build.gradle` (Groovy):*
     ```groovy
     dependencies {
         // ... other dependencies
-        implementation("com.industrialrocket:seatboost-sdk:3.8")
+        implementation("com.industrialrocket:seatboost-sdk:4.0")
     }
     ```
 
-5.  **Enable Data Binding (required):** The SDK AAR participates in Data Binding merging. Enable Data Binding on the **app** module:
+5.  **Java language level (minimum 17):** The SDK is compiled with Java 17. Your app must use **17 or later**. If you already use Java 21 (or another newer level), leave your `compileOptions` and Kotlin `jvmTarget` as they are. You only need to change them if they are still below 17:
+
+    ```groovy
+    android {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_17
+            targetCompatibility JavaVersion.VERSION_17
+        }
+    }
+    ```
+
+    If the app uses Kotlin and `jvmTarget` is still below 17, set it to `"17"` or to the same newer level you already use for Java.
+
+6.  **Enable Data Binding (required):** The SDK AAR participates in Data Binding merging. Enable Data Binding on the **app** module:
 
     ```groovy
     android {
@@ -45,8 +65,6 @@ Follow these steps to add the SDK to your Android application:
         }
     }
     ```
-
-6.  **Minimum SDK:** Use at least the minimum API level required by your SDK delivery. Recent integrations are built and tested with **API 26** and above; confirm against your release notes.
 
 7.  **Sync Project:** Sync your Gradle files in Android Studio.
 
