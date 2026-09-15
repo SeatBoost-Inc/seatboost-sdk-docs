@@ -1,10 +1,30 @@
 # Basic Integration Example
 
-This example shows how to integrate the SeatBoost SDK into your iOS app with basic functionality. Make sure you have completed the [installation steps](/getting-started-ios.md) before proceeding with this integration.
+This is the iOS integration path. Your app owns login, the passenger's auction list, and PNR entry. The SDK owns the auction screens through [`SBBasicFlowController`](/ui/basic-flow.md).
+
+Complete the [installation steps](/getting-started-ios.md) first.
+
+The sample helpers (`Session`, `DBService`, `Config`) are from the SeatBoost sample app. Replace them with your own session, storage, and configuration.
+
+## Load the Bootstrap
+
+`SBSdk.shared.initialize()` loads bootstrap configuration (airlines, themes, messages). You can also load it explicitly any time after `configureApp` and before presenting SDK UI:
+
+```swift
+SBRestClient.shared.bootstrap()
+    .done { _ in
+        // Airline catalog is available on SBBootstrap.shared
+    }
+    .fail { error in
+        self.alert(title: "Server error", message: error.localizedDescription)
+    }
+```
+
+---
 
 ## Authentication
 
-The user needs to be authenticated using his email before proceeding with the SeatBoost flow.
+Authenticate the passenger before presenting the auction flow.
 
 ```Swift
 func authenticate(email: String) {  
@@ -24,9 +44,56 @@ func authenticate(email: String) {
 }
 ```
 
-## Retrieve auctions
+Pass `exp`, `signature`, and `mids` when your airline SSO provides them; otherwise empty strings / `nil` are valid for email-only login.
 
-With the user successfuly logged in, you need to retrieve the availlable auctions for the the user PNR.
+---
+
+## Auctions and Instant Upgrades History
+
+After login, refresh the passenger's current, completed, and instant-upgrade lists for your home screen. On success the SDK writes those lists onto `SBRestClient.shared.session`; the promise returns the associated tokens.
+
+A first call can pass `nil` for the previous keys. Later calls should send the keys you already stored so the server can merge history across devices.
+
+```swift
+func loadHistory() {
+    let authToken = SBRestClient.shared.session.authToken
+
+    SBRestClient.shared.history(authToken: authToken, auctions: nil, instantUpgrades: nil)
+        .done { historyResponse in
+            let session = SBRestClient.shared.session
+            // session.activeAuctions, session.completedAuctions, session.instantUpgrades
+            // historyResponse.currentAuctionsTokens / completedAuctionsTokens / instantUpgradeTokens
+            self.reloadAuctionList()
+        }
+        .fail { error in
+            self.alert(title: "Server error", message: error.localizedDescription)
+        }
+}
+```
+
+When the user selects an item from that list, reopen it with `SBBasicFlowController`. Call `status` first if you need a fresh `SBAuction` instance:
+
+```swift
+func openAuction(_ auction: SBAuction) {
+    let token = DBService.shared.getAuthTokenForEmail(Session.shared.email, andAuctionId: auction.auctionId)
+
+    let flow = SBBasicFlowController.create(
+        auctionToken: token,
+        auction: auction,
+        currentAvailableAuctions: nil
+    )
+    flow.basicFlowDelegate = self
+    flow.datasource = Session.shared
+    flow.modalPresentationStyle = .fullScreen
+    present(flow, animated: true)
+}
+```
+
+---
+
+## Retrieve auctions (PNR lookup)
+
+Call `findAuctions` with the passenger's PNR, then pass the result into `SBUpgradeContext` before presenting the flow.
 
 ```Swift
 func retrieveAuctions() {
@@ -48,9 +115,9 @@ func retrieveAuctions() {
 }
 ```
 
-## Presenting the Auction Flow
+## Present the auction flow
 
-After successfully finding auctions with `findAuctions()`, you can present the UI flow.
+Present `SBBasicFlowController`. It hosts select-upgrade, payment, live bidding, buy-now, and end-auction. Your app does not embed those screens itself.
 
 ```Swift
 func startAuctionFlow() {
@@ -62,13 +129,16 @@ func startAuctionFlow() {
     let basicFlowController = SBBasicFlowController.create(upgradeContext: upgradeContext)
     
     basicFlowController.basicFlowDelegate = self // SBBasicFlowControllerDelegate
-    basicFlowController.datasource = Session.shared // SBUnlockedPaymentCardDataSource
+    basicFlowController.datasource = Session.shared // SBUnlockedPaymentCardDataSource subclass
+    basicFlowController.modalPresentationStyle = .fullScreen
     
     self.present(basicFlowController, animated: true)
 }
 ```
 
-Example of SBBasicFlowControllerDelegate
+`datasource` must be an `SBPaymentCardDataSource`. For apps that do not lock saved cards behind a PIN, subclass `SBUnlockedPaymentCardDataSource` and persist `customerId` / `platformId` (see `Session` in the sample app).
+
+### SBBasicFlowControllerDelegate
 
 ```Swift
 extension FlightsViewController: SBBasicFlowControllerDelegate {
@@ -91,7 +161,11 @@ extension FlightsViewController: SBBasicFlowControllerDelegate {
     }
 
     func onClose() {
-        // Handle the close event
+        // The user closed the flow from bidding
     }
 }
 ```
+
+If the auction ends or this participant is removed, the flow dismisses itself. Those events are not delivered on the delegate; `onClose` is only called when the user taps close on bidding.
+
+See [Basic Flow Controller](/ui/basic-flow.md) for the `create` APIs.

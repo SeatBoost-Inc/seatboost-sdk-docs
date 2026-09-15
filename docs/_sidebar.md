@@ -78,12 +78,12 @@
     <!-- * [@ updateBidder](rest-api/update-bidder.md) -->
     * [validateDisplayName](rest-api/validate-display-name.md)
 * [UI Components](ui/)
+    * [Basic Flow Controller](ui/basic-flow.md)
     * [Select Upgrade Screen](ui/select-upgrade.md)
     * [Payment Screen](ui/payment.md)
     * [Bidding Screen](ui/bidding.md)
     * [Buy Now Screen](ui/buy-now.md)
     * [End Auction Screen](ui/end-auction.md)
-    * [Basic Flow Controller](ui/basic-flow.md)
 * [Push Notifications](push-notifications/)
     * [Configure SeatBoost Service (iOS)](push-notifications/configure-seatboost-service.md)
     * [Configure iOS App](push-notifications/configure-app.md)
