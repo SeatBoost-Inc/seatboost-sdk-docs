@@ -30,10 +30,11 @@
 
 | **Property Name**   | **Type**                             | **Description**                                                             |
 |---------------------|--------------------------------------|-----------------------------------------------------------------------------|
-| currentAuction      | `SBAuction?`                         | The auction used to buy the instant upgrade                                 |
-| currentAuctionToken | `String`                             | The auction token                                                           |
+| params              | `SBBuyNowParams?`                    | `SBBuyNowFromAuctionParams` or `SBBuyNowFromUpgradeParams`                  |
 | delegate            | `SBBuyNowControllerDelegate!`        | The delegate instance used to receive the user interface events             |
-| datasource          | `SBPaymentCardControllerDataSource!` | The data source instance used provide information about the payment methods |
+| datasource          | `SBPaymentCardDataSource!`           | The data source instance used provide information about the payment methods |
+
+From a live auction, set `SBBuyNowFromAuctionParams` (`auction`, `auctionToken`). From select upgrade, set `SBBuyNowFromUpgradeParams` (`upgradeContext`).
 
 ## SBBuyNowControllerDelegate
 
@@ -41,6 +42,7 @@
 public protocol SBBuyNowControllerDelegate: AnyObject {
     func onBack()
     func onBuy(auction: SBAuction!)
+    func onBuy(instantUpgrade: SBInstantUpgrade!, authToken: String)
     func onBuyFail(error: Error)
 }
 ```

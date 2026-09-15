@@ -11,7 +11,7 @@ func authenticate(email: String) {
     SBActivityIndicator.shared.show()
     
     SBRestClient.shared.authenticate(email, exp: "", signature: "", mids: nil)
-    .done { bidder in
+    .done { authToken in
         SBActivityIndicator.shared.hide()
         Session.shared.email = email
         Session.shared.username = email.components(separatedBy: "@")[0]
@@ -33,7 +33,7 @@ func retrieveAuctions() {
     let firstName = Config.shared.firstName
     let lastName = Config.shared.lastName
     
-    let data = SBFindAuctionsRequestData(confirmationNumber: Config.shared.reservationCode, // PNR
+    let data = SBFindAuctionsRequestBody(confirmationNumber: Config.shared.reservationCode, // PNR
                                          airlineCode: Config.shared.airlineCode, // Your airline code
                                          dateOfTravel: Date(),
                                          firstName: firstName,

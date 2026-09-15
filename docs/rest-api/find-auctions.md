@@ -12,7 +12,7 @@ Use this method to fetch all the flight upgrade auctions that are available for 
 #### **iOS**
 
 ```swift
-public func findAuctions(_ data: SBFindAuctionsRequestData) -> SBPromise<SBFindAuctionResult>
+public func findAuctions(_ data: SBFindAuctionsRequestBody) -> SBPromise<SBFindAuctionResult>
 ```
 
 #### **Android**
