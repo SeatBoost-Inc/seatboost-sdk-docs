@@ -15,6 +15,10 @@ The SeatBoost SDK has been meticulously engineered with the purpose of assisting
 - **[Getting Started - iOS](getting-started-ios.md)** - Complete iOS SDK setup guide
 - **[Basic Integration Example](examples-ios/basic-integration-ios.md)** - Login, history, PNR lookup, and `SBBasicFlowController`
 
+##### Updating from 3.8
+
+- **[Update Guide](update-guide.md)** - Checklist for moving a third-party app from SDK 3.8 to 4.0
+
 
 ### Overview
 

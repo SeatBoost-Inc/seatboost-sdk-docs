@@ -57,6 +57,10 @@ section.content {
   min-height: 100vh;
 }
 
+.markdown-section input[type="checkbox"] {
+  cursor: pointer;
+}
+
 </style>
 
 </head>
@@ -72,7 +76,16 @@ section.content {
       sidebarDisplayLevel: 0, // set sidebar display level
       name: '',
       repo: '',
-      basePath: ( window.location.host == 'localhost:3000' ) ? '/' : '/seatboost-sdk-docs/'
+      basePath: ( window.location.host == 'localhost:3000' ) ? '/' : '/seatboost-sdk-docs/',
+      plugins: [
+        function (hook) {
+          hook.doneEach(function () {
+            document.querySelectorAll('.markdown-section input[type="checkbox"]').forEach(function (box) {
+              box.removeAttribute('disabled');
+            });
+          });
+        }
+      ]
     }
   </script>
   <!-- Docsify v4 -->

@@ -1,6 +1,7 @@
 * [Getting Started](/)
 * [Getting Started - Android](getting-started-android.md)
 * [Getting Started - iOS](getting-started-ios.md)
+* [Update Guide](update-guide.md)
 * [Examples - Android](examples-android/)
     * [Basic Integration](examples-android/basic-integration-android.md)
     * [UI Integration](examples-android/ui-integration-android.md)
