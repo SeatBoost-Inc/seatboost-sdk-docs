@@ -4,7 +4,7 @@ This guide will walk you through setting up the SeatBoost SDK in your iOS projec
 
 ### Requirements
 
-The SeatBoost SDK requires Xcode 14 or later and is compatible with apps targeting iOS 13.0 or above.
+The SeatBoost SDK requires Xcode 15 or later and is compatible with apps targeting iOS 13.0 or above. Use the **SDK version supplied with your package** (reference integrations have used **4.0.0**).
 
 ### Installation
 
@@ -112,7 +112,7 @@ pod 'Firebase/Analytics'
 - **Minimum iOS**: 13.0
 - **Swift Version**: 5.9+
 - **Privacy Manifest**: Included in the framework
-- **Resources**: Storyboards, nibs, fonts, and assets are embedded in the framework
+- **Resources**: SwiftUI views, remaining storyboards, fonts, and assets are embedded in the framework
 - **Updating**: Replace the `.xcframework` when upgrading to a new SDK version
 
 ## Privacy Manifest

@@ -39,12 +39,15 @@
 
 * onSelect: this method is called when the user selects/fills all the screen fields and clicks on the **Ready to Bid** button. The component will pass the flight/upgrade/paasengers/username parameters to the delegate instance.
 
+* onGotoBuyNow: this method is called when the user chooses instant upgrade instead of joining an auction.
+
 * onGotoAuction: this method is called when the user selects an active (running ) or finished auction.
 
 
 ```swift
 public protocol SBSelectUpgradeControllerDelegate: AnyObject {
     func onSelect(upgradeContext: SBUpgradeContext!)
+    func onGotoBuyNow(upgradeContext: SBUpgradeContext!)
     func onGotoAuction(auctionId: String)
 }
 ```

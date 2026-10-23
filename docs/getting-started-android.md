@@ -2,17 +2,62 @@
 
 This guide outlines the steps to install and configure the SeatBoost Android SDK in your project.
 
+## Requirements
+
+- **Java 17 or later** for both `sourceCompatibility` / `targetCompatibility` and the Kotlin `jvmTarget`. Java 17 is the minimum (the SDK is built with 17).
+- **Minimum SDK:** API **26** and above.
+- **Data Binding** enabled on the app module. The SDK AAR participates in Data Binding merging.
+- **JitPack** in your repository list. The SDK resolves some third-party libraries through JitPack.
+
 ## Installation
+
+The SeatBoost Android SDK is **not** published to Maven Central, Google Maven, or JitPack. JitPack is only needed for some of the SDK's **third-party** dependencies. Gradle will fail with `Could not find com.industrialrocket:seatboost-sdk:...` unless you point it at the **local Maven folder** from the SDK zip.
 
 Follow these steps to add the SDK to your Android application:
 
 1.  **Unzip SDK:** Unzip the provided `seatboost-sdk-android.zip` file.
-2.  **Locate Repo:** Inside, you will find a folder that acts as a **local Maven repository** (often named `seatboost` or `seatboostsdk`). Use the folder name and path you receive with your SDK drop.
-3.  **Add Maven repositories:** Add the local repository **and** the JitPack repository to your **root** `build.gradle` (or your `settings.gradle` / `dependencyResolutionManagement` repository block, depending on your Gradle setup). The SDK depends on artifacts resolved via JitPack (for example Philology), so JitPack is required.
+2.  **Locate Repo:** Inside, you will find a folder that acts as a **local Maven repository** (often named `seatboost` or `seatboostsdk`). Copy that folder into the **Gradle project root** — the directory that contains `settings.gradle` / `settings.gradle.kts` — for example `seatboostsdk/` or `libs/seatboost/`. That is not always the app module folder: in a multi-module project, `$rootDir` is the parent of `:app` / `:aerobest`.
 
-    Place the local Maven folder at a known path (for example `seatboostsdk/` or `libs/seatboost/` at the project root).
+    Confirm the zip actually contains the version you will declare. You should see a POM such as:
 
-    *Example for root `build.gradle` (Groovy):*
+    `seatboostsdk/com/industrialrocket/seatboost-sdk/<version>/seatboost-sdk-<version>.pom`
+
+    Copying the folder is not enough: you must also declare `maven { url = ... }` in the next step. If Gradle's error only lists Maven Central, Google, and JitPack, the local repository is not registered.
+
+    If the project already has a Gradle **module** named `:seatboostsdk` (SDK source), do **not** unpack the Maven folder on top of that module. Put it elsewhere (for example `$rootDir/aerobest/seatboostsdk` or `$rootDir/libs/seatboost`) and point `url` at that path.
+
+3.  **Add Maven repositories:** Add the local repository **and** JitPack where Gradle actually resolves dependencies.
+
+    **Most current Android projects** use `settings.gradle` / `settings.gradle.kts` with `dependencyResolutionManagement` (often `FAIL_ON_PROJECT_REPOS`). In that setup, repositories in `build.gradle` `allprojects { repositories { ... } }` are **ignored**. Put both repos in `settings.gradle`:
+
+    *Example `settings.gradle` (Groovy):*
+    ```groovy
+    dependencyResolutionManagement {
+        repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+        repositories {
+            google()
+            mavenCentral()
+            maven { url = uri("https://jitpack.io") }
+            maven { url = uri("${rootDir}/seatboostsdk") } // or "${rootDir}/libs/seatboost"
+        }
+    }
+    ```
+
+    *Example `settings.gradle.kts`:*
+    ```kotlin
+    dependencyResolutionManagement {
+        repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+        repositories {
+            google()
+            mavenCentral()
+            maven { url = uri("https://jitpack.io") }
+            maven { url = uri("${rootDir}/seatboostsdk") } // or "${rootDir}/libs/seatboost"
+        }
+    }
+    ```
+
+    If the project still uses a root `build.gradle` `allprojects` block instead of `dependencyResolutionManagement`:
+
     ```groovy
     allprojects {
         repositories {
@@ -26,17 +71,30 @@ Follow these steps to add the SDK to your Android application:
     }
     ```
 
-4.  **Add dependency:** In your **app module's** `build.gradle` file, add the SeatBoost SDK. Use the **artifact version supplied with your SDK package** (reference integrations have used `3.8`).
+4.  **Add dependency:** In your **app module's** `build.gradle` file, add the SeatBoost SDK. Use the **artifact version supplied with your SDK package** (the folder name under `seatboost-sdk/` in the local Maven repo). Reference integrations have used `4.0`.
 
     *Example for app `build.gradle` (Groovy):*
     ```groovy
     dependencies {
         // ... other dependencies
-        implementation("com.industrialrocket:seatboost-sdk:3.8")
+        implementation("com.industrialrocket:seatboost-sdk:4.0")
     }
     ```
 
-5.  **Enable Data Binding (required):** The SDK AAR participates in Data Binding merging. Enable Data Binding on the **app** module:
+5.  **Java language level (minimum 17):** The SDK is compiled with Java 17. Your app must use **17 or later**. If you already use Java 21 (or another newer level), leave your `compileOptions` and Kotlin `jvmTarget` as they are. You only need to change them if they are still below 17:
+
+    ```groovy
+    android {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_17
+            targetCompatibility JavaVersion.VERSION_17
+        }
+    }
+    ```
+
+    If the app uses Kotlin and `jvmTarget` is still below 17, set it to `"17"` or to the same newer level you already use for Java.
+
+6.  **Enable Data Binding (required):** The SDK AAR participates in Data Binding merging. Enable Data Binding on the **app** module:
 
     ```groovy
     android {
@@ -45,8 +103,6 @@ Follow these steps to add the SDK to your Android application:
         }
     }
     ```
-
-6.  **Minimum SDK:** Use at least the minimum API level required by your SDK delivery. Recent integrations are built and tested with **API 26** and above; confirm against your release notes.
 
 7.  **Sync Project:** Sync your Gradle files in Android Studio.
 

@@ -25,26 +25,33 @@
     </tr>
 </table>
 
-## SBBiddingController
+## SBBiddingCoordinator
 
-> In order to use this UI component on your application you have to initialize it with some fields:
-
-| **Property Name**   | **Type**                        | **Description**                                                          |
-|---------------------|---------------------------------|--------------------------------------------------------------------------|
-| currentAuction      | `SBAuction?`                    | The auction used to play the bidding process                             |
-| currentAuctionToken | `String`                        | The auction token used to play the bidding process                       |
-| delegate            | `SBBiddingControllerDelegate!`  | The delegate instance used to receive the user interface events          |
-| isJoin              | `Bool`                          | A boolean informing if the auction instance has just created from a join |
-
-## SBBiddingControllerDelegate
+SDK 4.0 presents live bidding as SwiftUI. Create a `UIViewController` with `SBBiddingCoordinator` and push or present it from your navigation stack. Keep a strong reference to the coordinator while the screen is visible.
 
 ```swift
-public protocol SBBiddingControllerDelegate: AnyObject {
-    func onAuctionEnding()
-    func onParticipantRemoved()
-    func onEndAuction()
-    func onBuyNow()
-    func getConfettiParentView() -> UIView?
-}
+let coordinator = SBBiddingCoordinator()
+let biddingVC = coordinator.makeViewController(
+    auction: auction,
+    auctionToken: auctionToken,
+    isJoin: isJoin,
+    onAuctionEnding: { },
+    onParticipantRemoved: { },
+    onEndAuction: { updatedAuction in },
+    onBuyNow: { updatedAuction in },
+    onClose: { }
+)
+navigationController?.pushViewController(biddingVC, animated: true)
 ```
+
+| **Parameter**        | **Type**              | **Description**                                                          |
+|----------------------|-----------------------|--------------------------------------------------------------------------|
+| auction              | `SBAuction`           | The auction used to play the bidding process                             |
+| auctionToken         | `String`              | The auction token used to play the bidding process                       |
+| isJoin               | `Bool`                | `true` when the auction instance has just been created from a join       |
+| onAuctionEnding      | `() -> Void`          | Called when the auction is ending                                        |
+| onParticipantRemoved | `() -> Void`          | Called when this participant is removed                                  |
+| onEndAuction         | `(SBAuction) -> Void` | Called with the updated auction when the auction finishes                |
+| onBuyNow             | `(SBAuction) -> Void` | Called when the user starts an instant upgrade from bidding              |
+| onClose              | `() -> Void`          | Called after the user dismisses the screen                               |
 

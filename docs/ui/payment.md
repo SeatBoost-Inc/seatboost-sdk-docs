@@ -49,7 +49,7 @@
 |-------------------|--------------------------------------|-----------------------------------------------------------------------------|
 | upgradeContext    | `SBUpgradeContext!`                  | The upgrade context data used to pre populate the screen                    |
 | delegate          | `SBPaymentControllerDelegate!`       | The delegate instance used to receive the user interface events             |
-| datasource        | `SBPaymentCardControllerDataSource!` | The data source instance used provide information about the payment methods |
+| datasource        | `SBPaymentCardDataSource!`           | The data source instance used provide information about the payment methods |
 
 > All the attributes in the ```upgradeContext``` should be provided to get the component working
 
@@ -90,23 +90,31 @@ public protocol SBPaymentControllerDelegate: AnyObject {
 
 * presentingViewController: The Stripe SDK will modally present additional view controllers on top of the view controller, when required for user authentication, like in the Challenge Flow for 3DS2 transactions.
 
-## SBPaymentCardControllerDataSource
+## SBPaymentCardDataSource
 
 <!-- tabs:start -->
 
 #### **iOS**
 
 ```swift
-public protocol SBPaymentCardControllerDataSource: AnyObject {
-    func getCustomerId() -> String // self.currentCustomerId == ""
-    
-    func isPaymentsLocked() -> Bool
-    func unlockPayments(success: @escaping () -> (), failure: @escaping (_ error: String) -> (), cancel: (() -> ())!, exceededAttempts: (() -> ())!)
+public protocol SBPaymentCardDataSource: AnyObject {
+    func getCurrentCustomerId() -> String
+    func getCurrentCustomerPlatformId() -> Int
+    func setCustomerId(_ customerId: String, for platformId: Int, pin: String)
+
     func getPayments() -> [SBPaymentCard]
-    func savePayment(isJoin: Bool, card: SBPaymentCard, success: @escaping () -> (), failure: @escaping (_ error: String) -> (), cancel: (() -> ())!, exceededAttempts: (() -> ())!)
-    func removePayment(_ card: SBPaymentCard, success: @escaping () -> (), failure: @escaping (_ error: String) -> ())
+    func addPayment(_ card: SBPaymentCard)
+    func removePayment(_ card: SBPaymentCard)
+    func setPayments(_ cards: [SBPaymentCard])
+
+    func usesPassword() -> Bool
+    func isPaymentsLocked() -> Bool
+    func createLocker(success: @escaping (_ pin: String) -> ())
+    func unlockPayments(success: @escaping () -> (), cancel: (() -> ())!, exceededAttempts: (() -> ())!)
 }
 ```
+
+For apps that do not lock saved cards behind a PIN, subclass `SBUnlockedPaymentCardDataSource` and override `customerId` / `platformId`.
 
 #### **Android**
 

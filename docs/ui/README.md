@@ -18,7 +18,8 @@ For Android developers, see the following resources:
 
 ## iOS Integration
 
-For iOS developers, see the following resources:
+Third-party iOS apps present [`SBBasicFlowController`](/ui/basic-flow.md), which runs the flow in the image above. See:
 
 - **[Getting Started - iOS](/getting-started-ios.md)** - Complete iOS SDK setup
-- **[Basic Integration Example](/examples-ios/basic-integration-ios.md)** - iOS integration examples
+- **[Basic Integration Example](/examples-ios/basic-integration-ios.md)** - Login, history, PNR lookup, and the hosted flow
+- **[Basic Flow Controller](/ui/basic-flow.md)** - `SBBasicFlowController` create APIs and host delegate
