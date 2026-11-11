@@ -17,7 +17,7 @@ The SeatBoost SDK has been meticulously engineered with the purpose of assisting
 
 ##### Updating from 3.8
 
-- **[Update Guide](update-guide.md)** - Checklist for moving a third-party app from SDK 3.8 to 4.0
+- **[Update Guide](update-guide.md)** - Checklist for moving a third-party app from SDK 3.8 to Android 4.0.1 / iOS 4.0.2
 
 
 ### Overview
